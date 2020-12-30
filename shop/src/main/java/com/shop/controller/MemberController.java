@@ -80,4 +80,14 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
+	
+	// 로그아웃
+	@RequestMapping(value = "/signout", method = RequestMethod.GET)
+	public String signout(HttpSession session) throws Exception {
+		logger.info("get logout");
+		
+		service.signout(session);
+		
+		return "redirect:/";
+	}
 }
