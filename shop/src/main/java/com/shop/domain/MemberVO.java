@@ -7,11 +7,11 @@ public class MemberVO {
     userId      varchar2(50)    not null,
     userPass    varchar2(100)   not null,
     userName    varchar2(30)    not null,
-    userPhon    varchar2(20)    not null,
+    userPhone    varchar2(20)    not null,
     userAddr1   varchar2(20)    null,
     userAddr2   varchar2(50)    null,
     userAddr3   varchar2(50)    null,
-    regiDate    date            default sysdate,
+    regDate    date            default sysdate,
     verify      number          default 0,
     primary key(userId)
 */

@@ -17,4 +17,10 @@ public class MemberServiceImpl implements MemberService{
 	public void signup(MemberVO vo) throws Exception {
 		dao.signup(vo);
 	}
+	
+	// 로그인
+	@Override
+	public MemberVO signin(MemberVO vo) throws Exception {
+		return dao.signin(vo);
+	}
 }
