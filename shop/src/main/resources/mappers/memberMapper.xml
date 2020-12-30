@@ -28,7 +28,8 @@
 				userAddr1,
 				userAddr2,
 				userAddr3,
-				regDate
+				regDate,
+				verify
 		from	tbl_member
 		where	userId = #{userId}
 	</select>
