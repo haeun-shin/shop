@@ -11,6 +11,7 @@ public class CategoryVO {
 	private String cateName;
 	private String cateCode;
 	private String cateCodeRef;
+	private int level;
 	
 	public String getCateName() {
 		return cateName;
@@ -29,6 +30,12 @@ public class CategoryVO {
 	}
 	public void setCateCodeRef(String cateCodeRef) {
 		this.cateCodeRef = cateCodeRef;
+	}
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
 	}
 	
 	
