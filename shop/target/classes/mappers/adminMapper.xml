@@ -13,4 +13,24 @@
 		connect by prior	cateCode = cateCodeRef
 	</select>
 	
+	<!-- 상품 등록 -->
+	<insert id="register">
+		insert into tbl_goods (
+								goodsNum, 
+								goodsName, 
+								cateCode, 
+								goodsPrice, 
+								goodsStock, 
+								goodsDesc
+								)
+						values (
+								tbl_goods_seq.nextval, 
+								#{goodsName}, 
+								#{cateCode}, 
+								#{goodsPrice}, 
+								#{goodsStock}, 
+								#{goodsDesc}
+								)
+	</insert>
+	
 </mapper>

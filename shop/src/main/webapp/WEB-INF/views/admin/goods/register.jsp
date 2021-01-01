@@ -49,7 +49,7 @@
 			   cateObj2.cateName = jsonData[i].cateName;
 			   cateObj2.cateCodeRef = jsonData[i].cateCodeRef;
 			   
-			   cate2Arr.push(cateObj2);
+			   cateArr2.push(cateObj2);
 			  }
 			 }
 			 
@@ -67,7 +67,8 @@
 			 $("option:selected", this).each(function(){
 			  
 			  var selectVal = $(this).val();  
-			  cateSelect2.append("<option value=''>전체</option>");
+			  
+			  cateSelect2.append("<option value='" + selectVal + "'>전체</option>");
 			  
 			  for(var i = 0; i < cateArr2.length; i++) {
 			   if(selectVal == cateArr2[i].cateCodeRef) {
@@ -105,17 +106,37 @@
 			<h2>상품 등록</h2>
 			
 			<form role="form" method="post" autocomplete="off">
-			 
+			 	<!-- 카테고리 -->
 				<label>1차 분류</label>
-					<select class="category1">
+				<select class="category1">
 					<option value="">전체</option>
 				</select>
 				
 				<label>2차 분류</label>
-					<select class="category2">
+				<select class="category2" name="cateCode">
 					<option value="">전체</option>
 				</select>
-			 
+			 	
+			 	<!-- 등록 -->
+			 	<div class="inputArea">
+			 		<label for="goodsName">상품명</label>
+			 		<input type="text" id="goodsName" name="goodsName" />
+			 	</div>
+			 	<div class="inputArea">
+			 		<label for="goodsPrice">상품가격</label>
+			 		<input type="text" id="goodsPrice" name="goodsPrice" />
+			 	</div>
+			 	<div class="inputArea">
+			 		<label for="goodsStock">상품수량</label>
+			 		<input type="text" id="goodsStock" name="goodsStock" />
+			 	</div>
+			 	<div class="inputArea">
+			 		<label for="goodsDesc">상품소개</label>
+			 		<input type="text" id="goodsDesc" name="goodsDesc" />
+			 	</div>
+			 	<div class="inputArea">
+			 		<button type="submit" id="register_Btn">등록</button>
+			 	</div>
 			</form>
 		</div>
 	</section>
