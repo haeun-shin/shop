@@ -79,6 +79,18 @@ body {
 	margin-top: 1.5em;
 	margin-bottom: 1.5em;
 }
+
+/* 버튼 */
+button {
+	border: none;
+	text-decoration: none;
+	text-align: center;
+	padding: .6em 1.5em;
+	border-radius: 8px;
+	color: #fff;
+	transition-duration: 0.1s;
+}
+
 /* list.jsp start*/
 	#container_box > table {
 		width: 100%;
@@ -186,16 +198,6 @@ body {
 		line-height: 2em;
 	}
 	
-	/* 버튼 */
-	.inputArea > button {
-		border: none;
-		text-decoration: none;
-		text-align: center;
-		padding: .6em 1.5em;
-		border-radius: 8px;
-		color: #fff;
-		transition-duration: 0.1s;
-	}
 	#modify_Btn {
 		background-color: #4CAF50;
 		border: 2px solid #4CAF50;
@@ -223,6 +225,39 @@ body {
 	
 /* view.jsp end */
 
+/* signin.jsp start */
+	.signin_box {
+		width: 500px;
+		margin: 0 auto;
+		border-radius: 5px;
+		background-color: #f2f2f2;
+		padding: 2em;
+		padding-top: 1em;
+		margin-top: 2em;
+	}
+	.signin_box input[type=email], .signin_box input[type=password] {
+	  width: 100%;
+	  padding: 12px 20px;
+	  margin: 1em 0;
+	  display: inline-block;
+	  border: 1px solid #ccc;
+	  border-radius: .2em;
+	  box-sizing: border-box;
+	}
+	.signin_box #signin_btn {
+	  width: 100%;
+	  background-color: #4CAF50;
+	  color: white;
+	  padding: .875em 1.25em;
+	  margin: .5em 0;
+	  border-radius: .2em;
+	  cursor: pointer;
+	  margin-top: 1em;
+	}
+	.signin_box #signin_btn:hover {
+		background-color: #45a049;
+	}
+/* signin.jsp end */
 /* 푸터 */
 #footer {
 	width: 100%;

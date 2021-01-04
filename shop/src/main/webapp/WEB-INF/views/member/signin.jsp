@@ -5,24 +5,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/resources/css/reset.css">
+<link rel="stylesheet" href="/resources/css/style.css">
 <title>로그인</title>
 </head>
 <body>
 <div id="root">
-	<header id="header">
-		<div id="header_box">
-			<%@ include file="../include/header.jsp" %>
-		</div>
-	</header>
-	
 	<nav id="nav">
 		<div id="nav_box">
 			<%@ include file="../include/nav.jsp" %>
 		</div>
 	</nav>
-	
+	<header id="header">
+		<div id="header_box">
+			<%@ include file="../include/header.jsp" %>
+		</div>
+	</header>
+
 	<section id="container">
-		<div id="container_box">
+		<div id="container_box" class="signin_box">
+			<h2>로그인</h2>
 			<section id="content">
 				<form role="form" method="post" autocomplete="off">
 					<div class="input_area">
@@ -44,12 +46,12 @@
 			</section>
 		</div>
 	</section>
-	
-	<footer id="footer">
-		<div id="footer_box">
-			<%@ include file="../include/footer.jsp" %>
-		</div>
-	</footer>
 </div>
+
+<footer id="footer">
+	<div id="footer_box">
+		<%@ include file="../include/footer.jsp" %>
+	</div>
+</footer>
 </body>
 </html>

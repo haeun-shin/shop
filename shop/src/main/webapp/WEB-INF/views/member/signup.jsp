@@ -5,26 +5,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/resources/css/reset.css">
+<link rel="stylesheet" href="/resources/css/style.css">
 <title>회원가입</title>
 </head>
 <body>
 <div id="root">
+	<nav id="nav">
+		<div id="nav_box">
+			<%@ include file="../include/nav.jsp" %>
+		</div>
+	</nav>
 	<header id="header">
 		<div id="header_box">
 			<%@ include file="../include/header.jsp" %>
 		</div>
 	</header>
 	
-	<nav id="nav">
-		<div id="nav_box">
-			<%@ include file="../include/nav.jsp" %>
-		</div>
-	</nav>
-	
 	<section id="container">
 		<div id="container_box">
+			<h2>회원가입</h2>
 			<section id="content">
-				<form role="form" method="post" autocomplete="off">
+				<form role="form" method="post" autocomplete="off" id="signup_form">
 					<div class="input_area">
 						<label for="userId">아이디</label>
 						<input type="email" id="userId" name="userId" placeholder="example@email.com" required="required" />
@@ -50,12 +52,12 @@
 			</section>
 		</div>
 	</section>
-	
-	<footer id="footer">
-		<div id="footer_box">
-			<%@ include file="../include/footer.jsp" %>
-		</div>
-	</footer>
 </div>
+
+<footer id="footer">
+	<div id="footer_box">
+		<%@ include file="../include/footer.jsp" %>
+	</div>
+</footer>
 </body>
 </html>
