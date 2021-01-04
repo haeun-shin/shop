@@ -11,14 +11,14 @@
 	</li>
 </c:if>
 <c:if test="${member != null }">
+	<li>
+		<strong style="font-weight:bold">${member.userName }님 환영합니다.</strong>
+	</li>
 	<c:if test="${member.verify == 9 }">
 	<li>
-		<a href="/admin/index">관리자화면</a>
+		<a href="/admin/goods/list">관리자화면</a>
 	</li>
 	</c:if>
-	<li>
-		${member.userName }님 환영합니다.
-	</li>
 	<li>
 		<a href="/member/signout">로그아웃</a>
 	</li>

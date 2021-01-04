@@ -183,7 +183,7 @@ $(document).ready(function() {
 			 		<input type="text" id="goodsDesc" name="goodsDesc" value="${goods.goodsDesc }" />
 			 	</div>
 			 	
-			 	<div class="inputArea">
+			 	<div class="btnArea">
 			 		<button type="button" id="update_Btn">완료</button>
 			 		<button type="button" id="back_Btn">취소</button>
 			 	</div>

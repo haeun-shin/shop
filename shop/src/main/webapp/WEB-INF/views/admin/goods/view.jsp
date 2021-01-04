@@ -49,7 +49,7 @@
 		<aside>
 			<%@ include file="../include/aside.jsp" %>
 		</aside>
-		<div id="container_box">
+		<div id="container_box" class="view_box">
 			<h2>상품 조회</h2>
 			<form role="form" method="post" autocomplete="off" id="view_form">
 				<input type="hidden" name="n" value="${goods.goodsNum }" />
@@ -78,7 +78,7 @@
 					<label for="goodsName">상품 소개</label>
 					<span>${goods.goodsDesc }</span>
 				</div>
-				<div class="inputArea">
+				<div class="btnArea">
 					<button type="button" id="modify_Btn">수정</button>
 					<button type="button" id="delete_Btn">삭제</button>
 					<button type="button" id="back_Btn" onclick="location.href='/admin/goods/list'">목록으로 돌아가기</button>

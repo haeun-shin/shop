@@ -162,7 +162,7 @@
 			 		<label for="goodsDesc">상품 소개</label>
 			 		<input type="text" id="goodsDesc" name="goodsDesc" />
 			 	</div>
-			 	<div class="inputArea">
+			 	<div class="btnArea">
 			 		<button type="button" id="register_Btn">등록</button>
 			 	</div>
 			</form>

@@ -24,7 +24,7 @@
 
 	<section id="container">
 		<div id="container_box" class="signin_box">
-			<h2>로그인</h2>
+			<h2 style="text-align:center">로그인</h2>
 			<section id="content">
 				<form role="form" method="post" autocomplete="off">
 					<div class="input_area">

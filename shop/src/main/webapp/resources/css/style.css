@@ -90,7 +90,9 @@ button {
 	color: #fff;
 	transition-duration: 0.1s;
 }
-
+.btnArea {
+	float:right;	
+}
 /* list.jsp start*/
 	#container_box > table {
 		width: 100%;
@@ -180,6 +182,10 @@ button {
 /* register.jsp + modify.jsp end */
 
 /* view.jsp start */
+	.view_box {
+		width: 500px;
+		margin:0 auto;
+	}
 	#view_form .inputArea {
 		width: 100%;
 		margin-bottom: .8em;
