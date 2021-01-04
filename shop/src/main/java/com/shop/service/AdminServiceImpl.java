@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.shop.domain.CategoryVO;
 import com.shop.domain.GoodsVO;
+import com.shop.domain.GoodsViewVO;
 import com.shop.persistence.AdminDAO;
 
 @Service
@@ -33,9 +34,9 @@ public class AdminServiceImpl implements AdminService{
 		return dao.goodsList();
 	}
 	
-	// 상품 조회
+	// 상품 조회 + 카테고리 조인
 	@Override
-	public GoodsVO goodsView(int goodsNum) throws Exception {
+	public GoodsViewVO goodsView(int goodsNum) throws Exception {
 		return dao.goodsView(goodsNum);
 	}
 }
