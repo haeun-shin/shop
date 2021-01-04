@@ -42,4 +42,10 @@ public class AdminDAOImpl implements AdminDAO{
 	public GoodsViewVO goodsView(int goodsNum) throws Exception {
 		return sql.selectOne(namespace + ".goodsView", goodsNum);
 	}
+	
+	// 상품 수정
+	@Override
+	public void goodsModify(GoodsVO vo) throws Exception {
+		sql.update(namespace + ".goodsModify", vo);
+	}
 }

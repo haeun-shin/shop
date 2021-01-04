@@ -73,7 +73,7 @@ public class AdminController {
 		model.addAttribute("goods", goods);
 	}
 	
-	// 상품 수정
+	// 상품 수정 GET (상품 수정 뷰)
 	@RequestMapping(value = "/goods/modify", method = RequestMethod.GET)
 	public void getGoodsModify(@RequestParam("n") int goodsNum, Model model) throws Exception {
 		logger.info("get goods modify");
@@ -86,4 +86,13 @@ public class AdminController {
 		model.addAttribute("category", JSONArray.fromObject(category));
 	}
 	
+	// 상품 수정 POST (상품 수정 수행)
+	@RequestMapping(value = "/goods/modify", method = RequestMethod.POST)
+	public String postGoodsModify(GoodsVO vo, @RequestParam("n") int goodsNum) throws Exception {
+		logger.info("post goods modify");
+		
+		adminService.goodsModify(vo);
+		
+		return "redirect:/admin/goods/view?n=" + goodsNum;
+	}
 }

@@ -78,4 +78,15 @@
         on	g.cateCode = c.cateCode
 		where	g.goodsNum = #{goodsNum}
 	</select>
+	
+	<!-- 상품 수정 -->
+	<update id="goodsModify">
+		update tbl_goods
+		set	goodsName = #{goodsName},
+			cateCode = #{cateCode},
+			goodsPrice = #{goodsPrice},
+			goodsStock = #{goodsStock},
+			goodsDesc = #{goodsDesc}
+		where	goodsNum = #{goodsNum}
+	</update>
 </mapper>
