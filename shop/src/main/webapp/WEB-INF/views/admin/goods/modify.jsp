@@ -63,7 +63,7 @@ $(document).ready(function() {
 		  
 		  var selectVal = $(this).val();  
 		  
-		  cateSelect2.append("<option value='" + selectVal + "'>전체</option>");
+		  cateSelect2.append("<option value='" + selectVal + "'>--</option>");
 		  
 		  for(var i = 0; i < cateArr2.length; i++) {
 		   if(selectVal == cateArr2[i].cateCodeRef) {
@@ -99,7 +99,32 @@ $(document).ready(function() {
 		 //$(".category2").val(select_cateCode);
 		 // select_cateCod가 부여되지 않는 현상이 있어서 아래 코드로 대체
 		 $(".category2").append("<option value='" + select_cateCode + "' selected='selected'>전체</option>");
+	}
+	 
+	// validation check : null
+	var formObj = $("form[role='form']");
+	
+	$("#update_Btn").click(function() {
+		if($(".category2").val() == null || $(".category2").val() == '') {
+			alert('상품 분류를 선택해주세요.');
+			return false;
+		} 
+		if($("#goodsName").val() == null || $("#goodsName").val().trim() == '') {
+			alert('상품 이름을 입력해주세요.');
+			return false;
 		}
+		if($("#goodsPrice").val() == null || $("#goodsPrice").val().trim() == '') {
+			alert('상품 이름을 입력해주세요.');
+			return false;
+		}
+		
+		formObj.submit();
+	});
+	
+	// validation check : number
+	$("input:text[numberOnly]").on("keyup", function() {
+      $(this).val($(this).val().replace(/[^0-9]/g,""));
+    });
 }) // END
 </script>
 
@@ -124,19 +149,21 @@ $(document).ready(function() {
 		<div id="container_box">
 			<h2>상품 수정</h2>
 			
-			<form role="form" method="post" autocomplete="off">
+			<form role="form" method="post" autocomplete="off" id="register_form">
 				<input type="hidden" name="goodsNum" value="${goods.goodsNum }" />
 			
 			 	<!-- 카테고리 -->
-				<label>1차 분류</label>
-				<select class="category1">
-					<option value="">전체</option>
-				</select>
-				
-				<label>2차 분류</label>
-				<select class="category2" name="cateCode">
-					<option value="">전체</option>
-				</select>
+			 	<div id="category">
+					<label>1차 분류</label>
+					<select class="category1">
+						<option value="">--</option>
+					</select>
+					
+					<label>2차 분류</label>
+					<select class="category2" name="cateCode">
+						<option value="">--</option>
+					</select>
+				</div>
 			 	
 			 	<!-- 등록 -->
 			 	<div class="inputArea">
@@ -145,11 +172,11 @@ $(document).ready(function() {
 			 	</div>
 			 	<div class="inputArea">
 			 		<label for="goodsPrice">상품가격</label>
-			 		<input type="text" id="goodsPrice" name="goodsPrice" value="${goods.goodsPrice }"/>
+			 		<input type="text" id="goodsPrice" name="goodsPrice" value="${goods.goodsPrice }" numberOnly/>
 			 	</div>
 			 	<div class="inputArea">
 			 		<label for="goodsStock">상품수량</label>
-			 		<input type="text" id="goodsStock" name="goodsStock" value="${goods.goodsStock }"/>
+			 		<input type="text" id="goodsStock" name="goodsStock" value="${goods.goodsStock }" numberOnly/>
 			 	</div>
 			 	<div class="inputArea">
 			 		<label for="goodsDesc">상품소개</label>
@@ -157,7 +184,7 @@ $(document).ready(function() {
 			 	</div>
 			 	
 			 	<div class="inputArea">
-			 		<button type="Submit" id="update_Btn">완료</button>
+			 		<button type="button" id="update_Btn">완료</button>
 			 		<button type="button" id="back_Btn">취소</button>
 			 	</div>
 			</form>
