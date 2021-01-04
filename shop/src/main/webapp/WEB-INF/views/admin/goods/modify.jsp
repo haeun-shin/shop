@@ -156,7 +156,7 @@ $(document).ready(function() {
 			 	</div>
 			 	
 			 	<div class="inputArea">
-			 		<button type="Submit" id="Update_Btn">완료</button>
+			 		<button type="Submit" id="update_Btn">완료</button>
 			 		<button type="button" id="back_Btn">취소</button>
 			 	</div>
 			</form>

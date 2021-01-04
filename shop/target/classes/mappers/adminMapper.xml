@@ -89,4 +89,10 @@
 			goodsDesc = #{goodsDesc}
 		where	goodsNum = #{goodsNum}
 	</update>
+	
+	<!-- 상품 삭제 -->
+	<delete id="goodsDelete">
+		delete	tbl_goods
+		where	goodsNum = #{goodsNum}
+	</delete>
 </mapper>
