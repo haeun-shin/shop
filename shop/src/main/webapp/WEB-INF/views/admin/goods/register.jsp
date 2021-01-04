@@ -70,7 +70,7 @@
 			  
 			  var selectVal = $(this).val();  
 			  
-			  cateSelect2.append("<option value='" + selectVal + "'>전체</option>");
+			  cateSelect2.append("<option value='" + selectVal + "'>--</option>");
 			  
 			  for(var i = 0; i < cateArr2.length; i++) {
 			   if(selectVal == cateArr2[i].cateCodeRef) {
@@ -82,6 +82,31 @@
 			 }); // option:selected
 			 
 		}); // document.on
+		
+		// validation check : null
+		var formObj = $("form[role='form']");
+		
+		$("#register_Btn").click(function() {
+			if($(".category2").val() == null || $(".category2").val() == '') {
+				alert('상품 분류를 선택해주세요.');
+				return false;
+			} 
+			if($("#goodsName").val() == null || $("#goodsName").val().trim() == '') {
+				alert('상품 이름을 입력해주세요.');
+				return false;
+			}
+			if($("#goodsPrice").val() == null || $("#goodsPrice").val().trim() == '') {
+				alert('상품 이름을 입력해주세요.');
+				return false;
+			}
+			
+			formObj.submit();
+		});
+		
+		// validation check : number
+		$("input:text[numberOnly]").on("keyup", function() {
+	      $(this).val($(this).val().replace(/[^0-9]/g,""));
+	    });
 	}) // END
 </script>
 
@@ -109,35 +134,36 @@
 			
 			<form role="form" method="post" autocomplete="off" id="register_form">
 			 	<!-- 카테고리 -->
-				<label>1차 분류</label>
-				<select class="category1">
-					<option value="">전체</option>
-				</select>
-				
-				<label>2차 분류</label>
-				<select class="category2" name="cateCode">
-					<option value="">전체</option>
-				</select>
-			 	
+			 	<div id="category">
+					<label>1차 분류</label>
+					<select class="category1">
+						<option value="">--</option>
+					</select>
+					
+					<label>2차 분류</label>
+					<select class="category2" name="cateCode">
+						<option value="">--</option>
+					</select>
+			 	</div>
 			 	<!-- 등록 -->
 			 	<div class="inputArea">
-			 		<label for="goodsName">상품명</label>
+			 		<label for="goodsName">상품 이름</label>
 			 		<input type="text" id="goodsName" name="goodsName" />
 			 	</div>
 			 	<div class="inputArea">
-			 		<label for="goodsPrice">상품가격</label>
-			 		<input type="text" id="goodsPrice" name="goodsPrice" />
+			 		<label for="goodsPrice">상품 가격</label>
+			 		<input type="text" id="goodsPrice" name="goodsPrice" numberOnly/>
 			 	</div>
 			 	<div class="inputArea">
-			 		<label for="goodsStock">상품수량</label>
-			 		<input type="text" id="goodsStock" name="goodsStock" />
+			 		<label for="goodsStock">상품 수량</label>
+			 		<input type="text" id="goodsStock" name="goodsStock" numberOnly/>
 			 	</div>
 			 	<div class="inputArea">
-			 		<label for="goodsDesc">상품소개</label>
+			 		<label for="goodsDesc">상품 소개</label>
 			 		<input type="text" id="goodsDesc" name="goodsDesc" />
 			 	</div>
 			 	<div class="inputArea">
-			 		<button type="submit" id="register_Btn">등록</button>
+			 		<button type="button" id="register_Btn">등록</button>
 			 	</div>
 			</form>
 		</div>
