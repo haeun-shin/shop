@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,27 +32,28 @@
 					<span class="category1"></span>
 					
 					<label>2차 분류</label>
-					<span class="category2"></span>
+					<span class="category2">${goods.cateCode }</span>
 				</div>
 				
 				<div class="inputArea">
 					<label for="goodsName">상품명</label>
-					<input type="text" id="goodsName" name="goodsName" value=""/>
+					<span>${goods.goodsName }</span>
 				</div>
 				<div class="inputArea">
 					<label for="goodsName">상품 가격</label>
-					<input type="text" id="goodsPrice" name="goodsPrice" value=""/>
+					<span><fmt:formatNumber value="${goods.goodsPrice }" pattern="###,###,###" /></span>
 				</div>
 				<div class="inputArea">
 					<label for="goodsName">상품 수량</label>
-					<input type="text" id="goodsStock" name="goodsStock" value=""/>
+					<span><fmt:formatNumber value="${goods.goodsStock }" pattern="###,###,###" /></span>
 				</div>
 				<div class="inputArea">
 					<label for="goodsName">상품 소개</label>
-					<input type="text" id="goodsDesc" name="goodsDesc" value=""/>
+					<span>${goods.goodsDesc }</span>
 				</div>
 				<div class="inputArea">
-					<button type="submit" id="register_Btn">등록</button>
+					<button type="button" id="register_Btn">수정</button>
+					<button type="button" id="delete_Btn">삭제</button>
 				</div>
 			</form>
 		</div>

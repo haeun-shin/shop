@@ -35,4 +35,10 @@ public class AdminDAOImpl implements AdminDAO{
 	public List<GoodsVO> goodsList() throws Exception {
 		return sql.selectList(namespace + ".goodsList");
 	}
+	
+	// 상품 조회
+	@Override
+	public GoodsVO goodsView(int goodsNum) throws Exception {
+		return sql.selectOne(namespace + ".goodsView", goodsNum);
+	}
 }

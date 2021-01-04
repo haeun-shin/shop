@@ -47,4 +47,17 @@
 		order by goodsNum desc
 	</select>
 	
+	<!-- 상품 조회 -->
+	<select id="goodsView" resultType="com.shop.domain.GoodsVO">
+		select goodsNum,
+			   goodsName,
+			   cateCode,
+			   goodsPrice,
+			   goodsStock,
+			   goodsDesc,
+			   goodsImg,
+			   goodsDate
+		from tbl_goods
+		where goodsNum = #{goodsNum}
+	</select>
 </mapper>

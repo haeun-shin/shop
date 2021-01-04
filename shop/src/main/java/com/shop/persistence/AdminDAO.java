@@ -9,10 +9,12 @@ public interface AdminDAO {
 	// 카테고리
 	public List<CategoryVO> category() throws Exception;
 	
-	// 상품등록
+	// 상품 등록
 	public void register(GoodsVO vo) throws Exception;
 	
 	// 상품 목록
 	public List<GoodsVO> goodsList() throws Exception;
 	
+	// 상품 조회
+	public GoodsVO goodsView(int goodsNum) throws Exception;
 }
