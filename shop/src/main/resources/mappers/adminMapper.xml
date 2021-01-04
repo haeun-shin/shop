@@ -33,4 +33,18 @@
 								)
 	</insert>
 	
+	<!-- 상품 목록 -->
+	<select id="goodsList" resultType="com.shop.domain.GoodsVO">
+		select goodsNum,
+			   goodsName,
+			   cateCode,
+			   goodsPrice,
+			   goodsStock,
+			   goodsDesc,
+			   goodsImg,
+			   goodsDate
+		from tbl_goods
+		order by goodsNum desc
+	</select>
+	
 </mapper>

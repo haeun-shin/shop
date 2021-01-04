@@ -11,4 +11,7 @@ public interface AdminService {
 	
 	// 상품 등록
 	public void register(GoodsVO vo) throws Exception;
+	
+	// 상품 목록
+	public List<GoodsVO> goodsList() throws Exception;
 }

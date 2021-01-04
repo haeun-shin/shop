@@ -50,4 +50,14 @@ public class AdminController {
 		
 		return "redirect:/admin/index";
 	}
+	
+	// 상품 목록
+	@RequestMapping(value = "/goods/list", method = RequestMethod.GET)
+	public void getGoodsList(Model model) throws Exception {
+		logger.info("get goods list");
+		
+		List<GoodsVO> list = adminService.goodsList();
+		
+		model.addAttribute("list", list);
+	}
 }
