@@ -23,8 +23,8 @@
 	</header>
 	
 	<section id="container">
-		<div id="container_box">
-			<h2>회원가입</h2>
+		<div id="container_box" class="signup_box">
+			<h2 style="text-align:center">회원가입</h2>
 			<section id="content">
 				<form role="form" method="post" autocomplete="off" id="signup_form">
 					<div class="input_area">
