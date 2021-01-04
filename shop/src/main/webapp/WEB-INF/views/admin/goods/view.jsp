@@ -73,6 +73,7 @@
 				<div class="inputArea">
 					<button type="button" id="modify_Btn">수정</button>
 					<button type="button" id="delete_Btn">삭제</button>
+					<button type="button" onclick="location.href='/admin/goods/list'">목록으로 돌아가기</button>
 				</div>
 			</form>
 		</div>
