@@ -42,7 +42,9 @@
 					<c:forEach items="${list }" var="list">
 					<tr>
 						<td>${list.goodsNum }</td>
-						<td>${list.goodsName }</td>
+						<td>
+							<a href="/admin/goods/view?n=${list.goodsNum }">${list.goodsName }</a>
+						</td>
 						<td>${list.cateCode }</td>
 						<td>
 							<fmt:formatNumber value="${list.goodsPrice }" pattern="###,###,###" />
@@ -55,7 +57,6 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			
 		</div>
 	</section>
 	
