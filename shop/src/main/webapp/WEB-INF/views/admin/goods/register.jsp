@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/resources/css/reset.css">
+<link rel="stylesheet" href="/resources/css/style.css">
 <title>상품 등록</title>
 <script src="/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
@@ -86,17 +88,17 @@
 </head>
 <body>
 <div id="root">
-	<header id="header">
-		<div id="header_box">
-			<%@ include file="../include/header.jsp" %>
-		</div>
-	</header>
-	
 	<nav id="nav">
 		<div id="nav_box">
 			<%@ include file="../include/nav.jsp" %>
 		</div>
 	</nav>
+	
+	<header id="header">
+		<div id="header_box">
+			<%@ include file="../include/header.jsp" %>
+		</div>
+	</header>
 	
 	<section id="container">
 		<aside>
@@ -105,7 +107,7 @@
 		<div id="container_box">
 			<h2>상품 등록</h2>
 			
-			<form role="form" method="post" autocomplete="off">
+			<form role="form" method="post" autocomplete="off" id="register_form">
 			 	<!-- 카테고리 -->
 				<label>1차 분류</label>
 				<select class="category1">
@@ -140,13 +142,12 @@
 			</form>
 		</div>
 	</section>
-	
-	<footer id="footer">
-		<div id="footer_box">
-			<%@ include file="../include/footer.jsp" %>
-		</div>
-	</footer>
-
 </div>
+
+<footer id="footer">
+	<div id="footer_box">
+		<%@ include file="../include/footer.jsp" %>
+	</div>
+</footer>
 </body>
 </html>

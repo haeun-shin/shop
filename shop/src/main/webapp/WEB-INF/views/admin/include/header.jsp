@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
     
 <h1 class="title">
-	<a href="/admin/index">SHOP Admin</a>
+	<a href="/admin/index">SHOP<i>Admin</i></a>
 </h1>

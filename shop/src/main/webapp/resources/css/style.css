@@ -1,0 +1,163 @@
+body {
+	width: 100%;
+}
+/* 전체 컨테이너 */
+#root {
+	width: 1140px;
+	margin: 0 auto;
+}
+
+/* 네비게이션 바 */
+#nav_box {
+	margin-top: 1em;
+}
+#nav_box > ul {
+	float: right;
+}
+#nav_box > ul > li {
+	float: left;
+}
+#nav_box > ul > li > a {
+	font-size: 0.875rem;
+	margin-left: 0.8em;
+}
+
+/* 헤더 */
+#header {
+	clear: both;
+   	line-height: 4em;
+   	border-bottom: 1px solid #f5f5f5;
+}
+#header_box {
+	text-align: center;
+	margin-top: 1em;
+}
+#header_box > .title > a {
+	font-size: 2.5rem;
+	font-weight: bold;
+}
+#header_box > .title > a > i {
+	font-size: 1.5rem;
+}
+
+/* 컨텐츠 */
+#container {
+	/* margin-top: 2em; */
+	overflow: hidden;
+}
+#container > aside {
+	margin-bottom: 1em;
+}
+
+/* 컨텐츠 > 목록 */
+#container > aside > ul {
+	width: 100%;
+	border-bottom: 1px solid #f5f5f5;
+	overflow: hidden;
+}
+#container > aside > ul > li {
+	line-height: 3em;
+	text-align: center;
+	float: left;
+	width: 25%;
+}
+#container > aside > ul > li > a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+#container > aside > ul > li > a:hover {
+	background-color: #f5f5f5;
+	color: #999;
+}
+
+
+/* 컨텐츠 > 내용 */
+#container_box > h2 {
+	font-size: 1.3rem;
+	font-weight: bold;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+}
+/* list.jsp start*/
+#container_box > table {
+	width: 100%;
+	table-layout: fixed;
+	text-align: center;
+}
+#container_box th {
+	font-weight: bold;
+	background-color: #808080;
+	color: #fff;
+}
+#container_box  td {
+	border-bottom: 1px solid #f5f5f5;
+}
+#container_box tr:hover {
+	background-color: #f5f5f5;
+}
+#container_box th, #container_box td {
+  width: 100px;
+  overflow: hidden;
+  padding:  0.5em 1em;
+  line-height: 2.5em;
+}
+/* 상품목록 번호 */
+#container_box th:nth-child(1) {
+	width:5%;
+}
+/* 상품목록 이름 */
+#container_box th:nth-child(2) {
+	width:25%;
+	text-align: left;
+}
+#container_box td:nth-child(2) {
+	text-align: left;
+	font-weight: bold;
+}
+/* list.jsp end */
+
+/* register.jsp start */
+
+/* register.jsp end */
+/* 푸터 */
+#footer {
+	width: 100%;
+	background-color: #f8f8f8;
+	padding: 2.5em 0;
+	letter-spacing: -0.05em;
+	font-size: 0.85rem;
+	margin-top: 4em;
+}
+#footer > #footer_box {
+	width: 1140px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+#footer_box > div {
+	float: left;
+}
+#footer_desc {
+	width:70%;
+}
+#footer_desc > em {
+	font-size: 1.2rem;
+	line-height: 3em;
+	font-weight: bold;		
+}
+#footer_desc > p {
+	margin-bottom: 0.8em;
+}
+#footer_cs {
+	width: 30%;
+	padding-top: 2.7em;
+}
+#footer_cs > p {
+	margin-bottom: 0.8em;
+}
+#footer_cs > p > b {
+	font-weight: bold;
+}
+#footer_cs > p > strong {
+	font-size: 1.8rem;
+}

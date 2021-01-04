@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/resources/css/reset.css">
+<link rel="stylesheet" href="/resources/css/style.css">
 <title>상품 등록</title>
 <script src="/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
@@ -104,17 +106,16 @@ $(document).ready(function() {
 </head>
 <body>
 <div id="root">
-	<header id="header">
-		<div id="header_box">
-			<%@ include file="../include/header.jsp" %>
-		</div>
-	</header>
-	
 	<nav id="nav">
 		<div id="nav_box">
 			<%@ include file="../include/nav.jsp" %>
 		</div>
 	</nav>
+	<header id="header">
+		<div id="header_box">
+			<%@ include file="../include/header.jsp" %>
+		</div>
+	</header>
 	
 	<section id="container">
 		<aside>
@@ -162,11 +163,11 @@ $(document).ready(function() {
 			</form>
 		</div>
 	</section>
-
-	<footer id="footer">
-		<div id="footer_box">
-			<%@ include file="../include/footer.jsp" %>
-		</div>
-	</footer>
 </div>
+
+<footer id="footer">
+	<div id="footer_box">
+		<%@ include file="../include/footer.jsp" %>
+	</div>
+</footer>
 </html>
