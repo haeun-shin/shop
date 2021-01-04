@@ -80,46 +80,149 @@ body {
 	margin-bottom: 1.5em;
 }
 /* list.jsp start*/
-#container_box > table {
-	width: 100%;
-	table-layout: fixed;
-	text-align: center;
-}
-#container_box th {
-	font-weight: bold;
-	background-color: #808080;
-	color: #fff;
-}
-#container_box  td {
-	border-bottom: 1px solid #f5f5f5;
-}
-#container_box tr:hover {
-	background-color: #f5f5f5;
-}
-#container_box th, #container_box td {
-  width: 100px;
-  overflow: hidden;
-  padding:  0.5em 1em;
-  line-height: 2.5em;
-}
-/* 상품목록 번호 */
-#container_box th:nth-child(1) {
-	width:5%;
-}
-/* 상품목록 이름 */
-#container_box th:nth-child(2) {
-	width:25%;
-	text-align: left;
-}
-#container_box td:nth-child(2) {
-	text-align: left;
-	font-weight: bold;
-}
+	#container_box > table {
+		width: 100%;
+		table-layout: fixed;
+		text-align: center;
+	}
+	#container_box th {
+		font-weight: bold;
+		background-color: #808080;
+		color: #fff;
+	}
+	#container_box  td {
+		border-bottom: 1px solid #f5f5f5;
+	}
+	#container_box tr:hover {
+		background-color: #f5f5f5;
+	}
+	#container_box th, #container_box td {
+	  width: 100px;
+	  overflow: hidden;
+	  padding:  0.5em 1em;
+	  line-height: 2.5em;
+	}
+	/* 상품목록 번호 */
+	#container_box th:nth-child(1) {
+		width:5%;
+	}
+	/* 상품목록 이름 */
+	#container_box th:nth-child(2) {
+		width:25%;
+		text-align: left;
+	}
+	#container_box td:nth-child(2) {
+		text-align: left;
+		font-weight: bold;
+	}
 /* list.jsp end */
 
 /* register.jsp start */
-
+	/* 카테고리 */
+	#category {
+		margin-bottom: 1.5em;
+	}
+	#category label {
+		font-weight: bold;
+		margin-right: .5em;
+	}
+	#category select {
+	    width: 15em;
+    	height: 2.5em;
+    	padding: 0 .5em;
+	}
+	#category .category1 {
+		margin-right: 2em;
+	}
+	/* 등록 폼 */
+	#register_form .inputArea {
+		width: 100%;
+		margin-bottom: .8em;
+	}
+	#register_form .inputArea > label {
+    	display: inline-block;
+	    width: 18%;
+	    line-height: 2.55em;
+	    text-align: center;
+	    background-color: #c5c5c5;
+	    color: #fff;
+	    font-weight: bold;
+	}
+	#register_form .inputArea > input {
+		width:80%;
+		line-height: 2em;
+	}
+	#register_form input[type=text] {
+	  border: none;
+	  border-bottom: 2px solid #c0c0c0;
+	}
+	/* 등록 버튼 */
+	#register_Btn {
+		background-color: #4CAF50;
+		border: 2px solid #4CAF50;
+	}
+	#register_Btn:hover {
+		background-color: #fff;
+		color: #555;
+	}
 /* register.jsp end */
+
+/* view.jsp start */
+	#view_form .inputArea {
+		width: 100%;
+		margin-bottom: .8em;
+	}
+	#view_form .inputArea > label {
+    	display: inline-block;
+	    width: 18%;
+	    line-height: 2.55em;
+	    text-align: center;
+	    background-color: #c5c5c5;
+	    color: #fff;
+	    font-weight: bold;
+	}
+	#view_form .inputArea > span {
+		width:80%;
+		line-height: 2em;
+	}
+	
+	/* 버튼 */
+	.inputArea > button {
+		border: none;
+		text-decoration: none;
+		text-align: center;
+		padding: .6em 1.5em;
+		border-radius: 8px;
+		color: #fff;
+		transition-duration: 0.1s;
+	}
+	#modify_Btn {
+		background-color: #4CAF50;
+		border: 2px solid #4CAF50;
+	}
+	#modify_Btn:hover {
+		background-color: #fff;
+		color: #555;
+	}
+	#delete_Btn {
+		background-color: #f44336;
+		border: 2px solid #f44336;
+	}
+	#delete_Btn:hover {
+		background-color: #fff;
+		color: #555;
+	}
+	#back_Btn {
+		background-color: #555;
+		border: 2px solid #555;
+	}
+	#back_Btn:hover {
+		background-color: #fff;
+		color: #555;
+	}
+	
+/* view.jsp end */
+
 /* 푸터 */
 #footer {
 	width: 100%;

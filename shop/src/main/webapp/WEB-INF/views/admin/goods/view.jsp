@@ -21,7 +21,7 @@
 		
 		$("#delete_Btn").click(function() {
 			
-			var con = confirm("[ 상풍명 : ${goods.goodsName } ]을/를 정말로 삭제하시겠습니까?");
+			var con = confirm("[ 상품명 : ${goods.goodsName } ]을/를 정말로 삭제하시겠습니까?");
 			
 			if(con) {
 				formObj.attr("action", "/admin/goods/delete");
@@ -50,15 +50,16 @@
 			<%@ include file="../include/aside.jsp" %>
 		</aside>
 		<div id="container_box">
-			<form role="form" method="post" autocomplete="off">
+			<h2>상품 조회</h2>
+			<form role="form" method="post" autocomplete="off" id="view_form">
 				<input type="hidden" name="n" value="${goods.goodsNum }" />
 			
 				<div class="inputArea">
 					<label>1차 분류</label>
-					<span class="category1"></span>
-					
+					<span class="category1">${goods.cateCodeRef }</span>
+					<div class="inputArea"><span></span></div>
 					<label>2차 분류</label>
-					<span class="category2">${goods.cateCode }</span>
+					<span class="category2">${goods.cateName }</span>
 				</div>
 				
 				<div class="inputArea">
@@ -80,7 +81,7 @@
 				<div class="inputArea">
 					<button type="button" id="modify_Btn">수정</button>
 					<button type="button" id="delete_Btn">삭제</button>
-					<button type="button" onclick="location.href='/admin/goods/list'">목록으로 돌아가기</button>
+					<button type="button" id="back_Btn" onclick="location.href='/admin/goods/list'">목록으로 돌아가기</button>
 				</div>
 			</form>
 		</div>
