@@ -50,7 +50,7 @@ public class AdminController {
 	public String postGoodsRegister(GoodsVO vo) throws Exception {
 		adminService.register(vo);
 		
-		return "redirect:/admin/index";
+		return "redirect:/admin/goods/list";
 	}
 	
 	// 상품 목록
