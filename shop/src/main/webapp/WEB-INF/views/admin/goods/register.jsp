@@ -179,7 +179,6 @@
 			 			}
 			 		});
 			 	</script>
-			 	<%=request.getRealPath("/") %>
 			 	<div class="btnArea">
 			 		<button type="button" id="register_Btn">등록</button>
 			 	</div>
