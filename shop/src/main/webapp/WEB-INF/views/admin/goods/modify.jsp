@@ -149,7 +149,7 @@ $(document).ready(function() {
 		<div id="container_box" class="register_box">
 			<h2 style="text-align:center;">상품 수정</h2>
 			<hr style="margin-bottom: 2em;"/>
-			<form role="form" method="post" autocomplete="off" id="register_form">
+			<form role="form" method="post" autocomplete="off" id="register_form" enctype="multipart/form-data">
 				<input type="hidden" name="goodsNum" value="${goods.goodsNum }" />
 				
 			 	<!-- 카테고리 -->
@@ -182,7 +182,27 @@ $(document).ready(function() {
 			 		<label for="goodsDesc">상품소개</label>
 			 		<input type="text" id="goodsDesc" name="goodsDesc" value="${goods.goodsDesc }" />
 			 	</div>
-			 	
+			 	<div class="inputArea">
+			 		<label for="goodsImg">이미지</label>
+			 		<input type="file" id="goodsImg" name="file"  style="margin-bottom: 1em;"/>
+			 		<div class="select_img">
+			 			<img src="${goods.goodsImg }"/>
+			 			<input type="hidden" name="goodsImg" value="${goods.goodsImg }" />
+			 			<input type="hidden" name="goodsThumbImg" value="${goods.goodsThumbImg }" />
+			 		</div>
+			 	</div>
+			 	<script>
+			 		// 파일이 등록되면 현재 화면에서 어떤 이미지인지 볼 수 있게 해주는 역할
+			 		$('#goodsImg').change(function() {
+			 			if(this.files && this.files[0]) {
+			 				var reader = new FileReader;
+			 				reader.onload = function(data) {
+			 					$(".select_img img").attr("src", data.target.result).width(500);
+			 				}
+			 				reader.readAsDataURL(this.files[0]);
+			 			}
+			 		});
+			 	</script>
 			 	<div class="btnArea">
 			 		<button type="button" id="update_Btn">완료</button>
 			 		<button type="button" id="back_Btn">취소</button>

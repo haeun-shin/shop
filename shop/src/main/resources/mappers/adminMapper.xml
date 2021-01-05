@@ -92,7 +92,9 @@
 			cateCode = #{cateCode},
 			goodsPrice = #{goodsPrice},
 			goodsStock = #{goodsStock},
-			goodsDesc = #{goodsDesc}
+			goodsDesc = #{goodsDesc},
+			goodsImg = #{goodsImg},
+			goodsThumbImg = #{goodsThumbImg}
 		where	goodsNum = #{goodsNum}
 	</update>
 	
