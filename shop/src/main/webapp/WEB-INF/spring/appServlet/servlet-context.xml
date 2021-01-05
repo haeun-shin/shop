@@ -39,6 +39,8 @@
 	
 	<!-- 일반 파일 업로드 경로 -->
 	<resources mapping="/imgUpload/**" location="/resources/imgUpload/" />
+	<!-- 이지윅 파일 업로드 경로 -->
+	<resources mapping="/ckUpload/**" location="/resources/ckUpload/" />
 	
 	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
 		<beans:property name="maxUploadSize" value="10485760" />

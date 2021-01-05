@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
 <title>상품 등록</title>
+<script src="/resources/ckeditor/ckeditor.js"></script>
 <script src="/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -160,7 +161,17 @@
 			 	</div>
 			 	<div class="inputArea">
 			 		<label for="goodsDesc">상품 소개</label>
-			 		<input type="text" id="goodsDesc" name="goodsDesc" />
+			 		<textarea rows="5" cols="50" id="goodsDesc" name="goodsDesc" ></textarea>
+			 	<script>
+				 var ckeditor_config = {
+				   resize_enaleb : false,
+				   enterMode : CKEDITOR.ENTER_BR,
+				   shiftEnterMode : CKEDITOR.ENTER_P,
+				   filebrowserUploadUrl : "/admin/goods/ckUpload"
+				 };
+				 
+				 CKEDITOR.replace("goodsDesc", ckeditor_config);
+				</script>
 			 	</div>
 			 	<div class="inputArea">
 			 		<label for="goodsImg">이미지</label>
