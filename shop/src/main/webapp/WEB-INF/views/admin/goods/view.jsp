@@ -50,14 +50,15 @@
 			<%@ include file="../include/aside.jsp" %>
 		</aside>
 		<div id="container_box" class="view_box">
-			<h2>상품 조회</h2>
+			<h2 style="text-align:center;">상품 조회</h2>
+			<hr style="margin-bottom: 2em;"/>
 			<form role="form" method="post" autocomplete="off" id="view_form">
 				<input type="hidden" name="n" value="${goods.goodsNum }" />
 			
 				<div class="inputArea">
 					<label>1차 분류</label>
 					<span class="category1">${goods.cateCodeRef }</span>
-					<div class="inputArea"><span></span></div>
+					<!-- <div class="inputArea"><span></span></div> -->
 					<label>2차 분류</label>
 					<span class="category2">${goods.cateName }</span>
 				</div>

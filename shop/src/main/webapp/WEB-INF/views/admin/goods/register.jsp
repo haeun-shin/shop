@@ -129,9 +129,9 @@
 		<aside>
 			<%@ include file="../include/aside.jsp" %>
 		</aside>
-		<div id="container_box">
-			<h2>상품 등록</h2>
-			
+		<div id="container_box" class="register_box">
+			<h2 style="text-align: center;">상품 등록</h2>
+			<hr style="margin-bottom: 2em;"/>
 			<form role="form" method="post" autocomplete="off" id="register_form">
 			 	<!-- 카테고리 -->
 			 	<div id="category">
@@ -139,7 +139,7 @@
 					<select class="category1">
 						<option value="">--</option>
 					</select>
-					
+					<p style="margin-top:1.5em;"></p>
 					<label>2차 분류</label>
 					<select class="category2" name="cateCode">
 						<option value="">--</option>
