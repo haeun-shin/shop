@@ -79,6 +79,16 @@
 					<label for="goodsName">상품 소개</label>
 					<span>${goods.goodsDesc }</span>
 				</div>
+				
+				<div class="inputArea">
+					<label for="goodsImg">이미지</label>
+					<p>원본 이미지</p>
+					<img src="${goods.goodsImg }" />
+					
+					<p>썸네일</p>
+					<img src="${goods.goodsThumbImg }" />
+				</div>
+				
 				<div class="btnArea">
 					<button type="button" id="modify_Btn">수정</button>
 					<button type="button" id="delete_Btn">삭제</button>

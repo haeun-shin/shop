@@ -15,6 +15,8 @@ public class GoodsViewVO {
 	private String cateCodeRef;
 	private String cateName;
 	
+	private String goodsThumbImg;
+	
 	public int getGoodsNum() {
 		return goodsNum;
 	}
@@ -74,6 +76,12 @@ public class GoodsViewVO {
 	}
 	public void setCateName(String cateName) {
 		this.cateName = cateName;
+	}
+	public String getGoodsThumbImg() {
+		return goodsThumbImg;
+	}
+	public void setGoodsThumbImg(String goodsThumbImg) {
+		this.goodsThumbImg = goodsThumbImg;
 	}
 	
 	

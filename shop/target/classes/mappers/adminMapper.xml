@@ -76,7 +76,9 @@
 				goodsStock, 
 				goodsDesc, 
 				goodsImg, 
-				goodsDate
+				goodsDate,
+				g.goodsImg,
+				g.goodsThumbImg
 		from	tbl_goods g
     	inner join	goods_category c
         on	g.cateCode = c.cateCode
