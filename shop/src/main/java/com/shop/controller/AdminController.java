@@ -1,7 +1,9 @@
 package com.shop.controller;
 
+import java.io.File;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -11,11 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.domain.CategoryVO;
 import com.shop.domain.GoodsVO;
 import com.shop.domain.GoodsViewVO;
 import com.shop.service.AdminService;
+import com.shop.utils.UploadFileUtils;
 
 import net.sf.json.JSONArray;
 
@@ -27,6 +31,9 @@ public class AdminController {
 	
 	@Inject
 	AdminService adminService;
+	
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
 	// 관리자화면
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
@@ -47,7 +54,27 @@ public class AdminController {
 	
 	// 상품 등록
 	@RequestMapping(value = "/goods/register", method = RequestMethod.POST)
-	public String postGoodsRegister(GoodsVO vo) throws Exception {
+	public String postGoodsRegister(GoodsVO vo, MultipartFile file) throws Exception {
+		// 이미지를 업로드할 폴더
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		// 위의 폴더를 기준으로 연월일 폴더 생성
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		// 기본 경로와 별개로 작성되는 경로 + 파일 이름
+		String fileName = null;
+		
+		// 파일 인풋박스에 첨부파일이 없다면(=첨부된 파일 이름이 없다면)
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+		} else {
+			// 첨부된 파일이 없으면, 미리 준비된 none.png 파일을 대신 출력함
+			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		}
+		
+		// goodsImg에 원본 파일 경로 + 파일명 저장
+		vo.setGoodsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		// goodsThumbImg에 썸네일 파일 경로 + 썸네일 파일명 저장
+		vo.setGoodsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		
 		adminService.register(vo);
 		
 		return "redirect:/admin/goods/list";

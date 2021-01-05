@@ -132,7 +132,7 @@
 		<div id="container_box" class="register_box">
 			<h2 style="text-align: center;">상품 등록</h2>
 			<hr style="margin-bottom: 2em;"/>
-			<form role="form" method="post" autocomplete="off" id="register_form">
+			<form role="form" method="post" autocomplete="off" id="register_form" enctype="multipart/form-data">
 			 	<!-- 카테고리 -->
 			 	<div id="category">
 					<label>1차 분류</label>
@@ -162,6 +162,24 @@
 			 		<label for="goodsDesc">상품 소개</label>
 			 		<input type="text" id="goodsDesc" name="goodsDesc" />
 			 	</div>
+			 	<div class="inputArea">
+			 		<label for="goodsImg">이미지</label>
+			 		<input type="file" id="goodsImg" name="file" />
+			 		<div class="select_img"><img src="" style="margin-top: 1em;"/></div>
+			 	</div>
+			 	<script>
+			 		// 파일이 등록되면 현재 화면에서 어떤 이미지인지 볼 수 있게 해주는 역할
+			 		$('#goodsImg').change(function() {
+			 			if(this.files && this.files[0]) {
+			 				var reader = new FileReader;
+			 				reader.onload = function(data) {
+			 					$(".select_img img").attr("src", data.target.result).width(500);
+			 				}
+			 				reader.readAsDataURL(this.files[0]);
+			 			}
+			 		});
+			 	</script>
+			 	<%=request.getRealPath("/") %>
 			 	<div class="btnArea">
 			 		<button type="button" id="register_Btn">등록</button>
 			 	</div>

@@ -21,7 +21,9 @@
 								cateCode, 
 								goodsPrice, 
 								goodsStock, 
-								goodsDesc
+								goodsDesc,
+								goodsImg,
+								goodsThumbImg
 								)
 						values (
 								tbl_goods_seq.nextval, 
@@ -29,7 +31,9 @@
 								#{cateCode}, 
 								#{goodsPrice}, 
 								#{goodsStock}, 
-								#{goodsDesc}
+								#{goodsDesc},
+								#{goodsImg},
+								#{goodsThumbImg}
 								)
 	</insert>
 	

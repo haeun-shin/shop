@@ -12,6 +12,7 @@ public class GoodsVO {
     goodsDesc       varchar(500)    null,
     goodsImg       	varchar(200)    null,
     goodsDate      	date            default sysdate,
+    goodsThumbImg	varchar(200)	null,
     primary key(goodsNum)  
 */
 	private int goodsNum;
@@ -22,6 +23,7 @@ public class GoodsVO {
 	private String goodsDesc;
 	private String goodsImg;
 	private Date goodsDate;
+	private String goodsThumbImg;
 	
 	public int getGoodsNum() {
 		return goodsNum;
@@ -70,6 +72,12 @@ public class GoodsVO {
 	}
 	public void setGoodsDate(Date goodsDate) {
 		this.goodsDate = goodsDate;
+	}
+	public String getGoodsThumbImg() {
+		return goodsThumbImg;
+	}
+	public void setGoodsThumbImg(String goodsThumbImg) {
+		this.goodsThumbImg = goodsThumbImg;
 	}
 	
 	

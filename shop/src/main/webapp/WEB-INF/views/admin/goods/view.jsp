@@ -69,11 +69,11 @@
 				</div>
 				<div class="inputArea">
 					<label for="goodsName">상품 가격</label>
-					<span><fmt:formatNumber value="${goods.goodsPrice }" pattern="###,###,###" /></span>
+					<span><fmt:formatNumber value="${goods.goodsPrice }" pattern="###,###,### 원" /></span>
 				</div>
 				<div class="inputArea">
 					<label for="goodsName">상품 수량</label>
-					<span><fmt:formatNumber value="${goods.goodsStock }" pattern="###,###" /></span>
+					<span><fmt:formatNumber value="${goods.goodsStock }" pattern="###,### 개" /></span>
 				</div>
 				<div class="inputArea">
 					<label for="goodsName">상품 소개</label>
