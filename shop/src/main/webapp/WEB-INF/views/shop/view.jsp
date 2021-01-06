@@ -39,9 +39,7 @@ $(document).ready(function() {
 	
 });
 </script>
-<style>
 
-</style>
 </head>
 <body>
 <div id="root">
@@ -112,10 +110,10 @@ $(document).ready(function() {
 	
 </div>
 
-<%-- <footer id="footer">
+<footer id="footer">
 	<div id="footer_box">
 		<%@ include file="../include/footer.jsp" %>
 	</div>
-</footer> --%>
+</footer>
 </body>
 </html>
