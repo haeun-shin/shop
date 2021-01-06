@@ -109,3 +109,88 @@ ul.nav_wrap > li {
 	font-weight: bold;
 }
 /* #header END */
+
+/* view.jsp START */
+#container {
+	width: 100%;
+	margin-top: 3em;
+}
+#container_box {
+	width: 1140px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.goods_wrap {
+   	overflow: hidden;
+   	margin-bottom: 3.5em;
+}
+.goodsImg {
+	width: 560px;
+	height: 560px;
+	float: left;
+}
+.goodsImg > img {
+	width: 100%;
+}
+/* 제품 정보 */
+.goodsInfo {
+	width: 540px;
+	float: right;
+}
+.goodsInfo .cateName {
+	color: #3d5e6d;
+}
+.goodsInfo .goodsName {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: -1px;
+    padding-top: 0.3em;
+       margin-bottom: 1.5em;
+       color: #003148;
+}
+.goodsInfo .goodsPrice {
+	margin-top: 1.5em;
+}
+.goodsDetail {
+	display: inline-block;
+	margin-bottom: 1.5em;
+	width: 100%;
+} 
+.goodsDetail > dt, .goodsDetail > dd {
+	float: left;
+} 
+.goodsDetail > dt {
+	width: 110px;
+}
+.goodsDetail > dd {
+	font-weight: bold;
+}
+.goodsPrice > dd {
+	color: #ab2012;
+}
+/* 카트에 담기 버튼 */
+.addToCart {
+	margin-top: 2em;
+}
+.addToCart > button {
+	border-radius: 4px;
+	background-color: #fff;
+	border: 2px solid #ab2012;
+	color: #ab2012;
+	padding: 15px 65px;
+	font-weight: bold;
+	transition-duration: 0.2s;
+}
+.addToCart > button:hover {
+	background-color: #ab2012;
+	color: #fff;
+}
+/* 제품 설명 */
+.goodsDesc {
+	margin-top: 3.5em;
+	text-align: center;
+}
+.goodsDesc > img {
+	max-width: 1140px;
+}
+/* view.jsp END */
