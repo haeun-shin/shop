@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="gnb">
 	<h1>
-		<a href="/shop/list">SHOP</a>
+		<a href="/">SHOP</a>
 	</h1>    
 	<ul class="gnb_wrap">
 		 <li class="gnb_main">

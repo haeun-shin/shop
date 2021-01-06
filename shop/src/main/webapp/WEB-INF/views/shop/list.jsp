@@ -22,19 +22,46 @@
 			<%@ include file="../include/gnb.jsp" %>
 		</div>
 	</div>
-	
+	<style>
+		#list_content > ul > li {
+			float: left;
+			width:25%;
+			padding:30px 0;
+		}
+		#list_content .list_info {
+			width: 240px;
+			margin: 0 auto;
+			text-align: center;
+			height: 350px;
+		}
+		#list_content .list_info .goodsThumb img{
+			width: 240px;
+    		height: 240px;
+		}
+		#list_content .list_info .goodsName {
+			margin-top: 1em;
+			line-height: 1.3em;
+		}
+		#list_content .list_info .goodsName > a:hover {
+			text-decoration: underline;
+		}
+	</style>
 	<section id="container">
 		<div id="container_box">
 			
-			<section id="content">
+			<section id="list_content">
 				<ul>
 					<c:forEach items="${list }" var="list">
 					<li>
-						<div class="goosThumb">
-							<img src="${list.goodsThumbImg }" />
-						</div>
-						<div class="goodsName">
-							<a href="/shop/view?n=${list.goodsNum }">${list.goodsName }</a>
+						<div class="list_info">
+							<div class="goodsThumb">
+								<a href="/shop/view?n=${list.goodsNum }">
+									<img src="${list.goodsThumbImg }" />
+								</a>
+							</div>
+							<div class="goodsName">
+								<a href="/shop/view?n=${list.goodsNum }">${list.goodsName }</a>
+							</div>
 						</div>
 					</li>
 					</c:forEach>

@@ -90,7 +90,7 @@ ul.nav_wrap > li {
 	line-height: 50px;
 	border-bottom: 1px solid #f7f7f7;
 	background-color: #fff;
-	
+    float: left;
 }
 .gnb_sub > li:last-child {
 	border: none;
@@ -194,3 +194,47 @@ ul.nav_wrap > li {
 	max-width: 1140px;
 }
 /* view.jsp END */
+
+
+
+/* 푸터 */
+#footer {
+	width: 100%;
+	background-color: #f8f8f8;
+	padding: 2.5em 0;
+	letter-spacing: -0.05em;
+	font-size: 0.85rem;
+	margin-top: 4em;
+}
+#footer > #footer_box {
+	width: 1140px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+#footer_box > div {
+	float: left;
+}
+#footer_desc {
+	width:70%;
+}
+#footer_desc > em {
+	font-size: 1.2rem;
+	line-height: 3em;
+	font-weight: bold;		
+}
+#footer_desc > p {
+	margin-bottom: 0.8em;
+}
+#footer_cs {
+	width: 30%;
+	padding-top: 2.7em;
+}
+#footer_cs > p {
+	margin-bottom: 0.8em;
+}
+#footer_cs > p > b {
+	font-weight: bold;
+}
+#footer_cs > p > strong {
+	font-size: 1.8rem;
+}
