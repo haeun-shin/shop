@@ -21,9 +21,11 @@
 	</header>
 	
 	<section id="container">
+		<aside>
+			<%@ include file="./include/aside.jsp" %>
+		</aside>
 		<div id="container_box">
 			<h2>본문영역</h2>
-			<%@ include file="./include/aside.jsp" %>
 		</div>
 	</section>
 </div>
