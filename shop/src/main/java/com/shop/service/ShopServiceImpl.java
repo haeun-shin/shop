@@ -29,4 +29,10 @@ public class ShopServiceImpl implements ShopService{
 		}
 		
 	}
+	
+	// 상품 조회
+	@Override
+	public GoodsViewVO goodsView(int goodsNum) throws Exception {
+		return dao.goodsView(goodsNum);
+	}
 }

@@ -34,4 +34,14 @@ public class ShopController {
 		
 		model.addAttribute("list", list);
 	}
+	
+	// 상품 조회
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	public void getView(@RequestParam("n") int goodsNum, Model model) throws Exception {
+		logger.info("get view");
+		
+		GoodsViewVO view = service.goodsView(goodsNum);
+		
+		model.addAttribute("view", view);
+	}
 }
