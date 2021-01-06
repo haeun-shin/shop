@@ -4,26 +4,23 @@
 <html>
 <head>
 <link rel="stylesheet" href="/resources/css/reset.css">
-<link rel="stylesheet" href="/resources/css/style.css">
+<link rel="stylesheet" href="/resources/css/common_style.css">
 <title>Shop</title>
 </head>
 <body>
 <div id="root">
-	<nav id="nav">
-		<div id="nav_box">
-			<%@ include file="include/nav.jsp" %>
+	<div id="header">
+		<%-- 로그인, 회원가입 --%>
+		<div class="top_nav">
+			<%@ include file="./include/nav.jsp" %>
+		</div>	
+		<%-- 카테고리 --%>
+		<div class="header">
+			<%@ include file="./include/gnb.jsp" %>
 		</div>
-	</nav>
-	<header id="header">
-		<div id="header_box">
-			<%@ include file="include/header.jsp" %>
-		</div>
-	</header>
+	</div>
 	
 	<section id="container">
-		<aside>
-			<%@ include file="./include/aside.jsp" %>
-		</aside>
 		<div id="container_box">
 			<h2>본문영역</h2>
 		</div>
