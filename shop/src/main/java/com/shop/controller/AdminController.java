@@ -73,15 +73,18 @@ public class AdminController {
 		// 파일 인풋박스에 첨부파일이 있다면(=첨부된 파일 이름이 있다면)
 		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+			
+			// goodsImg에 원본 파일 경로 + 파일명 저장
+			vo.setGoodsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+			// goodsThumbImg에 썸네일 파일 경로 + 썸네일 파일명 저장
+			vo.setGoodsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		} else {
-			// 첨부된 파일이 없으면, 미리 준비된 none.png 파일을 대신 출력함
-			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+			// 첨부된 파일이 없으면, 미리 준비된 none.jpg 파일을 대신 출력함
+			fileName = File.separator + "images" + File.separator + "none.jpg";
+			
+			vo.setGoodsImg(fileName);
+			vo.setGoodsThumbImg(fileName);
 		}
-		
-		// goodsImg에 원본 파일 경로 + 파일명 저장
-		vo.setGoodsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-		// goodsThumbImg에 썸네일 파일 경로 + 썸네일 파일명 저장
-		vo.setGoodsThumbImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		
 		adminService.register(vo);
 		
@@ -93,7 +96,7 @@ public class AdminController {
 	public void getGoodsList(Model model) throws Exception {
 		logger.info("get goods list");
 		
-		List<GoodsVO> list = adminService.goodsList();
+		List<GoodsViewVO> list = adminService.goodsList();
 		
 		model.addAttribute("list", list);
 	}

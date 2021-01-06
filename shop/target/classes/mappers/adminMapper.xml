@@ -38,7 +38,7 @@
 	</insert>
 	
 	<!-- 상품 목록 -->
-	<select id="goodsList" resultType="com.shop.domain.GoodsVO">
+	<!-- <select id="goodsList" resultType="com.shop.domain.GoodsVO">
 		select goodsNum,
 			   goodsName,
 			   cateCode,
@@ -49,6 +49,23 @@
 			   goodsDate
 		from tbl_goods
 		order by goodsNum desc
+	</select> -->
+	<select id="goodsList" resultType="com.shop.domain.GoodsViewVO">
+		select	g.goodsNum,
+				g.goodsName,
+				g.cateCode,
+				c.cateCodeRef,
+				c.cateName,
+				goodsPrice,
+				goodsStock,
+				goodsDesc,
+				goodsImg,
+				goodsDate,
+				g.goodsImg,
+				g.goodsThumbImg
+		from	tbl_goods g
+		inner join goods_category c
+		on g.cateCode = c.cateCode
 	</select>
 	
 	<!-- 상품 조회 -->

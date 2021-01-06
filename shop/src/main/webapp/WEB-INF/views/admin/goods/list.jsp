@@ -33,6 +33,7 @@
 				<thead>
 					<tr>
 						<th>번호</th>
+						<th>썸네일</th>
 						<th>이름</th>
 						<th>카테고리</th>
 						<th>가격</th>
@@ -45,9 +46,11 @@
 					<tr>
 						<td>${list.goodsNum }</td>
 						<td>
+							<img src="${list.goodsThumbImg }" />						
+						<td>
 							<a href="/admin/goods/view?n=${list.goodsNum }">${list.goodsName }</a>
 						</td>
-						<td>${list.cateCode }</td>
+						<td>${list.cateName }</td>
 						<td>
 							<fmt:formatNumber value="${list.goodsPrice }" pattern="###,###,###" />
 						</td>
