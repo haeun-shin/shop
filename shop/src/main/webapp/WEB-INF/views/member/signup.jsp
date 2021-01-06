@@ -6,24 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/css/reset.css">
-<link rel="stylesheet" href="/resources/css/style.css">
+<link rel="stylesheet" href="/resources/css/common_style.css">
 <title>회원가입</title>
 </head>
 <body>
 <div id="root">
-	<nav id="nav">
-		<div id="nav_box">
+	<div id="header">
+		<%-- 로그인, 회원가입 --%>
+		<div class="top_nav">
 			<%@ include file="../include/nav.jsp" %>
+		</div>	
+		<%-- 카테고리 --%>
+		<div class="header">
+			<%@ include file="../include/gnb.jsp" %>
 		</div>
-	</nav>
-	<header id="header">
-		<div id="header_box">
-			<%@ include file="../include/header.jsp" %>
-		</div>
-	</header>
+	</div>
 	
 	<section id="container">
-		<div id="container_box" class="signup_box">
+		<div id="container_box" >
+			<div  class="signup_box">
 			<h2 style="text-align:center">회원가입</h2>
 			<section id="content">
 				<form role="form" method="post" autocomplete="off" id="signup_form">
@@ -50,6 +51,7 @@
 					<button type="submit" id="signup_btn" name="signup_btn">회원가입</button>
 				</form>
 			</section>
+			</div>
 		</div>
 	</section>
 </div>
