@@ -23,6 +23,7 @@
 	<section id="container">
 		<div id="container_box">
 			<h2>본문영역</h2>
+			<%@ include file="./include/aside.jsp" %>
 		</div>
 	</section>
 </div>
