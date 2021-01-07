@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.domain.GoodsViewVO;
 import com.shop.domain.MemberVO;
@@ -39,7 +40,7 @@ public class ShopController {
 		model.addAttribute("list", list);
 	}
 	
-	// 상품 조회(goodsView) + 상품 소감(replyList)
+	// 상품 조회(goodsView)
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public void getView(@RequestParam("n") int goodsNum, Model model) throws Exception {
 		logger.info("get view");
@@ -47,11 +48,11 @@ public class ShopController {
 		// 상품 조회
 		GoodsViewVO view = service.goodsView(goodsNum);
 		model.addAttribute("view", view);
-		
-		// 상품 소감 리스트
-		List<ReplyListVO> reply = service.replyList(goodsNum);
-		model.addAttribute("reply", reply);
-		
+
+//		// 상품 소감 리스트
+//		List<ReplyListVO> reply = service.replyList(goodsNum);
+//		model.addAttribute("reply", reply);
+	
 	}
 	
 	// 상품 조회 - 소감 작성(registReply)
@@ -67,5 +68,16 @@ public class ShopController {
 		
 		return "redirect:/shop/view?n=" + reply.getGoodsNum();
 		
+	}
+	
+	// 상품 소감 작성(replyList)
+	@ResponseBody
+	@RequestMapping(value = "/view/replyList", method = RequestMethod.GET)
+	public List<ReplyListVO> getReplyList(@RequestParam("n") int goodsNum) throws Exception {
+		logger.info("get reply list");
+		
+		List<ReplyListVO> reply = service.replyList(goodsNum);
+		
+		return reply;
 	}
 }

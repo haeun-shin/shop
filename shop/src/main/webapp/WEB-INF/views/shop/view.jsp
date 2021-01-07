@@ -37,6 +37,37 @@ $(document).ready(function() {
 	});
 	<%-- 구매 수량 스크립트 END --%>
 	
+	<%-- JSON을 이용한 비동기식 댓글 등록 --%>
+	function replyList() {
+		var goodsNum = ${view.goodsNum};
+		// $.getJSON() : 비동기식으로 JSON 데이터를 가져오는 메서드
+		// 1. 주소에 접속해 데이터를 가져오고
+		$.getJSON("/shop/view/replyList" + "?n=" + goodsNum, function(data) {
+			var str = "";
+			
+			// 2. 그 데이터를 이용해
+			$(data).each(function() {
+				console.log(data);
+				
+				var replyDate = new Date(this.replyDate);
+				// 테이블에 저장된 날짜와 컨트롤러에서 뷰로 보낼 때의 날짜 데이터 형식이
+				// 다르기 때문에, toLocaleDateString()을 이용해 1차적으로 데이터 가공
+				replyDate = replyDate.toLocaleDateString("ko-US");
+				
+				// 3. html 코드를 조립하여
+				str += "<li data-goosNum-'" + this.goodsNum + "'>"
+						+ "<div class='userInfo'>"
+						+ 	"<span class='userName'>" + this.userName + "</span>"
+						+ 	"<span class='date'>" + replyDate + "</span>"
+						+ "</div>"
+						+ "<div class='replyContent'>" + this.replyCon + "</div>"
+						+"</li>";
+				
+			});
+			// 4. ol 태그에 추가
+			$("section.replyList ol").html(str);
+		}); //$.getJSON
+	} // replyList()
 });
 </script>
 
@@ -126,15 +157,16 @@ $(document).ready(function() {
 							<textarea name="replyCon" id="replyCon"></textarea>
 						</div>
 						<div class="input_area">
-							<button type="submit" id="reply_btn">소감 남기기</button>
+							<button type="button" id="reply_btn">소감 남기기</button>
 						</div>
+
 					</form>
 				</section>
 				</c:if>
 				
 				<section class="replyList">
 					<ol>
-						<c:forEach items="${reply }" var="reply">
+						<%-- <c:forEach items="${reply }" var="reply">
 						<li>
 							<div class="userInfo">
 								<span class="userName">${reply.userName }</span>
@@ -144,9 +176,11 @@ $(document).ready(function() {
 								<div class="replyContent">${reply.replyCon }</div>
 							</div>
 						</li>
-						</c:forEach>
+						</c:forEach> --%>
 					</ol>
 				</section>
+				<%-- Ajax를 이용한 비동기식 소감 등록 함수 --%>
+				<script>replyList();</script>
 			</div>
 			
 		</div>
