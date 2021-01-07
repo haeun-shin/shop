@@ -134,7 +134,17 @@ $(document).ready(function() {
 				
 				<section class="replyList">
 					<ol>
-						<li>댓글 목록</li>
+						<c:forEach items="${reply }" var="reply">
+						<li>
+							<div class="userInfo">
+								<span class="userName">${reply.userName }</span>
+								<span class="date">
+									<fmt:formatDate value="${reply.replyDate }" pattern="yyyy-MM-dd" />
+								</span>
+								<div class="replyContent">${reply.replyCon }</div>
+							</div>
+						</li>
+						</c:forEach>
 					</ol>
 				</section>
 			</div>

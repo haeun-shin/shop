@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shop.domain.GoodsViewVO;
 import com.shop.domain.MemberVO;
+import com.shop.domain.ReplyListVO;
 import com.shop.domain.ReplyVO;
 import com.shop.service.ShopService;
 
@@ -38,17 +39,22 @@ public class ShopController {
 		model.addAttribute("list", list);
 	}
 	
-	// 상품 조회
+	// 상품 조회(goodsView) + 상품 소감(replyList)
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public void getView(@RequestParam("n") int goodsNum, Model model) throws Exception {
 		logger.info("get view");
 		
+		// 상품 조회
 		GoodsViewVO view = service.goodsView(goodsNum);
-		
 		model.addAttribute("view", view);
+		
+		// 상품 소감 리스트
+		List<ReplyListVO> reply = service.replyList(goodsNum);
+		model.addAttribute("reply", reply);
+		
 	}
 	
-	// 상품 조회 - 소감 작성
+	// 상품 조회 - 소감 작성(registReply)
 	@RequestMapping(value = "/view", method = RequestMethod.POST)
 	public String registReply(ReplyVO reply, HttpSession session) throws Exception {
 		logger.info("regist reply");
