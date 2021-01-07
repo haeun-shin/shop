@@ -120,4 +120,30 @@ public class ShopController {
 		return result;
 		
 	}
-}
+	
+	// 상품 소감(댓글) 수정(modifyReply)
+	@ResponseBody
+	@RequestMapping(value = "/view/modifyReply", method = RequestMethod.POST)
+	public int modifyReply(ReplyVO reply, HttpSession session) throws Exception {
+		logger.info("modify reply");
+		
+		int result = 0;
+		
+		// 세션에 있는 사용자 정보를 불러옴
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		// 해당 댓글 작성자의 아이디를 변수에 저장
+		String userId = service.idCheck(reply.getReplyNum());
+		
+		// 세션 사용자 아이디와 댓글 작성자 아이디가 일치한다면
+		if(member.getUserId().equals(userId)) {
+			// 댓글 작성자를 세팅하고
+			reply.setUserId(member.getUserId());
+			// 댓글 수정을 실행
+			service.modifyReply(reply);
+			
+			result = 1;
+		}
+		
+		return result;
+	}
+ }

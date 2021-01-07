@@ -87,4 +87,12 @@
 	where	replyNum = #{replyNum}
 </select>
 
+<!-- 상품 소감(댓글) 수정 -->
+<update id="modifyReply">
+	update	tbl_reply
+	set		replyCon = #{replyCon}
+	where	replyNum = #{replyNum}
+	and		userId = #{userId}	
+</update>
+
 </mapper>

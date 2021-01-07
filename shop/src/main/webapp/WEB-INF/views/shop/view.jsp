@@ -37,7 +37,66 @@ $(document).ready(function() {
 	});
 	<%-- 구매 수량 스크립트 END --%>
 	
-});
+	<%-- ajax를 이용한 댓글 작성 --%>
+	$("#reply_btn").click(function() {
+		var formObj = $(".replyForm form[role='form']");
+		var goodsNum = $("#goodsNum").val();
+		var replyCon = $("#replyCon").val();
+		
+		var data = {
+			goodsNum : goodsNum,
+			replyCon : replyCon
+		};
+		// success : 데이터 전송이 성공했을 때 실행할 함수
+		// -> 댓글 전송이 성공적으로 되면 댓글 목록을 불러오는 함수 실행
+		// -> $("#replyCon").val(""); 은 댓글 작성 후에도 그대로 남아 있어 초기화 시켜 줌
+		$.ajax({
+			url : "/shop/view/registReply",
+			type : "post",
+			data : data,
+			success : function() {
+				replyList();
+				$("#replyCon").val("");
+			}
+		});
+	}); // #reply_btn
+	
+	<%-- 댓글 수정 스크립트 ajax --%>
+	$(".modal_modify_btn").click(function() {
+		var modifyConfirm = confirm("정말로 수정하시겠습니까?");
+		
+		if(modifyConfirm){
+			var data = {
+					replyNum : $(this).attr("data-replyNum"),
+					replyCon : $(".modal_replyCon").val()
+			};
+			
+			$.ajax({
+				url : "/shop/view/modifyReply",
+				type : "post",
+				data : data,
+				success : function(result) {
+					if(result == 1) {
+						replyList();
+						$(".replyModal").fadeOut(200);
+					} else {
+						alert("작성자 본인만 수정할 수 있습니다.");
+					}
+				},
+				error : function() {
+					alert("로그인 후 이용하실 수 있습니다.");
+				}
+			}); // ajax
+		} // if(modifyConfirm)
+	}); // modal_modify_btn
+	
+	<%-- 댓글 수정 모달 팝업 취소버튼 클릭 시 --%>
+	$(".modal_cancel").click(function() {
+		//$(".replyModal").attr("style", "display: none;");
+		$(".replyModal").fadeOut(200);
+	});
+	
+}); // document.ready()
 
 <%-- JSON을 이용한 비동기식으로 댓글 목록 가져오기 --%>
 function replyList() {
@@ -65,10 +124,12 @@ function replyList() {
 					+ "</div>"
 					+ "<div class='replyContent'>" + this.replyCon + "</div>";
 			// 댓글 수정, 삭제 버튼
-			str		+= "<div class='replyFotter'>"
+			str		+= "<c:if test='${member != null}'>"
+					+ "<div class='replyFotter'>"
 					+ 	"<button type='button' class='modify' data-replyNum='" + this.replyNum + "'>수정</button>"
 					+ 	"<button type='button' class='delete' data-replyNum='" + this.replyNum + "'>삭제</button>"
 					+ "</div>"
+					+ "</c:if>"
 					+"</li>";
 			
 		});
@@ -167,31 +228,6 @@ function replyList() {
 						<div class="input_area">
 							<button type="button" id="reply_btn">소감 남기기</button>
 						</div>
-						<script>
-							<%-- ajax를 이용한 댓글 작성 --%>
-							$("#reply_btn").click(function() {
-								var formObj = $(".replyForm form[role='form']");
-								var goodsNum = $("#goodsNum").val();
-								var replyCon = $("#replyCon").val();
-								
-								var data = {
-									goodsNum : goodsNum,
-									replyCon : replyCon
-								};
-								// success : 데이터 전송이 성공했을 때 실행할 함수
-								// -> 댓글 전송이 성공적으로 되면 댓글 목록을 불러오는 함수 실행
-								// -> $("#replyCon").val(""); 은 댓글 작성 후에도 그대로 남아 있어 초기화 시켜 줌
-								$.ajax({
-									url : "/shop/view/registReply",
-									type : "post",
-									data : data,
-									success : function() {
-										replyList();
-										$("#replyCon").val("");
-									}
-								});
-							});
-						</script>
 					</form>
 				</section>
 				</c:if>
@@ -201,12 +237,34 @@ function replyList() {
 					<ol>
 					</ol>
 				</section>
+				
 				<%-- JSON을 이용한 비동기식으로 댓글 목록 가져오기 --%>
 				<script>replyList();</script>
-				<%-- 댓글 삭제 스크립트 --%>
+				
 				<script>
-					$(document).on("click", ".delete", function(){
+					<%-- 댓글 수정 모달 팝업 --%>
+					// 소감 목록은 스크립트로 인해 생성된 동적인 HTML 코드로, 
+					// 일반적인 클릭 메서드 .click()이 아니라 .on() 메서드를 사용
+					$(document).on("click", ".modify", function(){
+						//$(".replyModal").attr("style", "display:block;");
+						$(".replyModal").fadeIn(200);
+						// 버튼에 있는 data-replyNum 값 저장
+						var replyNum = $(this).attr("data-replyNum");
+						// 부모요소, 부모요소, 안에있는 .replyContent의 텍스트 저장
+						var replyCon = $(this).parent().parent().children(".replyContent").text();
 						
+						// 모달 팝업 안에 텍스트 넣기
+						$(".modal_replyCon").val(replyCon);
+						// 댓글 수정 버튼에 replyNum 값 넣기
+						$(".modal_modify_btn").attr("data-replyNum", replyNum);
+					});
+				</script>
+				
+				<script>
+					<%-- 댓글 삭제 스크립트 ajax --%>
+					// 소감 목록은 스크립트로 인해 생성된 동적인 HTML 코드로, 
+					// 일반적인 클릭 메서드 .click()이 아니라 .on() 메서드를 사용
+					$(document).on("click", ".delete", function(){
 						var deleteConfirm = confirm("정말로 삭제하시겠습니까?");
 						
 						// confirm이 true면 실행
@@ -230,27 +288,9 @@ function replyList() {
 								error : function() {
 									alert("로그인 후 이용하실 수 있습니다.");
 								}
-							});
-						}
-
-					});
-				</script>
-				<%-- 댓글 수정 모달 팝업 --%>
-				<script>
-					$(document).on("click", ".modify", function(){
-						//$(".replyModal").attr("style", "display:block;");
-						$(".replyModal").fadeIn(200);
-						// 버튼에 있는 data-replyNum 값 저장
-						var replyNum = $(this).attr("data-replyNum");
-						// 부모요소, 부모요소, 안에있는 .replyContent의 텍스트 저장
-						var replyCon = $(this).parent().parent().children(".replyContent").text();
-						
-						// 모달 팝업 안에 텍스트 넣기
-						$(".modal_replyCon").val(replyCon);
-						// 댓글 수정 버튼에 replyNum 값 넣기
-						$(".modal_modify_btn").attr("data-replyNum", replyNum);
-					});
-						
+							}); // ajax
+						} // if(deleteConfrim)
+					}); // .delete
 				</script>
 			</div>
 			
@@ -282,12 +322,5 @@ function replyList() {
 		</div>
 	</div>
 </div>
-<%-- 댓글 수정 모달 팝업 취소--%>
-<script>
-	$(".modal_cancel").click(function() {
-		//$(".replyModal").attr("style", "display: none;");
-		$(".replyModal").fadeOut(200);
-	});
-</script>
 </body>
 </html>

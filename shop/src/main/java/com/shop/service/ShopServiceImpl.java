@@ -61,4 +61,10 @@ public class ShopServiceImpl implements ShopService{
 	public String idCheck(int replyNum) throws Exception {
 		return dao.idCheck(replyNum);
 	}
+	
+	// 상품 소감(댓글) 수정
+	@Override
+	public void modifyReply(ReplyVO reply) throws Exception {
+		dao.modifyReply(reply);
+	}
 }
