@@ -37,38 +37,40 @@ $(document).ready(function() {
 	});
 	<%-- 구매 수량 스크립트 END --%>
 	
-	<%-- JSON을 이용한 비동기식 댓글 등록 --%>
-	function replyList() {
-		var goodsNum = ${view.goodsNum};
-		// $.getJSON() : 비동기식으로 JSON 데이터를 가져오는 메서드
-		// 1. 주소에 접속해 데이터를 가져오고
-		$.getJSON("/shop/view/replyList" + "?n=" + goodsNum, function(data) {
-			var str = "";
-			
-			// 2. 그 데이터를 이용해
-			$(data).each(function() {
-				console.log(data);
-				
-				var replyDate = new Date(this.replyDate);
-				// 테이블에 저장된 날짜와 컨트롤러에서 뷰로 보낼 때의 날짜 데이터 형식이
-				// 다르기 때문에, toLocaleDateString()을 이용해 1차적으로 데이터 가공
-				replyDate = replyDate.toLocaleDateString("ko-US");
-				
-				// 3. html 코드를 조립하여
-				str += "<li data-goosNum-'" + this.goodsNum + "'>"
-						+ "<div class='userInfo'>"
-						+ 	"<span class='userName'>" + this.userName + "</span>"
-						+ 	"<span class='date'>" + replyDate + "</span>"
-						+ "</div>"
-						+ "<div class='replyContent'>" + this.replyCon + "</div>"
-						+"</li>";
-				
-			});
-			// 4. ol 태그에 추가
-			$("section.replyList ol").html(str);
-		}); //$.getJSON
-	} // replyList()
 });
+
+<%-- JSON을 이용한 비동기식으로 댓글 목록 가져오기 --%>
+function replyList() {
+	var goodsNum = ${view.goodsNum};
+	// $.getJSON() : 비동기식으로 JSON 데이터를 가져오는 메서드
+	// 1. 주소에 접속해 데이터를 가져오고
+	$.getJSON("/shop/view/replyList" + "?n=" + goodsNum, function(data) {
+		var str = "";
+		
+		// 2. 그 데이터를 이용해
+		$(data).each(function() {
+			console.log(data);
+			
+			var replyDate = new Date(this.replyDate);
+			// 테이블에 저장된 날짜와 컨트롤러에서 뷰로 보낼 때의 날짜 데이터 형식이
+			// 다르기 때문에, toLocaleDateString()을 이용해 1차적으로 데이터 가공
+			replyDate = replyDate.toLocaleDateString("ko-US");
+			
+			// 3. html 코드를 조립하여
+			str += "<li data-goosNum-'" + this.goodsNum + "'>"
+					+ "<div class='userInfo'>"
+					+ 	"<span class='userName'>" + this.userName + "</span>"
+					+ 	"<span class='date'>" + replyDate + "</span>"
+					+ "</div>"
+					+ "<div class='replyContent'>" + this.replyCon + "</div>"
+					+"</li>";
+			
+		});
+		// 4. ol 태그에 추가
+		$("section.replyList ol").html(str);
+	}); //$.getJSON
+} // replyList()
+
 </script>
 
 </head>
@@ -151,7 +153,7 @@ $(document).ready(function() {
 				<c:if test="${member != null }">
 				<section class="replyForm">
 					<form role="form" method="post" autocomplete="off">
-						<input type="hidden" name="goodsNum" value="${view.goodsNum }" />
+						<input type="hidden" name="goodsNum" id="goodsNum" value="${view.goodsNum }" />
 						
 						<div class="input_area">
 							<textarea name="replyCon" id="replyCon"></textarea>
@@ -159,7 +161,31 @@ $(document).ready(function() {
 						<div class="input_area">
 							<button type="button" id="reply_btn">소감 남기기</button>
 						</div>
-
+						<script>
+							<%-- ajax를 이용한 댓글 작성 --%>
+							$("#reply_btn").click(function() {
+								var formObj = $(".replyForm form[role='form']");
+								var goodsNum = $("#goodsNum").val();
+								var replyCon = $("#replyCon").val();
+								
+								var data = {
+									goodsNum : goodsNum,
+									replyCon : replyCon
+								};
+								// success : 데이터 전송이 성공했을 때 실행할 함수
+								// -> 댓글 전송이 성공적으로 되면 댓글 목록을 불러오는 함수 실행
+								// -> $("#replyCon").val(""); 은 댓글 작성 후에도 그대로 남아 있어 초기화 시켜 줌
+								$.ajax({
+									url : "/shop/view/registReply",
+									type : "post",
+									data : data,
+									success : function() {
+										replyList();
+										$("#replyCon").val("");
+									}
+								});
+							});
+						</script>
 					</form>
 				</section>
 				</c:if>
