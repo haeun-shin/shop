@@ -22,7 +22,6 @@
 			<%@ include file="../include/gnb.jsp" %>
 		</div>
 	</div>
-	
 	<section id="container">
 		<div id="container_box">
 			<section id="list_content">
@@ -44,6 +43,7 @@
 					</c:forEach>
 				</ul>
 			</section>
+			
 		</div>
 	</section>
 </div>
