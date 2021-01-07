@@ -3,6 +3,7 @@ package com.shop.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shop.domain.GoodsViewVO;
+import com.shop.domain.MemberVO;
+import com.shop.domain.ReplyVO;
 import com.shop.service.ShopService;
 
 @Controller
@@ -43,5 +46,20 @@ public class ShopController {
 		GoodsViewVO view = service.goodsView(goodsNum);
 		
 		model.addAttribute("view", view);
+	}
+	
+	// 상품 조회 - 소감 작성
+	@RequestMapping(value = "/view", method = RequestMethod.POST)
+	public String registReply(ReplyVO reply, HttpSession session) throws Exception {
+		logger.info("regist reply");
+		
+		// 댓글 작성자를 세팅하기 위해, 세션에 있는 로그인 정보를 불러와 저장
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		reply.setUserId(member.getUserId());
+		
+		service.registReply(reply);
+		
+		return "redirect:/shop/view?n=" + reply.getGoodsNum();
+		
 	}
 }

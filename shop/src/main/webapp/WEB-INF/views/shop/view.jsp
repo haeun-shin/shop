@@ -61,12 +61,14 @@ $(document).ready(function() {
 				<%-- 장바구니 추가, 리뷰 기능을 위한 hidden --%>
 				<input type="hidden" name="goodsNum" value="${view.goodsNum }" />
 			</form>
-			
+			<%-- 제품 상세 --%>
 			<div class="goods">
 				<div class="goods_wrap">
+					<%-- 썸네일 --%>
 					<div class="goodsImg">
 						<img src="${view.goodsImg }" />
 					</div>
+					<%-- 제품 정보 --%>
 					<div class="goodsInfo">
 						<p class="cateName">
 							${view.cateName }
@@ -101,10 +103,42 @@ $(document).ready(function() {
 				
 				<hr />
 				
+				<%-- 제품 소개 --%>
 				<div class="goodsDesc" >
 					${view.goodsDesc }
 				</div>
 			</div>
+			
+			<%-- 댓글 --%>
+			<div id="reply">
+				<%-- if: 로그아웃 시 로그인 문구 --%>
+				<c:if test="${member == null }">
+				<p>소감을 남기시려면 <a href="/member/signin">로그인</a>해주세요.</p>
+				</c:if>
+				
+				<%-- if: 로그인 시 댓글 작성 폼 --%>
+				<c:if test="${member != null }">
+				<section class="replyForm">
+					<form role="form" method="post" autocomplete="off">
+						<input type="hidden" name="goodsNum" value="${view.goodsNum }" />
+						
+						<div class="input_area">
+							<textarea name="replyCon" id="replyCon"></textarea>
+						</div>
+						<div class="input_area">
+							<button type="submit" id="reply_btn">소감 남기기</button>
+						</div>
+					</form>
+				</section>
+				</c:if>
+				
+				<section class="replyList">
+					<ol>
+						<li>댓글 목록</li>
+					</ol>
+				</section>
+			</div>
+			
 		</div>
 	</section>
 	

@@ -3,6 +3,7 @@ package com.shop.persistence;
 import java.util.List;
 
 import com.shop.domain.GoodsViewVO;
+import com.shop.domain.ReplyVO;
 
 public interface ShopDAO {
 	// 카테고리별 상품 리스트 : 1차 분류
@@ -14,4 +15,6 @@ public interface ShopDAO {
 	// 상품 조회
 	public GoodsViewVO goodsView(int goodsNum) throws Exception;
 	
+	// 상품 소감 작성
+	public void regitReply(ReplyVO reply) throws Exception;
 }

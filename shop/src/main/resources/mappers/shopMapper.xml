@@ -43,4 +43,21 @@
 	where g.cateCode = #{cateCode}
 </select>
 
+<!-- 상품 소감(댓글) 작성 -->
+<insert id="registReply">
+	insert into tbl_reply (
+							goodsNum,
+							userId,
+							replyNum,
+							replyCon
+						  )
+				 values	 (
+				 			#{goodsNum},
+				 			#{userId},
+				 			tbl_reply_seq.nextval,
+				 			#{replyCon}
+				 		  )
+</insert>
+
+
 </mapper>
