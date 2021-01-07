@@ -54,4 +54,16 @@ public class ShopDAOImpl implements ShopDAO{
 	public List<ReplyListVO> replyList(int goodsNum) throws Exception {
 		return sql.selectList(namespace + ".replyList", goodsNum);
 	}
+	
+	// 상품 소감(댓글) 삭제
+	@Override
+	public void deleteReply(ReplyVO reply) throws Exception {
+		sql.delete(namespace + ".deleteReply", reply);
+	}
+	
+	// 아이디 체크
+	@Override
+	public String idCheck(int replyNum) throws Exception {
+		return sql.selectOne(namespace + ".replyUserIdCheck", replyNum);
+	}
 }

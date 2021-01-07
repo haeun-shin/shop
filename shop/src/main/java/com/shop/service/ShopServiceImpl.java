@@ -50,4 +50,15 @@ public class ShopServiceImpl implements ShopService{
 		return dao.replyList(goodsNum);
 	}
 	
+	// 상품 소감(댓글) 삭제
+	@Override
+	public void deleteReply(ReplyVO reply) throws Exception {
+		dao.deleteReply(reply);
+	}
+	
+	// 아이디 체크
+	@Override
+	public String idCheck(int replyNum) throws Exception {
+		return dao.idCheck(replyNum);
+	}
 }

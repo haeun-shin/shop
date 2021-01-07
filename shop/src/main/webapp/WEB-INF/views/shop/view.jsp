@@ -57,12 +57,18 @@ function replyList() {
 			replyDate = replyDate.toLocaleDateString("ko-US");
 			
 			// 3. html 코드를 조립하여
-			str += "<li data-goosNum-'" + this.goodsNum + "'>"
+			// 댓글 목록
+			str += "<li data-replyNum-'" + this.replyNum + "'>"
 					+ "<div class='userInfo'>"
 					+ 	"<span class='userName'>" + this.userName + "</span>"
 					+ 	"<span class='date'>" + replyDate + "</span>"
 					+ "</div>"
-					+ "<div class='replyContent'>" + this.replyCon + "</div>"
+					+ "<div class='replyContent'>" + this.replyCon + "</div>";
+			// 댓글 수정, 삭제 버튼
+			str		+= "<div class='replyFotter'>"
+					+ 	"<button type='button' class='modify' data-replyNum='" + this.replyNum + "'>수정</button>"
+					+ 	"<button type='button' class='delete' data-replyNum='" + this.replyNum + "'>삭제</button>"
+					+ "</div>"
 					+"</li>";
 			
 		});
@@ -191,23 +197,63 @@ function replyList() {
 				</c:if>
 				
 				<section class="replyList">
+					<%-- 댓글 목록이 생성되는 위치 ol 태그 안 --%>
 					<ol>
-						<%-- <c:forEach items="${reply }" var="reply">
-						<li>
-							<div class="userInfo">
-								<span class="userName">${reply.userName }</span>
-								<span class="date">
-									<fmt:formatDate value="${reply.replyDate }" pattern="yyyy-MM-dd" />
-								</span>
-								<div class="replyContent">${reply.replyCon }</div>
-							</div>
-						</li>
-						</c:forEach> --%>
 					</ol>
 				</section>
-				<%-- Ajax를 이용한 비동기식 소감 등록 함수 --%>
+				<%-- JSON을 이용한 비동기식으로 댓글 목록 가져오기 --%>
 				<script>replyList();</script>
+				<%-- 댓글 삭제 스크립트 --%>
+				<script>
+					$(document).on("click", ".delete", function(){
+						
+						var deleteConfirm = confirm("정말로 삭제하시겠습니까?");
+						
+						// confirm이 true면 실행
+						if(deleteConfirm) {
+							var data = {
+									replyNum : $(this).attr("data-replyNum")
+							}
+							// 댓글 삭제 가 성공하면 댓글목록을 다시 불러옴
+							// error : nullPoiontException이 생기면 실행
+							$.ajax({
+								url : "/shop/view/deleteReply",
+								type : "post",
+								data : data,
+								success : function(result) {
+									if(result == 1) {
+										replyList();
+									} else {
+										alert("작성자 본인만 삭제할 수 있습니다.");
+									}
+								},
+								error : function() {
+									alert("로그인 후 이용하실 수 있습니다.");
+								}
+							});
+						}
+
+					});
+				</script>
+				<%-- 댓글 수정 모달 팝업 --%>
+				<script>
+					$(document).on("click", ".modify", function(){
+						//$(".replyModal").attr("style", "display:block;");
+						$(".replyModal").fadeIn(200);
+						// 버튼에 있는 data-replyNum 값 저장
+						var replyNum = $(this).attr("data-replyNum");
+						// 부모요소, 부모요소, 안에있는 .replyContent의 텍스트 저장
+						var replyCon = $(this).parent().parent().children(".replyContent").text();
+						
+						// 모달 팝업 안에 텍스트 넣기
+						$(".modal_replyCon").val(replyCon);
+						// 댓글 수정 버튼에 replyNum 값 넣기
+						$(".modal_modify_btn").attr("data-replyNum", replyNum);
+					});
+						
+				</script>
 			</div>
+			
 			
 		</div>
 	</section>
@@ -219,5 +265,29 @@ function replyList() {
 		<%@ include file="../include/footer.jsp" %>
 	</div>
 </footer>
+<%-- 댓글 수정 모달 팝업 --%>
+<style>
+	.replyModal {
+		display : none;
+	}
+</style>
+<div class="replyModal">
+	<div class="modalContent">
+		<div>
+			<textarea class="modal_replyCon" name="modalReplyCon"></textarea>
+		</div>
+		<div>
+			<button type="button" class="modal_modify_btn">수정</button>
+			<button type="button" class="modal_cancel">취소</button>
+		</div>
+	</div>
+</div>
+<%-- 댓글 수정 모달 팝업 취소--%>
+<script>
+	$(".modal_cancel").click(function() {
+		//$(".replyModal").attr("style", "display: none;");
+		$(".replyModal").fadeOut(200);
+	});
+</script>
 </body>
 </html>

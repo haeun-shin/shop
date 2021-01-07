@@ -21,4 +21,10 @@ public interface ShopDAO {
 	
 	// 상품 소감 리스트
 	public List<ReplyListVO> replyList(int goodsNum) throws Exception;
+	
+	// 상품 소감(댓글) 삭제
+	public void deleteReply(ReplyVO reply) throws Exception;
+	
+	// 아이디 체크
+	public String idCheck(int replyNum) throws Exception;
 }
