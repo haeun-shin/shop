@@ -6,9 +6,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>장바구니</title>
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/common_style.css">
+<title>장바구니</title>
+<script src="/resources/js/jquery-3.3.1.min.js"></script>
+<script>
+$(document).ready(function() {
+	<%-- 모두 선택 (장바구니 제품) --%>	
+	$("#allCheck").click(function() {
+		// 1. #allCheck가 체크된 상태를 변수에 저장
+		var chk = $("#allCheck").prop("checked");
+		
+		// 2. 체크된 상태라면, 나머지 체크박스인 .ckBox 체크
+		if(chk) {
+			$(".ckBox").prop("checked", true);
+		// 3. 아니라면, 체크 해제
+		} else {
+			$(".ckBox").prop("checked", false);
+		}
+	});
+	<%-- 개별 선택 시, 모두 선택 체크 해제 --%>
+	$(".ckBox").click(function() {
+		$("#allCheck").prop("checked", false);
+	});
+});
+</script>
 </head>
 <body>
 <div id="root">
@@ -37,7 +59,7 @@
 					</colgroup>
 					<thead>
 						<tr>
-							<th><input type="checkbox"/></th>
+							<th><input type="checkbox" name="allCheck" id="allCheck"></th>
 							<th>상품 사진</th>
 							<th>상품 이름</th>
 							<th>판매 가격</th>
@@ -49,13 +71,13 @@
 					<tbody>
 						<c:forEach items="${cartList }" var="cartList">
 						<tr class="cartInfo">
-							<td><input type="checkbox" name="ckBox" class="ckBox" /></td>
+							<td><input type="checkbox" name="ckBox" class="ckBox" data-cartNum="${cartList.cartNum }"/></td>
 							<td><img src="${cartList.goodsThumbImg }" /></td>
 							<td class="cartGoodsName"><a href="/shop/view?n=${cartList.goodsNum }">${cartList.goodsName }</a></td>
 							<td><fmt:formatNumber pattern="###,###,###" value="${cartList.goodsPrice }"/> 원</td>
 							<td>${cartList.cartStock } 개</td>
 							<td><fmt:formatNumber pattern="###,###,###,###" value="${cartList.goodsPrice * cartList.cartStock }" /> 원</td>
-							<td><button type="button" class="delete_btn">삭제</button></td>
+							<td><button type="button" class="delete_btn" data-cartNum="${cartList.cartNum }">삭제</button></td>
 						</tr>
 						</c:forEach>
 					</tbody>
