@@ -151,14 +151,22 @@ public class ShopController {
 	// 카트 담기
 	@ResponseBody
 	@RequestMapping(value = "/view/addCart", method = RequestMethod.POST)
-	public void addCart(CartVO cart, HttpSession session) throws Exception {
+	public int addCart(CartVO cart, HttpSession session) throws Exception {
 		logger.info("add Cart");
+		
+		int result = 0;
 		
 		// 세션에 있는 사용자 정보를 불러옴
 		MemberVO member = (MemberVO) session.getAttribute("member");
-		// 해당 아이디를 cart에 세팅
-		cart.setUserId(member.getUserId());
 		
-		service.addCart(cart);
+		if(member != null) {
+			// 해당 아이디를 cart에 세팅
+			cart.setUserId(member.getUserId());
+			service.addCart(cart);
+			
+			result = 1;
+		}
+		
+		return result;
 	}
  }

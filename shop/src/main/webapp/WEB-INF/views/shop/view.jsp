@@ -109,12 +109,16 @@ $(document).ready(function() {
 			url : "/shop/view/addCart",
 			type : "post",
 			data : data,
-			success : function() {
-				alert("카트에 담았습니다.");
+			success : function(result) {
+				if(result == 1) {
+					alert("카트에 담았습니다.");
+				} else {
+					alert("로그인 후 이용하실 수 있습니다.");
+				}
 				$(".numBox").val("1");
 			},
 			error : function() {
-				alert("카트 담기 실패!");
+				alert("카트 담기 실패");
 			}
 		});
 	}); // .addCart_btn
