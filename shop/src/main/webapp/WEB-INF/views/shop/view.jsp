@@ -93,6 +93,54 @@
 	.replyFotter > .delete {
 		background-color: #ab2012;
 	}
+	
+	/* 댓글 수정 모달팝업 */
+	div.replyModal {
+		position: relative;
+		z-index: 1;
+		display : none;
+	}
+	.replyModal > .modalBackground {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.8);
+		z-index: -1;
+	}
+	.replyModal > .modalContent {
+		position: fixed;
+		top: 20%;
+		left: calc(50% - 250px);
+		width: 500px;
+		height: 250px;
+		padding:20px 10px; 
+		background:#fff; 
+		border:2px solid #666; 
+	}
+	.replyModal > .modalContent .modal_replyCon {
+		resize: none;
+		width: 100%;
+		padding: 1em;
+		height: 200px;
+	}
+	.replyModal > .modalContent > div:last-child {
+		float: right;
+    	margin-top: 1em;
+	}
+	.replyModal > .modalContent .modal_modify_btn {
+		background-color: #003148;
+	}
+	.replyModal > .modalContent .modal_modify_btn:hover {
+		background-color: #02161f;
+	}
+	.replyModal > .modalContent .modal_cancel {
+		background-color: #ab2012;
+	}
+	.replyModal > .modalContent .modal_cancel:hover {
+		background-color: #88150a;
+	}
 </style>
 <script src="/resources/js/jquery-3.3.1.min.js"></script>
 <script>
@@ -291,13 +339,54 @@ function replyList() {
 					</div>
 				</div>
 				
-				<hr />
-				
+				<style>
+					.goodsMove, .replyMove {
+						width: 100%;
+						margin-bottom: 1.8em;
+					    overflow: hidden;
+					}
+					.goodsMove > li, .replyMove > li {
+						float:left;
+						border: 1px solid #000;
+						width: 43.6%;
+						padding: 1em 2em;
+						font-size: 1.1rem;
+					}
+					.goodsMove > li:first-child, .replyMove > li:last-child {
+						border-bottom:none;
+					}
+					.goodsMove > li:last-child, .replyMove > li:first-child {
+						border: none;
+						border-bottom: 1px solid #000;
+					}
+					.goodsMove > li > a, .replyMove > li > a {
+						display: inline-block;
+						width: 100%;
+						height: 17px;
+					}
+					.goodsMove > li:first-child > a, .replyMove > li:last-child > a{
+					    font-weight: bold;
+    					color: #d23f3f;
+					}
+					.goodsMove > li:last-child > a:hover, .replyMove > li:first-child > a:hover {
+						font-weight: bold;
+						
+					}
+				</style>
+				<ul class="goodsMove" id="goodsMove">
+					<li><a href="#goodsMove">상품 설명</a></li>
+					<li><a href="#reply">상품 리뷰</a></li>
+				</ul>
 				<%-- 제품 소개 --%>
-				<div class="goodsDesc" >
+				<div class="goodsDesc" id="goodsDesc">
 					${view.goodsDesc }
 				</div>
 			</div>
+			
+			<ul class="replyMove">
+				<li><a href="#goodsMove">상품 설명</a></li>
+				<li><a href="#reply">상품 리뷰</a></li>
+			</ul>
 			
 			<%-- 댓글 --%>
 			<div id="reply">
@@ -341,7 +430,7 @@ function replyList() {
 						// 버튼에 있는 data-replyNum 값 저장
 						var replyNum = $(this).attr("data-replyNum");
 						// 부모요소, 부모요소, 안에있는 .replyContent의 텍스트 저장
-						var replyCon = $(this).parent().parent().children(".replyContent").text();
+						var replyCon = $(this).parent().parent().parent().children(".replyContent").children(".con").text();
 						
 						// 모달 팝업 안에 텍스트 넣기
 						$(".modal_replyCon").val(replyCon);
@@ -396,11 +485,6 @@ function replyList() {
 	</div>
 </footer>
 <%-- 댓글 수정 모달 팝업 --%>
-<style>
-	.replyModal {
-		display : none;
-	}
-</style>
 <div class="replyModal">
 	<div class="modalContent">
 		<div>
@@ -411,6 +495,8 @@ function replyList() {
 			<button type="button" class="modal_cancel">취소</button>
 		</div>
 	</div>
+	
+	<div class="modalBackground"></div>
 </div>
 </body>
 </html>
