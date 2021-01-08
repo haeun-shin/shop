@@ -7,6 +7,93 @@
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/common_style.css">
 <title>Shop</title>
+<style>
+	/* 로그인 안내문구 */
+	#reply .replyAlert {
+		width: 100%;
+		padding: 2em 2em;
+	    text-align: center;
+	    background-color: #ddd;
+	}
+	.replyAlert > a {
+		color: #ab2012;
+		font-weight: bold;
+	}
+	/* 댓글 작성 폼 */
+	#reply section.replyForm {
+		width: 100%;
+	    margin-bottom: 2em;
+	    overflow: hidden;
+	}
+	.replyForm > form {
+		width: 100%;
+	}
+	.replyForm form > div.input_area {
+		float: left;
+	} 	
+	.replyForm form > div.input_area:first-of-type {
+		width: 80%;
+	}
+	.replyForm form > div.input_area:last-child {
+		width: 20%;
+	}
+	.replyForm  .input_area textarea {
+		width: 100%;
+	}
+	#reply #replyCon {
+		resize: none;
+	}
+	#reply #reply_btn {
+		width: 100%;
+		height: 79px;
+		border-radius: 0;
+		background-color: #003148;
+	}
+	#reply #reply_btn:hover {
+		font-weight: bold;
+	}
+	/* 댓글 리스트 */
+	.replyList > ol > li:first-child {
+		border-top: 1px solid #ddd;
+	}
+	.replyList > ol > li {
+		display: inline-block;
+		width: 100%;
+		border-bottom: 1px solid #ddd;
+		vertical-align: middle;
+		padding: 1.5rem 2rem;
+	}
+	.replyList li > div {
+		float: left;
+	}
+	.replyList li > .userInfo {
+		width:10%;
+	}
+	.replyList li > .replyContent {
+		width: 78%;
+	}
+	.replyContent > div {
+		float: left;
+	}
+	.replyList li > .userDate {
+		width: 10%;
+		color: #9e9e9e;
+	}
+	.replyList .replyFotter {
+		padding-left: 1em;
+	}
+	.replyList .replyFotter > button {
+		font-size: 0.6rem;
+	    padding: 0.2em 1em;
+	    margin-right: 0.6em;
+	}
+	.replyFotter > .modify {
+		background-color: #003148;
+	}
+	.replyFotter > .delete {
+		background-color: #ab2012;
+	}
+</style>
 <script src="/resources/js/jquery-3.3.1.min.js"></script>
 <script>
 $(document).ready(function() {
@@ -120,16 +207,19 @@ function replyList() {
 			str += "<li data-replyNum-'" + this.replyNum + "'>"
 					+ "<div class='userInfo'>"
 					+ 	"<span class='userName'>" + this.userName + "</span>"
+					+ "</div>"
+					+ "<div class='replyContent'>" 
+					+ 	"<div class='con'>" + this.replyCon + "</div>" 
+					+   "<c:if test='${member != null}'>"
+					+   "<div class='replyFotter'>"
+					+   	"<button type='button' class='modify' data-replyNum='" + this.replyNum + "'>수정</button>"
+					+   	"<button type='button' class='delete' data-replyNum='" + this.replyNum + "'>삭제</button>"
+					+   "</div>"
+					+   "</c:if>"
+					+ "</div>"
+					+ "<div class='userDate'>"
 					+ 	"<span class='date'>" + replyDate + "</span>"
 					+ "</div>"
-					+ "<div class='replyContent'>" + this.replyCon + "</div>";
-			// 댓글 수정, 삭제 버튼
-			str		+= "<c:if test='${member != null}'>"
-					+ "<div class='replyFotter'>"
-					+ 	"<button type='button' class='modify' data-replyNum='" + this.replyNum + "'>수정</button>"
-					+ 	"<button type='button' class='delete' data-replyNum='" + this.replyNum + "'>삭제</button>"
-					+ "</div>"
-					+ "</c:if>"
 					+"</li>";
 			
 		});
@@ -213,17 +303,17 @@ function replyList() {
 			<div id="reply">
 				<%-- if: 로그아웃 시 로그인 문구 --%>
 				<c:if test="${member == null }">
-				<p>소감을 남기시려면 <a href="/member/signin">로그인</a>해주세요.</p>
+				<p class="replyAlert">소감을 남기시려면 <a href="/member/signin">로그인</a>해주세요.</p>
 				</c:if>
 				
 				<%-- if: 로그인 시 댓글 작성 폼 --%>
 				<c:if test="${member != null }">
 				<section class="replyForm">
 					<form role="form" method="post" autocomplete="off">
-						<input type="hidden" name="goodsNum" id="goodsNum" value="${view.goodsNum }" />
+						<input type="hidden" name="goodsNum" id="goodsNum" value="${view.goodsNum }"/>
 						
 						<div class="input_area">
-							<textarea name="replyCon" id="replyCon"></textarea>
+							<textarea name="replyCon" id="replyCon" rows="5"></textarea>
 						</div>
 						<div class="input_area">
 							<button type="button" id="reply_btn">소감 남기기</button>
