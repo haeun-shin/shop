@@ -2,6 +2,7 @@ package com.shop.service;
 
 import java.util.List;
 
+import com.shop.domain.CartListVO;
 import com.shop.domain.CartVO;
 import com.shop.domain.GoodsViewVO;
 import com.shop.domain.ReplyListVO;
@@ -31,4 +32,7 @@ public interface ShopService {
 	
 	// 카트 담기
 	public void addCart(CartVO cart) throws Exception;
+	
+	// 카트 리스트
+	public List<CartListVO> cartList(String userId) throws Exception;
 }
