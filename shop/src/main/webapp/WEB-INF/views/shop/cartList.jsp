@@ -25,10 +25,41 @@ $(document).ready(function() {
 			$(".ckBox").prop("checked", false);
 		}
 	});
+	
 	<%-- 개별 선택 시, 모두 선택 체크 해제 --%>
 	$(".ckBox").click(function() {
 		$("#allCheck").prop("checked", false);
 	});
+	
+	<%-- 체크 제품 삭제 --%>
+	$(".selectDelete_btn").click(function() {
+		var confirm_val = confirm("상품을 삭제하시겠습니까?");
+		
+		if(confirm_val) {
+			var checkArr = new Array();
+			// 체크된 상태의 input의 data-cartNum을 array에 put
+			$("input[class='ckBox']:checked").each(function() {
+				checkArr.push($(this).attr("data-cartNum"));
+			});
+			
+			$.ajax({
+				url: "/shop/deleteCart",
+				type: "post",
+				data: {
+					checkArr : checkArr
+				},
+				success: function(result) {
+					if(result == 1) {
+						location.href="/shop/cartList";
+					} else {
+						alert("삭제 실패");
+					}
+				}
+			});
+		}
+	});
+	
+	
 });
 </script>
 </head>
@@ -65,7 +96,7 @@ $(document).ready(function() {
 							<th>판매 가격</th>
 							<th>수량</th>
 							<th>주문 금액</th>
-							<th></th>
+							<th><button type="button" class="selectDelete_btn">선택 삭제</button></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -77,8 +108,35 @@ $(document).ready(function() {
 							<td><fmt:formatNumber pattern="###,###,###" value="${cartList.goodsPrice }"/> 원</td>
 							<td>${cartList.cartStock } 개</td>
 							<td><fmt:formatNumber pattern="###,###,###,###" value="${cartList.goodsPrice * cartList.cartStock }" /> 원</td>
-							<td><button type="button" class="delete_btn" data-cartNum="${cartList.cartNum }">삭제</button></td>
+							<td><button type="button" class="delete_${cartList.cartNum }_btn" data-cartNum="${cartList.cartNum }">삭제</button></td>
 						</tr>
+						<script>
+						<%-- 해당 제품 삭제 --%>
+						$(".delete_${cartList.cartNum}_btn").click(function() {
+							var confirm_val = confirm("상품을 삭제하시겠습니까?");
+							
+							if(confirm_val) {
+								var checkArr = new Array();
+								
+								checkArr.push($(this).attr("data-cartNum"));
+								
+								$.ajax({
+									url: "/shop/deleteCart",
+									type: "post",
+									data: {
+										checkArr : checkArr
+									},
+									success: function(result) {
+										if(result == 1) {
+											location.href = "/shop/cartList";
+										} else {
+											alert("삭제 실패");
+										}
+									}
+								});
+							}
+						});
+						</script>
 						</c:forEach>
 					</tbody>
 				</table>
