@@ -96,6 +96,29 @@ $(document).ready(function() {
 		$(".replyModal").fadeOut(200);
 	});
 	
+	<%-- 카트 담기 --%>
+	$(".addCart_btn").click(function() {
+		var goodsNum = $("#goodsNum").val();
+		var cartStock = $(".numBox").val();
+		var data = {
+			goodsNum : goodsNum,
+			cartStock : cartStock
+		};
+		
+		$.ajax({
+			url : "/shop/view/addCart",
+			type : "post",
+			data : data,
+			success : function() {
+				alert("카트에 담았습니다.");
+				$(".numBox").val("1");
+			},
+			error : function() {
+				alert("카트 담기 실패!");
+			}
+		});
+	}); // .addCart_btn
+	
 }); // document.ready()
 
 <%-- JSON을 이용한 비동기식으로 댓글 목록 가져오기 --%>
@@ -199,7 +222,7 @@ function replyList() {
 							</dd>
 						</dl>
 						<p class="addToCart">
-							<button type="button">카트에 담기</button>
+							<button type="button" class="addCart_btn">카트에 담기</button>
 						</p>
 					</div>
 				</div>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.shop.domain.CartVO;
 import com.shop.domain.GoodsViewVO;
 import com.shop.domain.MemberVO;
 import com.shop.domain.ReplyListVO;
@@ -145,5 +146,19 @@ public class ShopController {
 		}
 		
 		return result;
+	}
+	
+	// 카트 담기
+	@ResponseBody
+	@RequestMapping(value = "/view/addCart", method = RequestMethod.POST)
+	public void addCart(CartVO cart, HttpSession session) throws Exception {
+		logger.info("add Cart");
+		
+		// 세션에 있는 사용자 정보를 불러옴
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		// 해당 아이디를 cart에 세팅
+		cart.setUserId(member.getUserId());
+		
+		service.addCart(cart);
 	}
  }

@@ -95,4 +95,19 @@
 	and		userId = #{userId}	
 </update>
 
+<!-- 카트에 상품 추가 -->
+<insert id="addCart">
+	insert into tbl_cart (
+						    cartNum,
+						    userId,
+						    goodsNum,
+						    cartStock
+						 )
+				 values (
+						    tbl_cart_seq.nextval,
+						    #{userId},
+						    #{goodsNum},
+						    #{cartStock}
+					     )
+</insert>
 </mapper>
