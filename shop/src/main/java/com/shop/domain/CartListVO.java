@@ -14,12 +14,12 @@ public class CartListVO {
 */
 	private int cartNum;
 	private String userId;
-	private int goodsNu;
+	private int goodsNum;
 	private int cartStock;
 	private Date addDate;
 	
 	private int num;
-	private String goodsNum;
+	private String goodsName;
 	private int goodsPrice;
 	private String goodsThumbImg;
 	
@@ -35,11 +35,11 @@ public class CartListVO {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public int getGoodsNu() {
-		return goodsNu;
+	public int getGoodsNum() {
+		return goodsNum;
 	}
-	public void setGoodsNu(int goodsNu) {
-		this.goodsNu = goodsNu;
+	public void setGoodsNum(int goodsNum) {
+		this.goodsNum = goodsNum;
 	}
 	public int getCartStock() {
 		return cartStock;
@@ -59,11 +59,11 @@ public class CartListVO {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getGoodsNum() {
-		return goodsNum;
+	public String getGoodsName() {
+		return goodsName;
 	}
-	public void setGoodsNum(String goodsNum) {
-		this.goodsNum = goodsNum;
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
 	}
 	public int getGoodsPrice() {
 		return goodsPrice;
@@ -78,5 +78,6 @@ public class CartListVO {
 		this.goodsThumbImg = goodsThumbImg;
 	}
 	
+
 	
 }
