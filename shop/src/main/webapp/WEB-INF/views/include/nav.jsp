@@ -10,17 +10,24 @@
 		<a href="/member/signin">로그인</a>
 	</li>	
 	</c:if>
+	
 	<c:if test="${member != null }">
 	<li>
 		<a href="/member/signout">로그아웃</a>
 	</li>
-	<c:if test="${member.verify == 9 }">
 	<li>
-		<a href="/admin/goods/list">관리자화면</a>
+		<a href="/shop/cartList">장바구니</a>
 	</li>
-	</c:if>
+	
+		<c:if test="${member.verify == 9 }">
+		<li>
+			<a href="/admin/goods/list">관리자화면</a>
+		</li>
+		</c:if>
+		
 	<li>
 		<strong style="font-weight:bold">${member.userName }님 환영합니다.</strong>
 	</li>
+	
 	</c:if>
 </ul>
