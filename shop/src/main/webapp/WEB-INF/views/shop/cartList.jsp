@@ -29,6 +29,7 @@
 					<caption>장바구니 목록</caption>
 					<thead>
 						<tr>
+							<th></th>
 							<th>상품 사진</th>
 							<th>상품 이름</th>
 							<th>판매 가격</th>
@@ -40,6 +41,7 @@
 					<tbody>
 						<c:forEach items="${cartList }" var="cartList">
 						<tr>
+							<td><input type="checkbox" name="ckBox" class="ckBox" /></td>
 							<td><img src="${cartList.goodsThumbImg }" /></td>
 							<td>${cartList.goodsName }</td>
 							<td><fmt:formatNumber pattern="###,###,###" value="${cartList.goodsPrice }"/> 원</td>
