@@ -26,10 +26,18 @@
 		<div id="container_box">
 			<section id="cartList">
 				<table>
-					<caption>장바구니 목록</caption>
+					<colgroup>
+						<col width="62px">
+						<col width="125px">
+						<col width="377px">
+						<col width="125px">
+						<col width="126px">
+						<col width="188px">
+						<col width="127px">
+					</colgroup>
 					<thead>
 						<tr>
-							<th></th>
+							<th><input type="checkbox"/></th>
 							<th>상품 사진</th>
 							<th>상품 이름</th>
 							<th>판매 가격</th>
@@ -40,10 +48,10 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${cartList }" var="cartList">
-						<tr>
+						<tr class="cartInfo">
 							<td><input type="checkbox" name="ckBox" class="ckBox" /></td>
 							<td><img src="${cartList.goodsThumbImg }" /></td>
-							<td>${cartList.goodsName }</td>
+							<td class="cartGoodsName"><a href="/shop/view?n=${cartList.goodsNum }">${cartList.goodsName }</a></td>
 							<td><fmt:formatNumber pattern="###,###,###" value="${cartList.goodsPrice }"/> 원</td>
 							<td>${cartList.cartStock } 개</td>
 							<td><fmt:formatNumber pattern="###,###,###,###" value="${cartList.goodsPrice * cartList.cartStock }" /> 원</td>
