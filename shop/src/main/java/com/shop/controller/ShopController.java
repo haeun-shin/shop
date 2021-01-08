@@ -199,7 +199,7 @@ public class ShopController {
 		
 		if(member != null) {
 			cart.setUserId(userId);
-			
+			// 리스트에 담긴 카트번호를 반복시켜 int로 변환 후 삭제
 			for(String i : checkArr) {
 				cartNum = Integer.parseInt(i);
 				cart.setCartNum(cartNum);

@@ -59,7 +59,31 @@ $(document).ready(function() {
 		}
 	});
 	
-	
+	<%-- 해당 제품 삭제 --%>
+	$(".delete_btn").click(function() {
+		var confirm_val = confirm("상품을 삭제하시겠습니까?");
+		
+		if(confirm_val) {
+			var checkArr = new Array();
+			
+			checkArr.push($(this).attr("data-cartNum"));
+			
+			$.ajax({
+				url: "/shop/deleteCart",
+				type: "post",
+				data: {
+					checkArr : checkArr
+				},
+				success: function(result) {
+					if(result == 1) {
+						location.href = "/shop/cartList";
+					} else {
+						alert("삭제 실패");
+					}
+				}
+			});
+		}
+	});
 });
 </script>
 </head>
@@ -108,35 +132,8 @@ $(document).ready(function() {
 							<td><fmt:formatNumber pattern="###,###,###" value="${cartList.goodsPrice }"/> 원</td>
 							<td>${cartList.cartStock } 개</td>
 							<td><fmt:formatNumber pattern="###,###,###,###" value="${cartList.goodsPrice * cartList.cartStock }" /> 원</td>
-							<td><button type="button" class="delete_${cartList.cartNum }_btn" data-cartNum="${cartList.cartNum }">삭제</button></td>
+							<td><button type="button" class="delete_btn" data-cartNum="${cartList.cartNum }">삭제</button></td>
 						</tr>
-						<script>
-						<%-- 해당 제품 삭제 --%>
-						$(".delete_${cartList.cartNum}_btn").click(function() {
-							var confirm_val = confirm("상품을 삭제하시겠습니까?");
-							
-							if(confirm_val) {
-								var checkArr = new Array();
-								
-								checkArr.push($(this).attr("data-cartNum"));
-								
-								$.ajax({
-									url: "/shop/deleteCart",
-									type: "post",
-									data: {
-										checkArr : checkArr
-									},
-									success: function(result) {
-										if(result == 1) {
-											location.href = "/shop/cartList";
-										} else {
-											alert("삭제 실패");
-										}
-									}
-								});
-							}
-						});
-						</script>
 						</c:forEach>
 					</tbody>
 				</table>

@@ -510,7 +510,11 @@ button {
 	#cartList .cartInfo  > td > img {
 		width: 100px;
 	}
-	#cartList .delete_btn {
+	#cartList .delete_btn, #cartList .selectDelete_btn {
 		background-color: #ab2012;
+	    font-size: 0.7rem;
+	}
+	#cartList .delete_btn:hover, #cartList .selectDelete_btn:hover {
+		background-color: #6d1b13;
 	}
 /* cartList.jsp END */
