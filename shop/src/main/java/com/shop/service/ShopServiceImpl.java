@@ -26,12 +26,13 @@ public class ShopServiceImpl implements ShopService{
 		// 1차 분류일 경우
 		if(level == 1) {
 			cateCodeRef = cateCode;
-			
 			return dao.list(cateCode, cateCodeRef);
+			
 		} else { // 2차 분류일 경우
-			return dao.list(cateCode);
+			//return dao.list(cateCode);
+			return dao.list(cateCode, cateCodeRef);
+
 		}
-		
 	}
 	
 	// 상품 조회

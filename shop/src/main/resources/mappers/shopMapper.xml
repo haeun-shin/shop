@@ -3,7 +3,7 @@
 <mapper namespace="com.shop.mappers.shopMapper">
 
 <!-- 카테고리별 상품 리스트 1차 분류-->
-<select id="list_1" resultType="com.shop.domain.GoodsViewVO">
+<!-- <select id="list_1" resultType="com.shop.domain.GoodsViewVO">
 	select  g.goodsNum,
 			g.goodsName,
 			g.cateCode,
@@ -21,10 +21,10 @@
 			on g.cateCode = c.cateCode
 	where	g.cateCode = #{cateCode}
 			or c.cateCodeRef = #{cateCodeRef}
-</select>
+</select> -->
 
 <!-- 카테고리별 상품 리스트 2차 분류-->
-<select id="list_2" resultType="com.shop.domain.GoodsViewVO">
+<!-- <select id="list_2" resultType="com.shop.domain.GoodsViewVO">
 	select  g.goodsNum,
 			g.goodsName,
 			g.cateCode,
@@ -41,7 +41,34 @@
 	inner join goods_category c
 	on g.cateCode = c.cateCode
 	where g.cateCode = #{cateCode}
+</select> -->
+
+<!-- 카테고리별 상품 리스트 -->
+<select id="list" resultType="com.shop.domain.GoodsViewVO">
+	select  g.goodsNum,
+			g.goodsName,
+			g.cateCode,
+			c.cateCodeRef,
+			c.cateName,
+			goodsPrice,
+			goodsStock,
+			goodsDesc,
+			goodsImg,
+			goodsDate,
+			g.goodsImg,
+			g.goodsThumbImg
+	from	tbl_goods g
+	inner	join goods_category c
+			on g.cateCode = c.cateCode
+	where	g.cateCode = #{cateCode}
+			<include refid="categoryList"></include>
 </select>
+<!-- 카테고리별 상품 리스트 -->
+<sql id="categoryList">
+	<if test="cateCodeRef != null">
+		<if test="cateCoderef != 0">or c.cateCodeRef = #{cateCodeRef}</if>
+	</if>
+</sql>
 
 <!-- 상품 소감(댓글) 작성 -->
 <insert id="registReply">

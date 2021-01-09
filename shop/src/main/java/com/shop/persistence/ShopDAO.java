@@ -10,10 +10,13 @@ import com.shop.domain.ReplyVO;
 
 public interface ShopDAO {
 	// 카테고리별 상품 리스트 : 1차 분류
-	public List<GoodsViewVO> list(int cateCode, int cateCodeRef) throws Exception;
+	//public List<GoodsViewVO> list(int cateCode, int cateCodeRef) throws Exception;
 	
 	// 카테고리별 상품 리스트 : 2차 분류
-	public List<GoodsViewVO> list(int cateCode) throws Exception;
+	//public List<GoodsViewVO> list(int cateCode) throws Exception;
+	
+	// 카테고리별 상품 리스트
+	public List<GoodsViewVO> list(int cateCode, int cateCodeRef) throws Exception;
 	
 	// 상품 조회
 	public GoodsViewVO goodsView(int goodsNum) throws Exception;
