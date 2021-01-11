@@ -147,6 +147,57 @@ $(document).ready(function() {
 				<div class="orderOpen">
 					<button type="button" class="orderOpen_btn">주문 정보 입력</button>
 				</div>
+				<script>
+					<%-- 주문정보입력 창 열기 --%>
+					$(".orderOpen_btn").click(function() {
+						$(".orderInfo").slideDown();
+						$(".orderOpen_btn").slideUp();
+					});
+				</script>
+				<div class="orderInfo">
+					<form role="form" method="post" autocomplete="off">
+						<input type="hidden" name="amount" value=${sum } />
+						
+						<table>
+							<tbody>
+								<tr>
+									<td>수령인</td>
+									<td><input type="text" name="orderRec" id="orderRec" required="required" /></td>
+								</tr>
+								<tr>
+									<td>수령인 연락처</td>
+									<td><input type="text" name="orderPhone" id="orderPhone" required="required" /></td>
+								</tr>
+								<tr>
+									<td>우편번호</td>
+									<td><input type="text" name="userAddr1" id="userAddr1" required="required" /></td>
+								</tr>
+								<tr>
+									<td>1차 주소</td>
+									<td><input type="text" name="userAddr2" id="userAddr2" required="required" /></td>
+								</tr>
+								<tr>
+									<td>2차 주소</td>
+									<td><input type="text" name="userAddr3" id="userAddr3" required="required" /></td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td><button type="submit" class="order_btn">주문</button></td>
+									<td><button type="button" class="cancel_btn">취소</button></td>
+								</tr>
+								
+							</tfoot>
+						</table>
+						<script>
+							<%-- 주문정보입력 창 닫기 --%>
+							$(".cancel_btn").click(function() {
+								$(".orderInfo").slideUp();
+								$(".orderOpen_btn").slideDown();
+							});
+						</script>
+					</form>
+				</div>
 			</section>
 		</div>
 	</section>

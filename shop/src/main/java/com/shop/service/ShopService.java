@@ -7,6 +7,8 @@ import com.shop.domain.CartVO;
 import com.shop.domain.GoodsViewVO;
 import com.shop.domain.ReplyListVO;
 import com.shop.domain.ReplyVO;
+import com.shop.persistence.OrderDetailVO;
+import com.shop.persistence.OrderVO;
 
 public interface ShopService {
 	// 카테고리별 상품 리스트
@@ -38,4 +40,10 @@ public interface ShopService {
 	
 	// 카트 삭제
 	public void deleteCart(CartVO cart) throws Exception;
+	
+	// 주문 정보
+	public void orderInfo(OrderVO order) throws Exception;
+	
+	// 주문 상세 정보
+	public void orderInfoDetails(OrderDetailVO orderDetail) throws Exception;
 }

@@ -11,7 +11,7 @@ public class OrderVO {
     userAddr1   varchar2(20) not null,
     userAddr2   varchar2(50) not null,
     userAddr3   varchar2(50) not null,
-    orderPhon   varchar2(30) not null,
+    orderPhone  varchar2(30) not null,
     amount      number       not null,
     orderDate   Date         default sysdate,   
     primary key(orderId) 

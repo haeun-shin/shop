@@ -1,5 +1,7 @@
 package com.shop.controller;
 
+import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -20,6 +22,8 @@ import com.shop.domain.GoodsViewVO;
 import com.shop.domain.MemberVO;
 import com.shop.domain.ReplyListVO;
 import com.shop.domain.ReplyVO;
+import com.shop.persistence.OrderDetailVO;
+import com.shop.persistence.OrderVO;
 import com.shop.service.ShopService;
 
 @Controller
@@ -210,5 +214,39 @@ public class ShopController {
 		}
 		
 		return result;
+	}
+	
+	// 주문
+	@RequestMapping(value = "/cartList", method = RequestMethod.POST)
+	public String order(HttpSession session, OrderVO order, OrderDetailVO orderDetail) throws Exception {
+		logger.info("order");
+		
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		String userId = member.getUserId();
+		
+		// 달력 메서드(Calendar)로 연/월/일 추출
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+		String ymd = ym + new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		String subNum = "";
+		
+		// 6자리 랜덤 숫자 생성
+		for(int i=0; i<=6; i++) {
+			subNum += (int)(Math.random() * 10);
+		}
+		
+		// 날짜_랜덤숫자 로 이루어진, 최대한 중복되지 않는 고유한 문자열 생성
+		String orderId = ymd + "_" + subNum;
+		
+		order.setOrderId(orderId);
+		order.setUserId(userId);
+		service.orderInfo(order);
+		
+		
+		orderDetail.setOrderId(orderId);
+		service.orderInfoDetails(orderDetail);
+		
+		return "redirect:/shop/orderList";
 	}
  }

@@ -11,6 +11,8 @@ import com.shop.domain.CartVO;
 import com.shop.domain.GoodsViewVO;
 import com.shop.domain.ReplyListVO;
 import com.shop.domain.ReplyVO;
+import com.shop.persistence.OrderDetailVO;
+import com.shop.persistence.OrderVO;
 import com.shop.persistence.ShopDAO;
 
 @Service
@@ -87,5 +89,17 @@ public class ShopServiceImpl implements ShopService{
 	@Override
 	public void deleteCart(CartVO cart) throws Exception {
 		dao.deleteCart(cart);
+	}
+	
+	// 주문 정보
+	@Override
+	public void orderInfo(OrderVO order) throws Exception {
+		dao.orderInfo(order);
+	}
+	
+	// 주문 상세 정보
+	@Override
+	public void orderInfoDetails(OrderDetailVO orderDetail) throws Exception {
+		dao.orderInfoDetails(orderDetail);
 	}
 }

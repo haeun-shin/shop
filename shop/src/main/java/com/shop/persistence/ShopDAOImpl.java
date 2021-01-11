@@ -104,4 +104,16 @@ public class ShopDAOImpl implements ShopDAO{
 	public void deleteCart(CartVO cart) throws Exception {
 		sql.delete(namespace + ".deleteCart", cart);
 	}
+	
+	// 주문 정보
+	@Override
+	public void orderInfo(OrderVO order) throws Exception {
+		sql.insert(namespace + ".orderInfo", order);
+	}
+	
+	// 주문 상세 정보
+	@Override
+	public void orderInfoDetails(OrderDetailVO orderDetail) throws Exception {
+		sql.insert(namespace + ".orderInfoDetails", orderDetail);
+	}
 }
