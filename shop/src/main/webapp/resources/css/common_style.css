@@ -91,6 +91,7 @@ body {
 		border: 1px solid #f5f5f5;
 		position: absolute;
 	    width: 177px; /* 카테고리 갯수 변경시 수정해야함 */
+        z-index: 999999;
 	}
 	.gnb_sub > li {
 		display: inline-block;
