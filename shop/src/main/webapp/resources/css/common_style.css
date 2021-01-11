@@ -14,7 +14,7 @@ body {
 	/* .top_nav */
 	.top_nav {
 		width: 100%;
-		background-color: #f7f7f7;
+		background-color: #003148;
 	}
 	.top_nav > ul.nav_wrap {
 		display: block;
@@ -22,7 +22,7 @@ body {
 		width: 1140px;
 		margin: 0 auto;
 		height: 35px;
-		
+		color: #fff;
 	}
 	ul.nav_wrap > li {
 		float: right;
@@ -30,12 +30,16 @@ body {
 		padding: 0 20px;
 		font-size: 0.85rem;
 	} 
+	ul.nav_wrap > li > a {
+		color: #fff;
+	}
 
 	/* .header */
 	.header {
 		width: 100%;
-		background-color: #003148;
+		background-color: #fff;
 		clear: both;
+		border-bottom: 1px solid #f5f5f5;
 	}
 	.header .gnb {
 		width: 1140px;
@@ -51,7 +55,7 @@ body {
 	}
 	.header h1 > a {
 		font-family: 'Bebas Neue', cursive;
-		color: #fff;
+		color: #003148;
 		font-size: 2.5rem;
 	}
 	/* 카테고리 */
@@ -68,7 +72,7 @@ body {
 		line-height: 70px;
 	}
 	.gnb_main > a {
-		color: #fff;
+		color: #333;
 		width: 99%;
 	   	display: block;
 	   	
@@ -464,14 +468,21 @@ button {
 /* list.jsp START */
 	#list_content > ul > li {
 		float: left;
-		width:25%;
+		width:24.9%;
 		padding:30px 0;
+		border: 1px #e7e7e7 solid;	
+		margin-top: -1px;
+		margin-left: -1px;
+	}
+	#list_content > ul > li:nth-child(4n) {
+		border-right: none;
 	}
 	#list_content .list_info {
 		width: 240px;
 		margin: 0 auto;
 		text-align: center;
 		height: 350px;
+		font-size: 0.9em;
 	}
 	#list_content .list_info .goodsThumb img{
 		width: 240px;
@@ -480,9 +491,16 @@ button {
 	#list_content .list_info .goodsName {
 		margin-top: 1em;
 		line-height: 1.3em;
+		min-height: 40px;
 	}
 	#list_content .list_info .goodsName > a:hover {
 		text-decoration: underline;
+	}
+	#list_content .goodsPrice {
+		color: #d50c0c;
+		font-weight: bold;
+		letter-spacing: -.5px;
+		margin-top: 0.5em;
 	}
 /* list.jsp END */
 

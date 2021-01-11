@@ -45,6 +45,7 @@ public class ShopController {
 		list = service.list(cateCode, level);
 		
 		model.addAttribute("list", list);
+		model.addAttribute("level", level);
 	}
 	
 	// 상품 조회(goodsView)
