@@ -239,13 +239,17 @@ public class ShopController {
 		// 날짜_랜덤숫자 로 이루어진, 최대한 중복되지 않는 고유한 문자열 생성
 		String orderId = ymd + "_" + subNum;
 		
+		// 주문 정보
 		order.setOrderId(orderId);
 		order.setUserId(userId);
 		service.orderInfo(order);
 		
-		
+		// 주문 상세 정보
 		orderDetail.setOrderId(orderId);
 		service.orderInfoDetails(orderDetail);
+		
+		// 카트 비우기
+		service.cartAllDelete(userId);
 		
 		return "redirect:/shop/orderList";
 	}

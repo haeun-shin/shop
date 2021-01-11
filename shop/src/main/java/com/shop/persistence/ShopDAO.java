@@ -51,4 +51,6 @@ public interface ShopDAO {
 	// 주문 상세 정보
 	public void orderInfoDetails(OrderDetailVO orderDetail) throws Exception;
 	
+	// 주문 후, 카트 비우기
+	public void cartAllDelete(String userId) throws Exception;
 }

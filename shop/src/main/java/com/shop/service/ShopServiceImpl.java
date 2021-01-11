@@ -102,4 +102,10 @@ public class ShopServiceImpl implements ShopService{
 	public void orderInfoDetails(OrderDetailVO orderDetail) throws Exception {
 		dao.orderInfoDetails(orderDetail);
 	}
+	
+	// 주문 후, 카트 비우기
+	@Override
+	public void cartAllDelete(String userId) throws Exception {
+		dao.cartAllDelete(userId);
+	}
 }
