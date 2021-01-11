@@ -120,4 +120,45 @@
 		delete	tbl_goods
 		where	goodsNum = #{goodsNum}
 	</delete>
+	
+	<!-- 모든 유저의 주문 목록 -->
+	<select id="orderAllList" resultType="com.shop.domain.OrderVO">
+		select  orderId,
+		        userId,
+		        orderRec,
+		        userAddr1,
+		        userAddr2,
+		        userAddr3,
+		        orderPhone,
+		        amount,
+		        orderDate,
+		        delivery
+		from    tbl_order
+	</select>
+	
+	<!-- 특정 주문 목록 -->
+	<select id="orderMemberView" resultType="com.shop.domain.OrderListVO">
+		select  o.orderId,
+		        o.userId,
+		        o.orderRec,
+		        o.userAddr1,
+		        o.userAddr2,
+		        o.userAddr3,
+		        o.orderPhone,
+		        o.amount,
+		        o.orderDate,
+		        o.delivery,
+		        d.orderDetailsNum,
+		        d.goodsNum,
+		        d.cartStock,
+		        g.goodsName,
+		        g.goodsThumbImg,
+		        g.goodsPrice
+		from    tbl_order o
+	            inner join tbl_order_details d
+	                    on o.orderId = d.orderId
+	            inner join tbl_goods g
+	                    on d.goodsNum = g.goodsNum
+		where   o.orderId = #{orderId}
+	</select>
 </mapper>

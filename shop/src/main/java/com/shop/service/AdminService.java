@@ -5,6 +5,8 @@ import java.util.List;
 import com.shop.domain.CategoryVO;
 import com.shop.domain.GoodsVO;
 import com.shop.domain.GoodsViewVO;
+import com.shop.domain.OrderListVO;
+import com.shop.domain.OrderVO;
 
 public interface AdminService {
 	// 카테고리
@@ -24,4 +26,10 @@ public interface AdminService {
 	
 	// 상품 삭제
 	public void goodsDelete(int goodsNum) throws Exception;
+	
+	// 주문 목록
+	public List<OrderVO> orderList() throws Exception;
+	
+	// 특정 주문 목록
+	public List<OrderListVO> orderView(OrderVO order) throws Exception;
 }
