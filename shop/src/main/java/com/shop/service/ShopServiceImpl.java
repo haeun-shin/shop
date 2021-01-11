@@ -10,6 +10,7 @@ import com.shop.domain.CartListVO;
 import com.shop.domain.CartVO;
 import com.shop.domain.GoodsViewVO;
 import com.shop.domain.OrderDetailVO;
+import com.shop.domain.OrderListVO;
 import com.shop.domain.OrderVO;
 import com.shop.domain.ReplyListVO;
 import com.shop.domain.ReplyVO;
@@ -109,9 +110,15 @@ public class ShopServiceImpl implements ShopService{
 		dao.cartAllDelete(userId);
 	}
 	
-	// 특정 유저 주문 목록
+	// 주문 목록
 	@Override
 	public List<OrderVO> orderList(OrderVO order) throws Exception {
 		return dao.orderList(order);
+	}
+	
+	// 특정 주문 목록
+	@Override
+	public List<OrderListVO> orderView(OrderVO order) throws Exception {
+		return dao.orderView(order);
 	}
 }
