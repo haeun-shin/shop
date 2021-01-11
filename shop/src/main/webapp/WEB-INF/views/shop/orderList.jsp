@@ -25,29 +25,28 @@
 	<section id="container">
 		<div id="container_box">
 			<section id="orderList">
-				<table>
+				<h2>주문배송조회</h2>
+				<table class="orderListTable">
+					<thead>
+						<tr>
+							<th>주문번호</th>
+							<th>주문일자</th>
+							<th>총 구매금액</th>
+							<th>주소</th>
+							<th>주문상태</th>
+						</tr>
+					</thead>
+					<tbody>
 					<c:forEach items="${orderList }" var="orderList">
 					<tr>
-						<td>주문 정보</td>
-						<td><a href="/shop/orderView?n=${orderList.orderId }">${orderList.orderId }</a></td>
-					</tr>
-					<tr>
-						<td>수령인</td>
-						<td>${orderList.orderRec }</td>
-					</tr>
-					<tr>
-						<td>주소</td>
-						<td>(${orderList.userAddr1 }) ${orderList.userAddr2 } ${orderList.userAddr3 }</td>
-					</tr>
-					<tr>
-						<td>가격</td>
+						<td class="orderId"><a href="/shop/orderView?n=${orderList.orderId }">${orderList.orderId }</a></td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${orderList.orderDate }" /></td>
 						<td><fmt:formatNumber pattern="###,###,###,###" value="${orderList.amount }" />원</td>
-					</tr>
-					<tr>
-						<td>상태</td>
+						<td>(${orderList.userAddr1 }) ${orderList.userAddr2 } ${orderList.userAddr3 }</td>
 						<td>${orderList.delivery }</td>
 					</tr>
 					</c:forEach>
+					</tbody>
 				</table>
 			</section>
 		</div>
