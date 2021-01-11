@@ -161,4 +161,11 @@
 	                    on d.goodsNum = g.goodsNum
 		where   o.orderId = #{orderId}
 	</select>
+	
+	<!-- 배송 상태 -->
+	<update id="delivery">
+		update	tbl_order
+		   set	delivery = #{delivery}
+		where	orderId = #{orderId}
+	</update>
 </mapper>

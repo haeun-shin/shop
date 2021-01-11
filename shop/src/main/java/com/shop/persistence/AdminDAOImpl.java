@@ -68,4 +68,10 @@ public class AdminDAOImpl implements AdminDAO{
 	public List<OrderListVO> orderView(OrderVO order) throws Exception {
 		return sql.selectList(namespace + ".orderMemberView", order);
 	}
+	
+	// 배송 상태
+	@Override
+	public void delivery(OrderVO order) throws Exception {
+		sql.update(namespace + ".delivery", order);
+	}
 }

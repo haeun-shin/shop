@@ -221,7 +221,8 @@
 			userAddr3,
 			orderPhone,
 			amount,
-			orderDate
+			orderDate,
+			delivery
 	from	tbl_order
 	where	userId = #{userId}
 </select>
@@ -237,6 +238,7 @@ select  o.orderId,
         o.orderPhone,
         o.amount,
         o.orderDate,
+        o.delivery,
         d.orderDetailsNum,
         d.goodsNum,
         d.cartStock,

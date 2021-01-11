@@ -43,6 +43,10 @@
 						<td>가격</td>
 						<td><fmt:formatNumber pattern="###,###,###,###" value="${orderList.amount }" />원</td>
 					</tr>
+					<tr>
+						<td>상태</td>
+						<td>${orderList.delivery }</td>
+					</tr>
 					</c:forEach>
 				</table>
 			</section>
