@@ -13,7 +13,8 @@ public class OrderVO {
     userAddr3   varchar2(50) not null,
     orderPhone  varchar2(30) not null,
     amount      number       not null,
-    orderDate   Date         default sysdate,   
+    orderDate   Date         default sysdate,
+    delivery	varchar2(20) default '주문 완료',   
     primary key(orderId) 
 */
 	private String orderId;		// 주문 고유번호
@@ -25,6 +26,7 @@ public class OrderVO {
 	private String orderPhone;	// 연락처
 	private int amount;			// 총 가격
 	private Date orderDate;		// 주문 날짜
+	private String delivery;	// 배송 상태
 	
 	public String getOrderId() {
 		return orderId;
@@ -79,6 +81,12 @@ public class OrderVO {
 	}
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
+	}
+	public String getDelivery() {
+		return delivery;
+	}
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
 	}
 	
 	
