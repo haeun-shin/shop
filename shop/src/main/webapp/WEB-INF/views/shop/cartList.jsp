@@ -124,6 +124,7 @@ $(document).ready(function() {
 						</tr>
 					</thead>
 					<tbody>
+						<c:set var="sum" value="0" />
 						<c:forEach items="${cartList }" var="cartList">
 						<tr class="cartInfo">
 							<td><input type="checkbox" name="ckBox" class="ckBox" data-cartNum="${cartList.cartNum }"/></td>
@@ -134,9 +135,18 @@ $(document).ready(function() {
 							<td><fmt:formatNumber pattern="###,###,###,###" value="${cartList.goodsPrice * cartList.cartStock }" /> 원</td>
 							<td><button type="button" class="delete_btn" data-cartNum="${cartList.cartNum }">삭제</button></td>
 						</tr>
+						<c:set var="sum" value="${sum + (cartList.goodsPrice * cartList.cartStock) }" />
 						</c:forEach>
 					</tbody>
+					<tfoot>
+						<tr>
+							<td>합계금액 <fmt:formatNumber pattern="###,###,###,###" value="${sum }"/>원</td>
+						</tr>
+					</tfoot>
 				</table>
+				<div class="orderOpen">
+					<button type="button" class="orderOpen_btn">주문 정보 입력</button>
+				</div>
 			</section>
 		</div>
 	</section>
