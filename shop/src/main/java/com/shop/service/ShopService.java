@@ -5,10 +5,10 @@ import java.util.List;
 import com.shop.domain.CartListVO;
 import com.shop.domain.CartVO;
 import com.shop.domain.GoodsViewVO;
+import com.shop.domain.OrderDetailVO;
+import com.shop.domain.OrderVO;
 import com.shop.domain.ReplyListVO;
 import com.shop.domain.ReplyVO;
-import com.shop.persistence.OrderDetailVO;
-import com.shop.persistence.OrderVO;
 
 public interface ShopService {
 	// 카테고리별 상품 리스트
@@ -49,4 +49,7 @@ public interface ShopService {
 	
 	// 주문 후, 카트 비우기
 	public void cartAllDelete(String userId) throws Exception;
+	
+	// 특정 유저 주문 목록
+	public List<OrderVO> orderList(OrderVO order) throws Exception;
 }

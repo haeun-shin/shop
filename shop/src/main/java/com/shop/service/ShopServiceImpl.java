@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import com.shop.domain.CartListVO;
 import com.shop.domain.CartVO;
 import com.shop.domain.GoodsViewVO;
+import com.shop.domain.OrderDetailVO;
+import com.shop.domain.OrderVO;
 import com.shop.domain.ReplyListVO;
 import com.shop.domain.ReplyVO;
-import com.shop.persistence.OrderDetailVO;
-import com.shop.persistence.OrderVO;
 import com.shop.persistence.ShopDAO;
 
 @Service
@@ -107,5 +107,11 @@ public class ShopServiceImpl implements ShopService{
 	@Override
 	public void cartAllDelete(String userId) throws Exception {
 		dao.cartAllDelete(userId);
+	}
+	
+	// 특정 유저 주문 목록
+	@Override
+	public List<OrderVO> orderList(OrderVO order) throws Exception {
+		return dao.orderList(order);
 	}
 }

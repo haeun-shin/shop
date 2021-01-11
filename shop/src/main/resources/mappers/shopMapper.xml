@@ -207,4 +207,19 @@
 	delete tbl_cart
 	where userId = #{userId}
 </delete>
+
+<!-- 특정 유저의 주문 목록 -->
+<select id="orderList" resultType="com.shop.domain.OrderVO">
+	select	orderId,
+			userId,
+			orderRec,
+			userAddr1,
+			userAddr2,
+			userAddr3,
+			orderPhone,
+			amount,
+			orderDate
+	from	tbl_order
+	where	userId = #{userId}
+</select>
 </mapper>

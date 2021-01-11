@@ -1,4 +1,4 @@
-package com.shop.persistence;
+package com.shop.domain;
 
 public class OrderDetailVO {
 /*
