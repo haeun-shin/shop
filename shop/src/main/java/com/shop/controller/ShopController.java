@@ -247,6 +247,7 @@ public class ShopController {
 		
 		// 주문 상세 정보
 		orderDetail.setOrderId(orderId);
+		orderDetail.setUserId(userId);
 		service.orderInfoDetails(orderDetail);
 		
 		// 카트 비우기

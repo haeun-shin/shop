@@ -10,9 +10,10 @@ public class OrderDetailVO {
     primary key(orderDetailsNum)
 */
 	private int orderDetailsNum;	// 주문 상세 번호(sequence)
-	private String orderId;			// 주문자
+	private String orderId;			// 주문 번호
 	private int goodsNum;			// 상품 아이디
 	private int cartStock;			// 카트 번호
+	private String userId;			// 주문자 아이디
 	
 	public int getOrderDetailsNum() {
 		return orderDetailsNum;
@@ -37,6 +38,12 @@ public class OrderDetailVO {
 	}
 	public void setCartStock(int cartStock) {
 		this.cartStock = cartStock;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 	

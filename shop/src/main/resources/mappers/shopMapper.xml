@@ -193,13 +193,16 @@
 									orderDetailsNum,
 									orderId,
 									goodsNum,
-									cartStock
+									cartStock,
+									userId
 								 )
 						   select	tbl_order_details_seq.nextval,
 						   			#{orderId},
 						   			goodsNum,
-						   			cartStock
+						   			cartStock,
+						   			#{userId}
 						   	from	tbl_cart
+						   	where	userId = #{userId}
 </insert>
 
 <!-- 주문 후, 카트 비우기 -->
