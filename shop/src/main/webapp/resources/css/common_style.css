@@ -694,3 +694,77 @@ button {
 	margin-bottom: 2em;
 }
 /* cartList.jsp END */
+
+/* home.jsp START */
+/* 슬라이더 처리 START */
+.main_banner {
+	width: 100%;
+    /* background-color: #000; */
+}
+.slider_wrap {
+    width: 1420px;
+    margin: 0 auto;
+    height: 600px;
+    position: relative;
+}
+.bx-wrapper .bx-pager {
+    text-align: center;
+    font-size: .85em;
+    font-family: Arial;
+    font-weight: bold;
+    color: #666;
+    padding-top: 20px;
+}
+.bx-wrapper .bx-pager {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+}
+.bx-wrapper .bx-pager-item{
+    display: inline-block;
+    vertical-align: bottom;
+   }
+.bx-wrapper .bx-pager.bx-default-pager a {
+    background: #666;
+    text-indent: -9999px;
+    display: block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    outline: 0;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+   }
+   .bx-wrapper .bx-pager.bx-default-pager a:hover, .bx-wrapper .bx-pager.bx-default-pager a.active, .bx-wrapper .bx-pager.bx-default-pager a:focus {
+   background: #000;
+   }
+   
+   /* 앞뒤버튼 */
+   .bx-wrapper .bx-controls-direction a {
+    position: absolute;
+    top: 50%;
+    margin-top: -16px;
+    outline: 0;
+    width: 32px;
+    height: 44px;
+    text-indent: -9999px;
+    z-index: 9999;
+}
+.bx-wrapper .bx-prev {
+    left: 10px;
+    background: url(/resources/images/btn-prev-white.png) no-repeat;
+    background-position: 0 0;
+   	background-size: contain;
+}
+.bx-wrapper .bx-next {
+    right: 10px;
+    background: url(/resources/images/btn-next-white.png) no-repeat;
+    background-position: 0 0;
+   	background-size: contain;
+}
+.bx-viewport {
+	top: -4px;
+}
+/* 슬라이더 처리 END */
+/* home.jsp END */
