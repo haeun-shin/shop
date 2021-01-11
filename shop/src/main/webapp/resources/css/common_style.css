@@ -594,3 +594,85 @@ button {
 	text-decoration: underline;
 }
 /* orderView.jsp END */
+
+/* cartList.jsp START */
+#cartList .cartOrderSum {
+	width: 100%;
+	text-align: right;
+	padding-bottom: 5px;
+	padding-top: 15px;
+}
+#cartList .cartOrderSum {
+	overflow: hidden;
+	width: 100%;
+	padding-bottom: 25px;
+  		border-top: 1px dashed #a1a1a1;
+}
+#cartList .cartOrderSum span {
+	color: #d50c0c ;
+	font-size: 1.3rem;
+	font-weight: bold;
+	padding-left: 5px;
+}
+#cartList .orderInfo {
+	display: none;
+}
+#cartList .orderOpen_btn {
+	width: 100%;
+ 		    padding: 1em;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 1em;
+    background-color: #003148;
+}
+#cartList .orderOpen_btn:hover {
+	background-color: #07222f;
+}
+#cartList .orderInfo table {
+	width: 100%;
+    border-top: 2px solid #555;
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 2em;
+}
+#cartList .orderInfo th{
+	border-top: 1px solid #eaeaea;
+    font-size: 0.9rem;
+    text-align: left;
+    background: #f5f5f5;
+    color: #666;
+    padding: 12px 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+}
+#cartList .orderInfo td {
+    font-size: 0.9rem;
+    border-top: 1px solid #eaeaea;
+    text-align: left;
+    padding: 10px 0px;
+       color: #888;
+				line-height: 16px;
+				padding-left: 20px;
+    padding-right: 20px;
+}
+#cartList input {
+	height: 20px;
+    padding: 0 5px;
+    font-size: 0.9rem;
+    border: 1px solid #bbb;
+    color: #666;
+    vertical-align: middle;
+}
+#cartList .btn_group {
+	float: right;
+}
+#cartList .btn_group .order_btn {
+	background-color: #ab2012;
+}
+#cartList .btn_group .cancel_btn {
+	background-color: #555;
+}
+#cartList .orderOpen {
+	margin-bottom: 2em;
+}
+/* cartList.jsp END */
