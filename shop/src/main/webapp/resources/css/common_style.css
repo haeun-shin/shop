@@ -178,6 +178,10 @@ body {
 	.goodsPrice > dd {
 		color: #ab2012;
 	}
+	.goodsInfo button {
+	    padding: .2em 1em;
+    	background-color: #555;
+	}
 	/* 카트에 담기 버튼 */
 	.addToCart {
 		margin-top: 2em;
