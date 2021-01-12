@@ -29,30 +29,47 @@
 		</aside>
 		<div id="container_box">
 			<h2>리뷰 목록</h2>
-			<ul class="replyList">
-				<c:forEach items="${reply }" var="reply">
-				<li>
-					<div class="replyInfo">
-						<p>
-							<span>작성자</span>${reply.userName } (${reply.userId })
-						</p>
-						<p>
-							<span>작성된 이름</span> <a href="/shop/view?n=${reply.goodsNum }">바로가기</a>
-						</p>
-					</div>
-					<div class="replyContent">
-						${reply.replyCon }
-					</div>
-					
-					<div class="replyControl">
-						<form role="form" method="post">
-							<input type="hidden" name="replyNum" value="${reply.replyNum }" />
-							<button type="submit" class="delete_${reply.replyNum }_btn">삭제</button>
-						</form>
-					</div>
-				</li>
-				</c:forEach>
-			</ul>
+			<div class="relpy_list">
+				<table>
+					<colgroup>
+						<col width="10%">
+						<col width="10%">
+						<col width="50%">
+						<col width="10%">
+						<col width="10%">
+						<col width="10%">
+					</colgroup>
+					<thead>
+						<tr>
+							<td>이름</td>
+							<td>아이디</td>
+							<td>내용</td>
+							<td>작성일</td>
+							<td>링크</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${reply }" var="reply">
+						<tr>
+							<td>${reply.userName }</td>
+							<td>${reply.userId }</td>
+							<td>${reply.replyCon }</td>
+							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${reply.replyDate }" /></td>
+							<td><a href="/shop/view?n=${reply.goodsNum }#reply">바로가기</a></td>
+							<td>
+								<div class="replyControl">
+									<form role="form" method="post">
+										<input type="hidden" name="replyNum" value="${reply.replyNum }" />
+										<button type="submit" class="delete_${reply.replyNum }_btn">삭제</button>
+									</form>
+								</div>
+							</td>
+						</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</section>
 </div>

@@ -1,3 +1,10 @@
+/* font-family: 'Noto Sans KR', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+/* font-family: 'Bebas Neue', cursive; */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
 body {
 	width: 100%;
 }
@@ -487,3 +494,94 @@ button {
 	text-decoration: underline;
 }
 /* orderView.jsp END */
+
+/* orderView.jsp START */
+#orderView .orderView img {
+	width: 100px;
+}
+#orderView .orderView .goodsName {
+	text-align:left;
+}
+#orderView .orderView th {
+	font-weight: bold;
+}
+#orderView .orderInfo {
+	border-top: 2px solid #555;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    width: 100%;
+    font-size: 0.9rem;
+       color: #555;
+       margin-bottom: 3em;
+}
+#orderView .orderInfo  th {
+	padding: 16px 0px;
+ 			border-top: 1px solid #ddd;
+      	font-weight: bold;
+  		background: #f7f7f7;
+  		width: 150px;
+}
+#orderView .orderInfo tr td {
+   	text-align: left;
+   	padding: 16px 0px;
+	padding-left: 15px;
+   	border-top: 1px solid #ddd;
+}
+#orderView .title h4 {
+    margin: 28px 0 0;
+    padding-bottom: 10px;
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+#orderView .orderView .goodsName > a:hover {
+	text-decoration: underline;
+}
+.deliveryChange button, .deliveryChange > p {
+	float: left;
+}
+.deliveryChange > p {
+	margin-top: 7px;
+}
+.deliveryChange button {
+    font-size: 0.85rem;
+    border-radius: 4px;
+    padding: 4px 16px;
+    margin-left: 5px;
+}
+.deliveryChange .delivery_btn_1 {
+	background-color: #e4b043;
+}
+.deliveryChange .delivery_btn_2 {
+	background-color: #5cbda5;
+}
+.deliveryChange .delivery_btn_3 {
+	background-color: #4d71e6;
+}
+/* orderView.jsp END */
+
+/* allReply.jsp START */
+.relpy_list {
+	font-size: 0.9rem;
+}
+.relpy_list > table {
+	width: 100%;
+	text-align: center;
+}
+.relpy_list thead tr td {
+	padding: 16px 0px;
+    color: #000 !important;
+    background-color: #f7f7f7 !important;
+    font-weight: bold;
+}
+.relpy_list tbody tr td:nth-child(3) {
+	text-align: left;
+}
+.relpy_list tbody tr td {
+    padding: 15px 10px;
+    border-bottom: 1px solid #ddd;
+}
+.reply_list .replyControl button {
+    background-color: #c54343;
+}
+/* allReply.jsp END */
