@@ -28,6 +28,7 @@
 			<%@ include file="../include/aside.jsp" %>
 		</aside>
 		<div id="container_box">
+			<section id="orderView">
 			<h2>리뷰 목록</h2>
 			<div class="relpy_list">
 				<table>
@@ -70,6 +71,7 @@
 					</tbody>
 				</table>
 			</div>
+			</section>
 		</div>
 	</section>
 </div>

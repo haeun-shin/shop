@@ -29,7 +29,7 @@
 		</aside>
 		<div id="container_box">
 			<section id="orderList">
-				<h2>주문조회</h2>
+				<h2>주문목록</h2>
 				<table class="orderListTable">
 					<thead>
 						<tr>

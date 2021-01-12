@@ -142,9 +142,12 @@ $(document).ready(function() {
 				<p class="cartOrderSum">
 					<strong>결제 금액 <span><fmt:formatNumber pattern="###,###,###,###" value="${sum }"/>원</span></strong>
 				</p>
-				<div class="orderOpen">
-					<button type="button" class="orderOpen_btn">주문 정보 입력</button>
-				</div>
+				<%-- 장바구니 금액이 0이 아닐 경우에만, 주문 버튼 OPEN --%>
+				<c:if test="${sum != 0 }">
+					<div class="orderOpen">
+						<button type="button" class="orderOpen_btn">주문 정보 입력</button>
+					</div>
+				</c:if>
 				<script>
 					<%-- 주문정보입력 창 열기 --%>
 					$(".orderOpen_btn").click(function() {
