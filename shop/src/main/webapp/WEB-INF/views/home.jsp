@@ -25,7 +25,20 @@ $(document).ready(function () {
 });
 
 </script>
-
+<style>
+.sliderImg1 {
+    background-image: url(resources/images/shop_main1_02.jpg);
+}
+.sliderImg2 {
+	background-image: url(resources/images/shop_main2_02.jpg);
+}
+.sliderImg3 {
+    background-image: url(resources/images/shop_main3_02.jpg);
+}
+.sliderImg a img {
+	text-align: center;
+}
+</style>
 </head>
 <body>
 <div id="root">
@@ -39,22 +52,16 @@ $(document).ready(function () {
 			<%@ include file="./include/gnb.jsp" %>
 		</div>
 	</div>
-	<style>
-		
-	</style>
-	
 	<section id="home">
-		<!-- <div id="container_box"> -->
-			<div class="main_banner">
-				<div class="slider_wrap">
-				    <ul class="bxslider">
-				        <li><a href="#"><img src="https://via.placeholder.com/1420x600" /></a></li>
-				        <li><a href="#"><img src="https://via.placeholder.com/1420x600" /></a></li>
-				        <li><a href="#"><img src="https://via.placeholder.com/1420x600" /></a></li>
-				    </ul>
-				</div>
+		<div class="main_banner">
+			<div class="slider_wrap">
+			    <ul class="bxslider">
+			        <li class="sliderImg sliderImg1"><a href="#"></a></li>
+			        <li class="sliderImg sliderImg2"><a href="#"></a></li>
+			        <li class="sliderImg sliderImg3"><a href="#"></a></li>
+			    </ul>
 			</div>
-		<!-- </div> -->
+		</div>
 	</section>
 </div>
 

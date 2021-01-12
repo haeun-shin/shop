@@ -703,15 +703,11 @@ button {
 /* home.jsp START */
 /* 슬라이더 처리 START */
 .main_banner {
-	width: 100%;
+    width: 1920px;
+    margin: 0 auto;
     /* background-color: #000; */
 }
-.slider_wrap {
-    width: 1420px;
-    margin: 0 auto;
-    height: 600px;
-    position: relative;
-}
+
 .bx-wrapper .bx-pager {
     text-align: center;
     font-size: .85em;
@@ -751,25 +747,70 @@ button {
     top: 50%;
     margin-top: -16px;
     outline: 0;
-    width: 32px;
+    width: 44px;
     height: 44px;
     text-indent: -9999px;
     z-index: 9999;
 }
 .bx-wrapper .bx-prev {
-    left: 10px;
-    background: url(/resources/images/btn-prev-white.png) no-repeat;
+    left: 80px;
+    background: url(/resources/images/btn-prev-white-black.png) no-repeat;
     background-position: 0 0;
    	background-size: contain;
 }
+.bx-wrapper .bx-prev:hover {
+	background: url(/resources/images/btn-prev-white-black-hover.png) no-repeat;
+	background-position: 0 0;
+   	background-size: contain;
+}
 .bx-wrapper .bx-next {
-    right: 10px;
-    background: url(/resources/images/btn-next-white.png) no-repeat;
+    right: 80px;
+    background: url(/resources/images/btn-next-white-black.png) no-repeat;
     background-position: 0 0;
+   	background-size: contain;
+}
+.bx-wrapper .bx-next:hover {
+	background: url(/resources/images/btn-next-white-black-hover.png) no-repeat;
+	background-position: 0 0;
    	background-size: contain;
 }
 .bx-viewport {
 	top: -4px;
+}
+.slider_wrap {
+    width: 100%;
+    margin: 0 auto;
+    height: 600px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.sliderImg {
+    overflow: hidden;
+    position: relative;
+    height: 600px;
+    background-position: top center;
+    background-repeat: no-repeat;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 0;
+    backface-visibility: hidden;
+    
+}
+.sliderImg > a {
+	text-align: center;
+	display: inherit;
+    line-height: 600px;
+}
+
+ .bx-controls-direction {
+ 	max-width: 1920px;
+ }
+.bx-pager bx-default-pager {
+	left: 50%;
+    transform: translate(-50%, 0);
 }
 /* 슬라이더 처리 END */
 /* home.jsp END */
