@@ -168,4 +168,20 @@
 		   set	delivery = #{delivery}
 		where	orderId = #{orderId}
 	</update>
+	
+	<!-- 상품 수량 조절 -->
+	<update id="changeStock">
+		update tbl_goods
+		   set goodsStock = goodsStock - #{goodsStock}
+		where  goodsNum = #{goodsNum}
+	</update>
+	
+	<!-- 상품 수량 조절 보조 '특정 주문 목록'을 대신 사용함 -->
+	<!-- <select id="changeStock_sub" resultType="com.shop.domain.OrderDetailVO">
+		select	orderId,
+				goodsNum,
+				cartStock
+		from	tbl_order_details
+		where	orderId = #{orderId}
+	</select>  -->
 </mapper>

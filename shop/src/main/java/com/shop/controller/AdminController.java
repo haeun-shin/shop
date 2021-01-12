@@ -252,13 +252,25 @@ public class AdminController {
 		model.addAttribute("orderView", orderView);
 	}
 	
-	// 주문 상세 목록 + 상태 변경
+	// 주문 상세 목록 + 상태 변경 + 재고 변경
 	@RequestMapping(value = "/shop/orderView", method = RequestMethod.POST)
 	public String delivery(OrderVO order) throws Exception {
 		logger.info("post order view");
 		
+		// 상품(배송) 상태 변경
 		adminService.delivery(order);
+		
+		// orderId와 일치하는 정보를 저장하고
+		List<OrderListVO> orderView = adminService.orderView(order);
+		GoodsVO goods = new GoodsVO();
+		// 하나 씩 반복해서, 값을 세팅한 다음 해당하는 제품의 재고를 뺌
+		for(OrderListVO i : orderView) {
+			goods.setGoodsNum(i.getGoodsNum());
+			goods.setGoodsStock(i.getCartStock());
+			adminService.changeStock(goods);
+		}
 		
 		return "redirect:/admin/shop/orderView?n=" + order.getOrderId();
 	}
+	
 }

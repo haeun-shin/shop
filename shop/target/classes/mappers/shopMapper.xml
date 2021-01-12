@@ -66,7 +66,7 @@
 <!-- 카테고리별 상품 리스트 -->
 <sql id="categoryList">
 	<if test="cateCodeRef != null">
-		<if test="cateCoderef != 0">or c.cateCodeRef = #{cateCodeRef}</if>
+		<if test="cateCodeRef != 0">or c.cateCodeRef = #{cateCodeRef}</if>
 	</if>
 </sql>
 
@@ -253,4 +253,5 @@ from    tbl_order o
 where o.userId = #{userId}
   and o.orderId = #{orderId}
 </select>
+
 </mapper>

@@ -220,9 +220,14 @@ function replyList() {
 						<dl class="goodsDetail cartStock">
 							<dt>주문 수량</dt>
 							<dd>
+							<c:if test="${view.goodsStock != 0 }" >
 							<button type="button" class="minus">-</button>
 							<input type="number" class="numBox" min="1" max="${view.goodsStock }" value="1" readonly/>
 							<button type="button" class="plus">+</button>
+							</c:if>
+							<c:if test="${view.goodsStock <= 0 }">
+								<p>재고가 없습니다.</p>
+							</c:if>
 							</dd>
 						</dl>
 						<p class="addToCart">
