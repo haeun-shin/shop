@@ -28,6 +28,7 @@
 			<%@ include file="../include/aside.jsp" %>
 		</aside>
 		<div id="container_box">
+			<div class="list_container">
 			<h2>상품 목록</h2>
 			<table>
 				<thead>
@@ -62,6 +63,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+		</div>
 		</div>
 	</section>
 </div>

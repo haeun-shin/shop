@@ -1,6 +1,11 @@
 body {
 	width: 100%;
 }
+#container_box > section > h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
 /* 전체 컨테이너 */
 #root {
 	width: 1140px;
@@ -94,38 +99,38 @@ button {
 	float:right;	
 }
 /* list.jsp start*/
-	#container_box > table {
+	#container_box .list_container table {
 		width: 100%;
 		table-layout: fixed;
 		text-align: center;
 	}
-	#container_box th {
+	#container_box .list_container th {
 		font-weight: bold;
 		background-color: #808080;
 		color: #fff;
 	}
-	#container_box  td {
+	#container_box .list_container td {
 		border-bottom: 1px solid #f5f5f5;
 	}
-	#container_box tr:hover {
+	#container_box .list_container tr:hover {
 		background-color: #f5f5f5;
 	}
-	#container_box th, #container_box td {
+	#container_box .list_container th, #container_box .list_container td {
 	  width: 100px;
 	  overflow: hidden;
 	  padding:  0.5em 1em;
 	  line-height: 2.5em;
 	}
 	/* 상품목록 번호 */
-	#container_box th:nth-child(1) {
+	#container_box .list_container th:nth-child(1) {
 		width:5%;
 	}
 	/* 상품목록 이름 */
-	#container_box th:nth-child(2) {
+	#container_box .list_container th:nth-child(2) {
 		width:25%;
 		text-align: left;
 	}
-	#container_box td:nth-child(2) {
+	#container_box .list_container td:nth-child(2) {
 		text-align: left;
 		font-weight: bold;
 	}
@@ -410,3 +415,75 @@ button {
 #footer_cs > p > strong {
 	font-size: 1.8rem;
 }
+
+
+/* orderList.jsp START */
+
+#orderList > .orderListTable, #orderView > .orderView {
+	border-top: 2px solid #555;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    width: 100%;
+    font-size: 0.9rem;
+}
+.orderListTable > thead > tr > th, #orderView .orderView > thead > tr > th {
+	padding: 16px 0px;
+	color: #000 !important;
+	font-weight: normal;
+	background-color: #f7f7f7 !important;
+	font-weight: bold;
+}
+.orderListTable > tbody > tr > td, #orderView .orderView > tbody > tr > td {
+	padding: 16px 40px;
+  		border-top: 1px solid #ddd;
+}
+#orderList .orderId > a{
+	color: #1b7cc1;
+}
+#orderList .orderId:hover {
+	text-decoration: underline;
+}
+/* orderList.jsp END */
+/* orderView.jsp START */
+#orderView .orderView img {
+	width: 100px;
+}
+#orderView .orderView .goodsName {
+	text-align:left;
+}
+#orderView .orderView th {
+	font-weight: bold;
+}
+#orderView .orderInfo {
+	border-top: 2px solid #555;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    width: 100%;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 3em;
+}
+#orderView .orderInfo  th {
+	padding: 16px 0px;
+	border-top: 1px solid #ddd;
+   	font-weight: bold;
+	background: #f7f7f7 !important;
+	width: 150px;
+}
+#orderView .orderInfo tr td {
+   	text-align: left;
+   	padding: 16px 0px;
+	padding-left: 15px;
+   	border-top: 1px solid #ddd;
+}
+#orderView .title h4 {
+    margin: 28px 0 0;
+    padding-bottom: 10px;
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+#orderView .orderView .goodsName > a:hover {
+	text-decoration: underline;
+}
+/* orderView.jsp END */

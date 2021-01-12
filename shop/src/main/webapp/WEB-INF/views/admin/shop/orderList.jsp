@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/style.css">
-<title>상품 목록</title>
+<title>주문 목록</title>
 </head>
 <body>
 <div id="root">
@@ -28,21 +28,31 @@
 			<%@ include file="../include/aside.jsp" %>
 		</aside>
 		<div id="container_box">
-			<h2>주문 확인</h2>
-			<ul class="orderList">
-				<c:forEach items="${orderList }" var="orderList">
-				<li>
-					<div>
-						<p><span>주문번호</span><a href="/admin/shop/orderView?n=${orderList.orderId }">${orderList.orderId }</a></p>
-						<p><span>주문자</span>${orderList.userId }</p>
-						<p><span>수령인</span>${orderList.userId }</p>
-						<p><span>주소</span>(${orderList.userAddr1 }) ${orderList.userAddr2 } ${orderList.userAddr3 }</p>
-						<p><span>가격</span><fmt:formatNumber pattern="###,###,###" value="${orderList.amount }"/>원</p>
-						<p><span>상태</span>${orderList.delivery}</p>
-					</div>
-				</li>
-				</c:forEach>
-			</ul>
+			<section id="orderList">
+				<h2>주문조회</h2>
+				<table class="orderListTable">
+					<thead>
+						<tr>
+							<th>주문번호</th>
+							<th>주문일자</th>
+							<th>총 구매금액</th>
+							<th>주소</th>
+							<th>주문상태</th>
+						</tr>
+					</thead>
+					<tbody>
+					<c:forEach items="${orderList }" var="orderList">
+					<tr>
+						<td class="orderId"><a href="/admin/shop/orderView?n=${orderList.orderId }">${orderList.orderId }</a></td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${orderList.orderDate }" /></td>
+						<td><fmt:formatNumber pattern="###,###,###,###" value="${orderList.amount }" />원</td>
+						<td>(${orderList.userAddr1 }) ${orderList.userAddr2 } ${orderList.userAddr3 }</td>
+						<td>${orderList.delivery }</td>
+					</tr>
+					</c:forEach>
+					</tbody>
+				</table>
+			</section>
 		</div>
 	</section>
 </div>
