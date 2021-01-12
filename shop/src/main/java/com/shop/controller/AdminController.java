@@ -260,16 +260,18 @@ public class AdminController {
 		
 		// 상품(배송) 상태 변경
 		adminService.delivery(order);
-		
-		// orderId와 일치하는 정보를 저장하고
-		List<OrderListVO> orderView = adminService.orderView(order);
-		GoodsVO goods = new GoodsVO();
-		// 하나 씩 반복해서, 값을 세팅한 다음 해당하는 제품의 재고를 뺌
-		for(OrderListVO i : orderView) {
-			goods.setGoodsNum(i.getGoodsNum());
-			goods.setGoodsStock(i.getCartStock());
-			adminService.changeStock(goods);
-		}
+
+		// 배송 상태를 변경할 때마다, 재고가 줄어드는 현상 발생
+		// 사용자가 주문시 재고 빼는 걸로 변경
+//		// orderId와 일치하는 정보를 저장하고
+//		List<OrderListVO> orderView = adminService.orderView(order);
+//		GoodsVO goods = new GoodsVO();
+//		// 하나 씩 반복해서, 값을 세팅한 다음 해당하는 제품의 재고를 뺌
+//		for(OrderListVO i : orderView) {
+//			goods.setGoodsNum(i.getGoodsNum());
+//			goods.setGoodsStock(i.getCartStock());
+//			adminService.changeStock(goods);
+//		}
 		
 		return "redirect:/admin/shop/orderView?n=" + order.getOrderId();
 	}

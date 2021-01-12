@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.domain.CartListVO;
 import com.shop.domain.CartVO;
+import com.shop.domain.GoodsVO;
 import com.shop.domain.GoodsViewVO;
 import com.shop.domain.MemberVO;
 import com.shop.domain.OrderDetailVO;
@@ -25,6 +26,7 @@ import com.shop.domain.OrderListVO;
 import com.shop.domain.OrderVO;
 import com.shop.domain.ReplyListVO;
 import com.shop.domain.ReplyVO;
+import com.shop.service.AdminService;
 import com.shop.service.ShopService;
 
 @Controller
@@ -34,6 +36,9 @@ public class ShopController {
 	
 	@Inject
 	ShopService service;
+	
+	@Inject
+	AdminService adminService;
 	
 	// 카테고리별 상품 리스트
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -218,7 +223,7 @@ public class ShopController {
 		return result;
 	}
 	
-	// 주문
+	// 주문 + 재고 변경
 	@RequestMapping(value = "/cartList", method = RequestMethod.POST)
 	public String order(HttpSession session, OrderVO order, OrderDetailVO orderDetail) throws Exception {
 		logger.info("order");
@@ -253,6 +258,16 @@ public class ShopController {
 		
 		// 카트 비우기
 		service.cartAllDelete(userId);
+		
+		// orderId와 일치하는 정보를 저장하고
+		List<OrderListVO> orderView = adminService.orderView(order);
+		GoodsVO goods = new GoodsVO();
+		// 하나 씩 반복해서, 값을 세팅한 다음 해당하는 제품의 재고를 뺌
+		for(OrderListVO i : orderView) {
+			goods.setGoodsNum(i.getGoodsNum());
+			goods.setGoodsStock(i.getCartStock());
+			adminService.changeStock(goods);
+		}
 		
 		return "redirect:/shop/orderList";
 	}
