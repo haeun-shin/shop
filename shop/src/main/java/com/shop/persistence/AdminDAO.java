@@ -7,6 +7,7 @@ import com.shop.domain.GoodsVO;
 import com.shop.domain.GoodsViewVO;
 import com.shop.domain.OrderListVO;
 import com.shop.domain.OrderVO;
+import com.shop.domain.ReplyListVO;
 
 public interface AdminDAO {
 	// 카테고리
@@ -38,4 +39,10 @@ public interface AdminDAO {
 	
 	// 상품 수량 조절
 	public void changeStock(GoodsVO goods) throws Exception;
+	
+	// 모든 소감(댓글)
+	public List<ReplyListVO> allReply() throws Exception;
+	
+	// 소감(댓글) 삭제
+	public void deleteReply(int replyNum) throws Exception;
 }
