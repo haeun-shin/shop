@@ -9,6 +9,105 @@
 <link rel="stylesheet" href="/resources/css/common_style.css">
 <title>회원가입</title>
 <script src="/resources/js/jquery-3.3.1.min.js"></script>
+<script>
+
+/* 유효성 검사 통과유무 변수 */
+var idCheck = false;	// 아이디
+var idckCheck = false;	// 아이디 중복검사
+var pwCheck = false;	// 비밀번호
+var pwckCheck = false;	// 비밀번호 일치 확인
+var nameCheck = false;	// 이름
+var mailCheck = false;	// 이메일
+var addressCheck = false;	// 주소
+
+$(document).ready(function() {
+	
+	$("#signup_btn").click(function() {
+		var id = $("#userId").val();
+		var pw = $("#userPass").val();
+		var pwck = $("#userPassCk").val();
+		var name = $("#userName").val();
+		var mail = $("#userMail").val();
+		var addr = $("#userAddr3").val();
+		
+        /* 아이디 유효성검사 */
+        if(id == ""){
+            $('.final_id_ck').css('display','block');
+            idCheck = false;
+        }else{
+            $('.final_id_ck').css('display', 'none');
+            idCheck = true;
+        }
+        
+        /* 비밀번호 유효성 검사 */
+        if(pw == ""){
+            $('.final_pw_ck').css('display','block');
+            pwCheck = false;
+        }else{
+            $('.final_pw_ck').css('display', 'none');
+            pwCheck = true;
+        }        
+        
+        /* 비밀번호 확인 유효성 검사 */
+        if(pwck == ""){
+            $('.final_pwck_ck').css('display','block');
+            pwckCheck = false;
+        }else{
+            $('.final_pwck_ck').css('display', 'none');
+            pwckCheck = true;
+        }    
+        
+        
+	});
+	
+	<%-- 아이디 중복 검사 --%>
+	$("#userId").on("propertychange change keyup paste input", function() {
+		var userId = $('#userId').val();
+		var data = {
+				userId : userId
+		}
+		$.ajax({
+			type: "post",
+			url: "/member/memberIdChk",
+			data : data,
+			success : function(result) {
+				if(result != 'fail') {
+					$(".id_input_re_1").css("display", "inline-block");
+					$(".id_input_re_2").css("display", "none");
+					// 아이디 중복이 없는 경우
+					idckCheck = true;
+				} else {
+					$(".id_input_re_2").css("display", "inline-block");
+					$(".id_input_re_1").css("display", "none");
+					// 아이디 중복된 경우
+					idckCheck = false;
+				}
+			}
+		});
+	});
+	
+	/* 비밀번호 확인 일치 유효성 검사 */
+	$('#userPassCk').on("propertychange change keyup paste input", function(){
+	    var pw = $('#userPass').val();
+	    var pwck = $('#userPassCk').val();
+	    $('.final_pwck_ck').css('display', 'none');
+	    
+	    if(pw == pwck) {
+	        $('.pwck_input_re_1').css('display','block');
+	        $('.pwck_input_re_2').css('display','none');
+	        pwckcorCheck = true;
+	    } else {
+	        $('.pwck_input_re_1').css('display','none');
+	        $('.pwck_input_re_2').css('display','block');
+	        pwckcorCheck = false;
+	    }  
+	}); 
+});
+
+
+
+ 
+</script>
 </head>
 <body>
 <div id="root">
@@ -23,38 +122,6 @@
 		</div>
 	</div>
 	
-	<!-- <section id="container">
-		<div id="container_box" >
-			<div  class="signup_box">
-			<h2 style="text-align:center">회원가입</h2>
-			<section id="content">
-				<form role="form" method="post" autocomplete="off" id="signup_form">
-					<div class="input_area">
-						<label for="userId">아이디</label>
-						<input type="email" id="userId" name="userId" placeholder="example@email.com" required="required" />
-					</div>
-					
-					<div class="input_area">
-						<label for="userPass">패스워드</label>
-						<input type="password" id="userPass" name="userPass" required="required" />
-					</div>
-					
-					<div class="input_area">
-						<label for="userName">닉네임</label>
-						<input type="text" id="userName" name="userName" placeholder="닉네임을 입력해주세요." required="required" />
-					</div>
-					
-					<div class="input_area">
-						<label for="userPhone">연락처</label>
-						<input type="text" id="userPhone" name="userPhone" placeholder="연락처를 입력해주세요." required="required" />
-					</div>
-					
-					<button type="submit" id="signup_btn" name="signup_btn">회원가입</button>
-				</form>
-			</section>
-			</div>
-		</div>
-	</section> -->
 	<style>
 		.id_input_re_1 {
 			color: green;
@@ -64,6 +131,35 @@
 			color: red;
 			display: none;
 		}
+		/* 유효성 검사 문구 */
+		.final_id_ck{
+		    display: none;
+		}
+		.final_pw_ck{
+		    display: none;
+		}
+		.final_pwck_ck{
+		    display: none;
+		}
+		.final_name_ck{
+		    display: none;
+		}
+		.final_mail_ck{
+		    display: none;
+		}
+		.final_addr_ck{
+		    display: none;
+		}
+		
+		/* 비밀번호 확인 일치 유효성검사 */
+		.pwck_input_re_1{
+	        color : green;
+	        display : none;    
+		}
+		.pwck_input_re_2{
+	        color : red;
+	        display : none;    
+		}   
 	</style>
 	<section id="container">
 		<div id="container_box" >
@@ -76,48 +172,39 @@
 						<input type="text" id="userId" name="userId" required="required" />
 						<span class="id_input_re_1">사용 가능한 아이디입니다.</span>
 						<span class="id_input_re_2">아이디가 이미 존재합니다.</span>
+						<span class="final_id_ck">아이디를 입력해주세요.</span>
 					</div>
-					<script>
-						<%-- 아이디 중복 검사 --%>
-						$("#userId").on("propertychange change keyup paste input", function() {
-							var userId = $('#userId').val();
-							var data = {
-									userId : userId
-							}
-							$.ajax({
-								type: "post",
-								url: "/member/memberIdChk",
-								data : data,
-								success : function(result) {
-									if(result != 'fail') {
-										$(".id_input_re_1").css("display", "inline-block");
-										$(".id_input_re_2").css("display", "none");
-									} else {
-										$(".id_input_re_2").css("display", "inline-block");
-										$(".id_input_re_1").css("display", "none");
-									}
-								}
-							});
-						});
-					</script>
+
 					<div class="input_area">
-						<label for="userPass">패스워드</label>
+						<label for="userPass">비밀번호</label>
 						<input type="password" id="userPass" name="userPass" required="required" />
+						<span class="final_pw_ck">비밀번호를 입력해주세요.</span>
+					</div>
+					
+					<div class="input_area">
+						<label for="userPass">비밀번호 확인</label>
+						<input type="password" id="userPassCk" name="userPassCk" required="required" />
+						<span class="final_pwck_ck">비밀번호 확인을 입력해주세요.</span>
+						<span class="pwck_input_re_1">비밀번호가 일치합니다.</span>
+                		<span class="pwck_input_re_2">비밀번호가 일치하지 않습니다.</span>
 					</div>
 					
 					<div class="input_area">
 						<label for="userName">이름</label>
-						<input type="text" id="userName" name="userName" placeholder="이름을 입력해주세요." required="required" />
+						<input type="text" id="userName" name="userName" placeholder="홍길동" required="required" />
+						<span class="final_name_ck">이름을 입력해주세요.</span>
 					</div>
 					
 					<div class="input_area">
 						<label for="userMail">이메일</label>
-						<input type="email" id="userMail" name="userMail" placeholder="이메일을 입력해주세요." required="required" />
+						<input type="email" id="userMail" name="userMail" placeholder="hong@naver.com" required="required" />
+						<span class="final_mail_ck">이메일을 입력해주세요.</span>
 					</div>
 					
 					<div class="input_area">
 						<label for="userPhone">연락처</label>
-						<input type="text" id="userPhone" name="userPhone" placeholder="연락처를 입력해주세요." required="required" />
+						<input type="text" id="userPhone" name="userPhone" placeholder="010-1234-5678" required="required" />
+						<span class="final_addr_ck">주소를 입력해주세요.</span>
 					</div>
 					
 					<style>
@@ -144,7 +231,7 @@
 							<input type="text" id="sample3_detailAddress" name="userAddr2" placeholder="상세주소">
 							<input type="text" id="sample3_extraAddress" name="userAddr3" placeholder="참고항목">
 						</p>
-						
+						<span></span>
 						<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
 						<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 					</div>
@@ -234,7 +321,7 @@
 						</script>
 					</div>
 					
-					<button type="submit" id="signup_btn" name="signup_btn">회원가입</button>
+					<button type="button" id="signup_btn" name="signup_btn">회원가입</button>
 				</form>
 			</section>
 			</div>
