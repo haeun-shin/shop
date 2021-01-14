@@ -22,6 +22,12 @@ public class MemberDAOImpl implements MemberDAO{
 		sql.insert(namespace + ".signup", vo);
 	}
 	
+	// 아이디 체크
+	@Override
+	public int idCheck(String userId) throws Exception {
+		return sql.selectOne(namespace + ".idCheck", userId);
+	}
+	
 	// 로그인
 	@Override
 	public MemberVO signin(MemberVO vo) throws Exception {

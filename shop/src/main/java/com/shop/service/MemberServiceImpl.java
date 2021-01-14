@@ -19,6 +19,12 @@ public class MemberServiceImpl implements MemberService{
 		dao.signup(vo);
 	}
 	
+	// 아이디 체크
+	@Override
+	public int idCheck(String userId) throws Exception {
+		return dao.idCheck(userId);
+	}
+	
 	// 로그인
 	@Override
 	public MemberVO signin(MemberVO vo) throws Exception {

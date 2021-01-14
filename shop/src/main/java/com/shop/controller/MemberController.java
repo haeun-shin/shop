@@ -49,7 +49,23 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-
+	// 아이디 중복 검사
+	@RequestMapping(value = "/memberIdChk", method = RequestMethod.POST)
+	@ResponseBody
+	public String memberIdChkPOST(String userId) throws Exception {
+		logger.info("memberIdChk()");
+		
+		int result = service.idCheck(userId);
+		logger.info("결과값 = " + result);
+		
+		if(result != 0) {
+			return "fail";
+		} else {
+			return "success";
+		}
+		
+	}
+	
 	// 로그인 GET
 	@RequestMapping(value = "/signin", method = RequestMethod.GET)
 	public void getSignin() throws Exception {

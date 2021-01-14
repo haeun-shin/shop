@@ -87,7 +87,16 @@
 							$.ajax({
 								type: "post",
 								url: "/member/memberIdChk",
-								data : data
+								data : data,
+								success : function(result) {
+									if(result != 'fail') {
+										$(".id_input_re_1").css("display", "inline-block");
+										$(".id_input_re_2").css("display", "none");
+									} else {
+										$(".id_input_re_2").css("display", "inline-block");
+										$(".id_input_re_1").css("display", "none");
+									}
+								}
 							});
 						});
 					</script>
