@@ -80,7 +80,7 @@ $(document).ready(function() {
             mailCheck = false;
         } else if(!re.test(mail)) {
         	$('.final_mail_ck2').css('display','block');
-        	$('.final_mail_ck1').css('display', 'none');
+        	$('.final_mail_ck').css('display', 'none');
         	mailCheck = false;
         } else{
             $('.final_mail_ck').css('display', 'none');
@@ -243,8 +243,8 @@ $(document).ready(function() {
 							<input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기"><br>
 						</p>
 						<p>
-							<input type="text" id="sample6_detailAddress" name="userAddr2" placeholder="상세주소" readonly="readonly">
-							<input type="text" id="sample6_extraAddress" name="userAddr3" placeholder="참고항목" readonly="readonly">
+							<input type="text" id="sample6_detailAddress" name="userAddr2" placeholder="참고항목" readonly="readonly">
+							<input type="text" id="sample6_extraAddress" name="userAddr3" placeholder="상세주소" readonly="readonly">
 						</p>
 						<span class="final_addr_ck">주소를 입력해주세요.</span>
 					</div>

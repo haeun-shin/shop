@@ -12,4 +12,9 @@ public interface MemberDAO {
 	// 로그인
 	public MemberVO signin(MemberVO vo) throws Exception;
 	
+	// 회원정보 상세조회
+	public MemberVO viewMember(String userId) throws Exception;
+	
+	// 회원정보 수정
+	public void updateMember(MemberVO vo) throws Exception;
 }

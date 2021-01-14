@@ -18,7 +18,7 @@
 							#{userPhone}	
 							)
 </insert> -->
-<!-- 회원가입 -->
+<!-- 01. 회원가입 -->
 <insert id="signup">
 	insert into tbl_member (
 							userId,
@@ -48,24 +48,51 @@
 						  )
 </insert>
 
-<!-- 회원가입 : 아이디체크(ajax) -->
+<!-- 02. 회원가입 : 아이디체크(ajax) -->
 <select id="idCheck" resultType="int">
 	select	count(*)
 	from	tbl_member
 	where	userId = #{userId}
 </select>
 
-<!-- 로그인 -->
+<!-- 03. 로그인 -->
 <select id="signin" resultType="com.shop.domain.MemberVO">
-	select	userId,
-			userId, 
-			userName, 
+	select	userId, 
 			userPass,
-			adminck, 
+			userName, 
+			adminCk, 
 			money, 
 			point 
 	from	tbl_member
 	where	userId = #{userId}
 </select>
+
+<!-- 04. 회원정보 상세조회 -->
+<select id="viewMember" resultType="com.shop.domain.MemberVO">
+	select	userId, 
+			userName, 
+			userPhone, 
+			userAddr1, 
+			userAddr2, 
+			userAddr3, 
+			regDate, 
+			userMail,
+			adminCk
+	from	tbl_member
+	where	userId = #{userId}
+</select>
+
+<!-- 05. 회원정보 수정처리 -->
+<update id="updateMember" >
+	update	tbl_member
+	set		userName = #{userName}, 
+			userPhone = #{userPhone}, 
+			userAddr1 = #{userAddr1}, 
+			userAddr2 = #{userAddr2}, 
+			userAddr3 = #{userAddr3}, 
+			userMail  = #{userMail},
+			updateDate = sysdate
+	where	userId = #{userId}
+</update>
 
 </mapper>

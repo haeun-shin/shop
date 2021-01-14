@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -108,4 +109,29 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
+	
+	// 회원정보 상세조회
+	@RequestMapping(value = "/memberinfo", method = RequestMethod.GET)
+	public void memberinfo(MemberVO vo, HttpSession session) throws Exception {
+		logger.info("get member info");
+		
+		// 세션에 있는 member 정보를 불러와
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		// userId를 넣어 쿼리 실행
+		MemberVO memberInfo = service.viewMember(member.getUserId());
+		
+		session.setAttribute("memberInfo", memberInfo);
+	}
+	
+	// 회원정보 수정
+	@RequestMapping(value = "/memberinfo", method = RequestMethod.POST)
+	public String updateMember(MemberVO vo, HttpSession session) throws Exception {
+		logger.info("update Member");
+		
+		service.updateMember(vo);
+		session.setAttribute("msg", "true");
+		
+		return "redirect:/member/memberinfo";
+	}
+	
 }

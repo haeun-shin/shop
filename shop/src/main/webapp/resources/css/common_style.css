@@ -443,7 +443,7 @@ button {
 		padding-top: 1em;
 		margin-top: 2em;
 	}
-	.signin_box input[type=email], .signin_box input[type=password],
+	.signin_box input[type=text], .signin_box input[type=password],
 	.signup_box input[type=email], .signup_box input[type=password], .signup_box input[type=text]{
 	  width: 100%;
 	  padding: 12px 20px;

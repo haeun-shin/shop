@@ -33,4 +33,16 @@ public class MemberDAOImpl implements MemberDAO{
 	public MemberVO signin(MemberVO vo) throws Exception {
 		return sql.selectOne(namespace + ".signin", vo);
 	}
+	
+	// 회원정보 상세조회
+	@Override
+	public MemberVO viewMember(String userId) throws Exception {
+		return sql.selectOne(namespace + ".viewMember", userId);
+	}
+	
+	// 회원정보 수정
+	@Override
+	public void updateMember(MemberVO vo) throws Exception {
+		sql.update(namespace + ".updateMember", vo);
+	}
 }

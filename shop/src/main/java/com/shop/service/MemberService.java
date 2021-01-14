@@ -17,4 +17,9 @@ public interface MemberService {
 	// 로그아웃
 	public void signout(HttpSession session) throws Exception;
 	
+	// 회원정보 상세조회
+	public MemberVO viewMember(String userId) throws Exception;
+	
+	// 회원정보 수정
+	public void updateMember(MemberVO vo) throws Exception;
 }

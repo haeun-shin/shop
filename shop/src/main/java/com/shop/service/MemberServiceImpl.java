@@ -37,4 +37,15 @@ public class MemberServiceImpl implements MemberService{
 		session.invalidate();
 	}
 	
+	// 회원정보 상세조회
+	@Override
+	public MemberVO viewMember(String userId) throws Exception {
+		return dao.viewMember(userId);
+	}
+	
+	// 회원정보 수정
+	@Override
+	public void updateMember(MemberVO vo) throws Exception {
+		dao.updateMember(vo);
+	}
 }
