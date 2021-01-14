@@ -39,6 +39,7 @@
 			<mapping path="/shop/cartList" />
 			<mapping path="/shop/orderList" />
 			<mapping path="/shop/orderView" />
+			<mapping path="/member/memberinfo" />
 			<beans:ref bean="MemberInterceptor"/>
 		</interceptor>			
 	</interceptors>
