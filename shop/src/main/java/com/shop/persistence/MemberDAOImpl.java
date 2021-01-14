@@ -45,4 +45,16 @@ public class MemberDAOImpl implements MemberDAO{
 	public void updateMember(MemberVO vo) throws Exception {
 		sql.update(namespace + ".updateMember", vo);
 	}
+	
+	// 비밀번호 확인
+	@Override
+	public String passCheck(String userId) throws Exception {
+		return sql.selectOne(namespace + ".passCheck", userId);
+	}
+	
+	// 회원 탈퇴
+	@Override
+	public void outMember(MemberVO vo) throws Exception {
+		sql.delete(namespace + ".outMember", vo);
+	}
 }

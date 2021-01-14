@@ -9,9 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -125,13 +125,46 @@ public class MemberController {
 	
 	// 회원정보 수정
 	@RequestMapping(value = "/memberinfo", method = RequestMethod.POST)
-	public String updateMember(MemberVO vo, HttpSession session) throws Exception {
+	public String updateMember(MemberVO vo, HttpSession session,  RedirectAttributes rttr) throws Exception {
 		logger.info("update Member");
 		
 		service.updateMember(vo);
-		session.setAttribute("msg", "true");
+		// url 뒤에 붙지 않으며, 리프레시할 경우 데이터가 소멸된다.
+		rttr.addFlashAttribute("msg", "true");
 		
 		return "redirect:/member/memberinfo";
+	}
+	
+	// 회원 탈퇴
+	@RequestMapping(value = "/outMember", method = RequestMethod.POST)
+	@ResponseBody
+	public int outMember(MemberVO vo, HttpSession session) throws Exception {
+		logger.info("out Member");
+		
+		// 암호화된 비밀번호를 변수에 저장
+		String passCheck = service.passCheck(vo.getUserId());
+		boolean passMatch = false;
+		
+		// null 체크 안하고 matches하면 Exception 발생 (주의하자.)
+		if(passCheck != null) {
+			// 입력된 비밀번호와 DB에 있는 비밀번호 비교
+			passMatch = passEncoder.matches(vo.getUserPass(), passCheck);
+		}
+		
+		if(passMatch) {
+			// 비밀번호를 vo에 저장 (삭제할 때, 아이디/비밀번호 값을 넣기 때문)
+			vo.setUserPass(passCheck);
+			// 삭제 실행
+			service.outMember(vo);
+			// 로그아웃(세션 삭제)
+			service.signout(session);
+			
+			return 1;
+			
+		} else {
+			return 0;
+		}
+		
 	}
 	
 }

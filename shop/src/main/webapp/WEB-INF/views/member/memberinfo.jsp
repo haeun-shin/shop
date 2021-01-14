@@ -93,15 +93,47 @@ $(document).ready(function() {
 	if('${msg}' != null && '${msg}' == 'true') {
 		alert('회원정보가 수정되었습니다.');
 	};
+	
+	/* 회원탈퇴버튼 클릭 */
+	$("#memberout_btn").click(function() {
+		if(confirm('회원탈퇴하시겠습니까?')) {
+			$(".outMember").css("display", "block");
+			
+		}
+		return false;
+	});
+	
+	<%-- ajax --%>
+	$("#userOut_btn").click(function() {
+		var outConfirm = confirm("정말로 회원탈퇴하시겠습니까?");
+		
+		if(outConfirm){
+			var data = {
+					userPass : $("#userPass").val(),
+					userId : $("#userId").val()
+			};
+			
+			$.ajax({
+				url : "/member/outMember",
+				type : "post",
+				data : data,
+				success : function(result) {
+					if(result == 1) {
+						alert("그동안 이용해주셔서 감사합니다.");
+						location.href="/";
+					} else {
+						$(".outMember").css("display", "none");
+						alert("비밀번호가 틀렸습니다.");
+					}
+				},
+				error : function() {
+					alert("로그인 후 이용하실 수 있습니다.");
+				}
+			}); // ajax
+		} // if(modifyConfirm)
+	}); // modal_modify_btn
 });
 </script>
-<% 
-	// 회원 수정 msg 삭제
-	String msg = (String) session.getAttribute("msg");
-	if(msg != null) {
-		session.removeAttribute("msg");
-	}
-%>
 </head>
 <body>
 <div id="root">
@@ -184,6 +216,9 @@ $(document).ready(function() {
 		input[readonly='readonly'] {
 			background-color: #f3f3f3;
 		}
+		#memberout_btn {
+			background-color: #282828;
+		}
 	</style>
 	<section id="container">
 		<div id="container_box">
@@ -253,6 +288,7 @@ $(document).ready(function() {
 					</table>
 					<p>
 						<button type="button" id="memberinfo_btn">회원정보 수정하기</button>
+						<button type="button" id="memberout_btn">회원탈퇴</button>
 					</p>
 				</form>
 			</section>
@@ -322,5 +358,19 @@ $(document).ready(function() {
 		<%@ include file="../include/footer.jsp" %>
 	</div>
 </footer>
+
+<style>
+	.outMember {
+		display: none;
+		position: absolute;
+		top:50%;
+		bottom:50%;
+	}
+</style>
+<div class="outMember">
+	<p>회원 탈퇴하시려면 비밀번호를 입력해주세요.</p>
+	<input type="password" name="userPass" id="userPass" />
+	<input type="button" id="userOut_btn" />
+</div>
 </body>
 </html>

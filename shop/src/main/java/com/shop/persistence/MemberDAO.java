@@ -17,4 +17,10 @@ public interface MemberDAO {
 	
 	// 회원정보 수정
 	public void updateMember(MemberVO vo) throws Exception;
+	
+	// 비밀번호 확인
+	public String passCheck(String userId) throws Exception;
+	
+	// 회원 탈퇴
+	public void outMember(MemberVO vo) throws Exception;
 }

@@ -95,4 +95,18 @@
 	where	userId = #{userId}
 </update>
 
+<!-- 06. 회원 비밀번호 확인 -->
+<select id="passCheck" resultType="String">
+	select	userPass
+	from	tbl_member
+	where	userId = #{userId}
+</select>
+
+<!-- 06. 회원 탈퇴 -->
+<delete id="outMember">
+	delete from	tbl_member
+	where	userId = #{userId}
+	and		userPass = #{userPass}
+</delete>
+
 </mapper>
