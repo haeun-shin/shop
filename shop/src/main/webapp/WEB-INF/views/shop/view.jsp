@@ -43,6 +43,11 @@ $(document).ready(function() {
 		var goodsNum = $("#goodsNum").val();
 		var replyCon = $("#replyCon").val();
 		
+		if(replyCon == null || replyCon == '') {
+			alert('내용을 입력해주세요.');
+			return false;
+		} 
+		
 		var data = {
 			goodsNum : goodsNum,
 			replyCon : replyCon
@@ -273,7 +278,7 @@ function replyList() {
 					</form>
 				</section>
 				</c:if>
-				
+
 				<section class="replyList">
 					<%-- 댓글 목록이 생성되는 위치 ol 태그 안 --%>
 					<ol>
