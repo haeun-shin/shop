@@ -19,6 +19,12 @@ var pwckCheck = false;	// 비밀번호 일치 확인
 var nameCheck = false;	// 이름
 var mailCheck = false;	// 이메일
 var addressCheck = false;	// 주소
+var phoneCheck = false;
+
+/* 이메일 유효성 검사 */
+var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+var re_phone = /(01[0|1|6|9|7])[-](\d{3}|\d{4})[-](\d{4}$)/g;
+
 
 $(document).ready(function() {
 	
@@ -29,6 +35,7 @@ $(document).ready(function() {
 		var name = $("#userName").val();
 		var mail = $("#userMail").val();
 		var addr = $("[name=userAddr3]").val();
+		var phone = $("#userPhone").val();
 		
         /* 아이디 유효성검사 */
         if(id == ""){
@@ -69,30 +76,49 @@ $(document).ready(function() {
         /* 이메일 유효성 검사 */
         if(mail == ""){
             $('.final_mail_ck').css('display','block');
+            $('.final_mail_ck2').css('display', 'none');
             mailCheck = false;
-        }else{
+        } else if(!re.test(mail)) {
+        	$('.final_mail_ck2').css('display','block');
+        	$('.final_mail_ck1').css('display', 'none');
+        	mailCheck = false;
+        } else{
             $('.final_mail_ck').css('display', 'none');
+            $('.final_mail_ck2').css('display', 'none');
             mailCheck = true;
         }      
         
         /* 연락처 유효성 검사 */
-        if(mail == ""){
+        if(phone == ""){
             $('.final_phone_ck').css('display','block');
-            mailCheck = false;
-        }else{
+            $('.final_phone_ck2').css('display', 'none');
+            phoneCheck = false;
+        } else if(!re_phone.test(phone)) {
+        	$('.final_phone_ck2').css('display','block');
             $('.final_phone_ck').css('display', 'none');
-            mailCheck = true;
+            phoneCheck = false;
+        } else{
+            $('.final_phone_ck').css('display', 'none');
+            $('.final_phone_ck2').css('display', 'none');
+            phoneCheck = true;
         }  
         
         /* 주소 유효성 검사 */
         if(addr == ""){
             $('.final_addr_ck').css('display','block');
             addressCheck = false;
-        }else{
+        } else{
             $('.final_addr_ck').css('display', 'none');
             addressCheck = true;
         }        
         
+        /* 최종 유효성 검사 */
+        if(idCheck&&idckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&mailCheck&&phoneCheck&&addressCheck ){
+        	$("#signup_form").attr("action", "/member/signup");
+	        $("#signup_form").submit();
+        }    
+        
+        return false;
 	});
 	
 	<%-- 아이디 중복 검사 --%>
@@ -109,6 +135,7 @@ $(document).ready(function() {
 				if(result != 'fail') {
 					$(".id_input_re_1").css("display", "inline-block");
 					$(".id_input_re_2").css("display", "none");
+					$(".final_id_ck").css("display", "none");
 					// 아이디 중복이 없는 경우
 					idckCheck = true;
 				} else {
@@ -130,10 +157,13 @@ $(document).ready(function() {
 	    if(pw == pwck) {
 	        $('.pwck_input_re_1').css('display','block');
 	        $('.pwck_input_re_2').css('display','none');
+	        $(".final_pwck_ck").css("display", "none");
+	        $(".final_pw_ck").css("display", "none");
 	        pwckcorCheck = true;
 	    } else {
 	        $('.pwck_input_re_1').css('display','none');
 	        $('.pwck_input_re_2').css('display','block');
+	        $(".final_pwck_ck").css("display", "none");
 	        pwckcorCheck = false;
 	    }  
 	}); 
@@ -162,7 +192,7 @@ $(document).ready(function() {
 			display: inline-block;
 			width: 100%;
 		}
-		.signup_box .addr #sample6_postcode {
+		.signup_box .addr #sample6_address {
 			width: 80%;
 		}
 		.signup_box .addr input[type="button"] {
@@ -198,11 +228,19 @@ $(document).ready(function() {
 		    display: none;
 		    color: red;
 		}
+		.final_mail_ck2{
+		    display: none;
+		    color: red;
+		}
 		.final_addr_ck{
 		    display: none;
 		    color: red;
 		}
 		.final_phone_ck{
+		    display: none;
+		    color: red;
+		}
+		.final_phone_ck2{
 		    display: none;
 		    color: red;
 		}
@@ -261,23 +299,24 @@ $(document).ready(function() {
 						<label for="userMail">이메일</label>
 						<input type="email" id="userMail" name="userMail" placeholder="hong@naver.com"/>
 						<span class="final_mail_ck">이메일을 입력해주세요.</span>
+						<span class="final_mail_ck2">올바른 이메일을 입력해주세요.</span>
 					</div>
 					
 					<div class="input_area">
 						<label for="userPhone">연락처</label>
 						<input type="text" id="userPhone" name="userPhone" placeholder="010-1234-5678" />
 						<span class="final_phone_ck">연락처를 입력해주세요.</span>
+						<span class="final_phone_ck2">010-1234-5678 형식으로 입력해주세요.</span>
 					</div>
 					
 					
 					<div class="input_area addr">
 						<label for="userMail">주소</label>
 						<p>
-							<input type="text" id="sample6_postcode" placeholder="우편번호">
+							<input type="text" id="sample6_address" name="userAddr1" placeholder="우편번호"  readonly="readonly">
 							<input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기"><br>
 						</p>
 						<p>
-							<input type="text" id="sample6_address" name="userAddr1" placeholder="주소" readonly="readonly"><br>
 							<input type="text" id="sample6_detailAddress" name="userAddr2" placeholder="상세주소" readonly="readonly">
 							<input type="text" id="sample6_extraAddress" name="userAddr3" placeholder="참고항목" readonly="readonly">
 						</p>
