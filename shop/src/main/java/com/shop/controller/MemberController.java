@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.domain.MemberVO;
@@ -48,6 +49,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+
 	// 로그인 GET
 	@RequestMapping(value = "/signin", method = RequestMethod.GET)
 	public void getSignin() throws Exception {

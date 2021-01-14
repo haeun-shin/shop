@@ -3,34 +3,65 @@
   
 <mapper namespace="com.shop.mappers.memberMapper">
 
-	<!-- 회원가입 -->
-	<insert id="signup">
-		insert into tbl_member(
-								userId, 
-								userPass, 
-								userName, 
-								userPhone	
-								)
-						values(
-								#{userId}, 
-								#{userPass}, 
-								#{userName}, 
-								#{userPhone}	
-								)
-	</insert>
-	
-	<!-- 로그인 -->
-	<select id="signin" resultType="com.shop.domain.MemberVO">
-		select	userId,
-				userName,
-				userPass,
-				userPhone,
-				userAddr1,
-				userAddr2,
-				userAddr3,
-				regDate,
-				verify
-		from	tbl_member
-		where	userId = #{userId}
-	</select>
+<!-- 회원가입 -->
+<!-- <insert id="signup">
+	insert into tbl_member(
+							userId, 
+							userPass, 
+							userName, 
+							userPhone	
+							)
+					values(
+							#{userId}, 
+							#{userPass}, 
+							#{userName}, 
+							#{userPhone}	
+							)
+</insert> -->
+<!-- 회원가입 -->
+<insert id="signup">
+	insert into tbl_member (
+							userId,
+							userPass,
+							userName,
+							userPhone,
+							userAddr1,
+							userAddr2,
+							userAddr3,
+							userMail,
+							adminCk,
+							money,
+							point
+						  )
+					values (
+							#{userId},
+							#{userPass},
+							#{userName},
+							#{userPhone},
+							#{userAddr1},
+							#{userAddr2},
+							#{userAddr3},
+							#{userMail},
+							0,
+							10000,
+							5000
+						  )
+</insert>
+
+
+<!-- 로그인 -->
+<select id="signin" resultType="com.shop.domain.MemberVO">
+	select	userId,
+			userName,
+			userPass,
+			userPhone,
+			userAddr1,
+			userAddr2,
+			userAddr3,
+			regDate,
+			verify
+	from	tbl_member
+	where	userId = #{userId}
+</select>
+
 </mapper>

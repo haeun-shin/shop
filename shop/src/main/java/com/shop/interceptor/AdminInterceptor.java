@@ -23,7 +23,7 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 		}
 		
 		// 관리자 상태가 아닐 시 홈으로 
-		if(member.getVerify() != 9) {
+		if(member.getAdminCk() != 2) {
 			response.sendRedirect("/");
 			
 			return false;
