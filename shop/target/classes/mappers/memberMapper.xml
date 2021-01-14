@@ -43,8 +43,8 @@
 							#{userAddr3},
 							#{userMail},
 							0,
-							10000,
-							5000
+							0,
+							0
 						  )
 </insert>
 
@@ -58,14 +58,12 @@
 <!-- 로그인 -->
 <select id="signin" resultType="com.shop.domain.MemberVO">
 	select	userId,
-			userName,
+			userId, 
+			userName, 
 			userPass,
-			userPhone,
-			userAddr1,
-			userAddr2,
-			userAddr3,
-			regDate,
-			verify
+			adminck, 
+			money, 
+			point 
 	from	tbl_member
 	where	userId = #{userId}
 </select>

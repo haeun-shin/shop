@@ -22,7 +22,7 @@
 		<a href="/shop/cartList">장바구니</a>
 	</li>
 	
-		<c:if test="${member.verify == 9 }">
+		<c:if test="${member.adminCk == 1 }">
 		<li>
 			<a href="/admin/goods/list">관리자화면</a>
 		</li>
