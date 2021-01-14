@@ -18,9 +18,8 @@
 		 	<ul class="gnb_sub">
 		 		<li><a href="/shop/list?c=201&l=2">일반의자</a></li>
 		 		<li><a href="/shop/list?c=202&l=2">사무용의자</a></li>
-		 		<li><a href="/shop/list?c=203&l=2">게이밍의자</a></li>
-		 		<li><a href="/shop/list?c=204&l=2">좌식의자</a></li>
-		 		<li><a href="/shop/list?c=205&l=2">흔들의자</a></li>
+		 		<li><a href="/shop/list?c=203&l=2">좌식의자</a></li>
+		 		<li><a href="/shop/list?c=204&l=2">흔들의자</a></li>
 		 	</ul>
 		 </li>
 		 <li class="gnb_main">
