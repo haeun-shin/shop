@@ -187,80 +187,6 @@ $(document).ready(function() {
 		</div>
 	</div>
 	
-	<style>
-		.signup_box > label {
-			display: inline-block;
-			width: 100%;
-		}
-		.signup_box .addr #sample6_address {
-			width: 80%;
-		}
-		.signup_box .addr input[type="button"] {
-		    width: 19.2%;
-		       height: 44px;
-		}	
-		.id_input_re_1 {
-			color: green;
-			display: none;
-		}
-		.id_input_re_2 {
-			color: red;
-			display: none;
-		}
-		/* 유효성 검사 문구 */
-		.final_id_ck{
-		    display: none;
-		    color: red;
-		}
-		.final_pw_ck{
-		    display: none;
-		    color: red;
-		}
-		.final_pwck_ck{
-		    display: none;
-		    color: red;
-		}
-		.final_name_ck{
-		    display: none;
-		    color: red;
-		}
-		.final_mail_ck{
-		    display: none;
-		    color: red;
-		}
-		.final_mail_ck2{
-		    display: none;
-		    color: red;
-		}
-		.final_addr_ck{
-		    display: none;
-		    color: red;
-		}
-		.final_phone_ck{
-		    display: none;
-		    color: red;
-		}
-		.final_phone_ck2{
-		    display: none;
-		    color: red;
-		}
-		
-		/* 비밀번호 확인 일치 유효성검사 */
-		.pwck_input_re_1{
-	        color : green;
-	        display : none;    
-		}
-		.pwck_input_re_2{
-	        color : red;
-	        display : none;    
-		}   
-		#container_box .signup_box input[type=text], #container_box .signup_box input[type=password] {
-			margin-bottom: 0;
-		}
-		#container_box .signup_box .input_area {
-			margin-bottom: 1em;
-		}
-	</style>
 	<section id="container">
 		<div id="container_box" >
 			<div  class="signup_box">
@@ -323,9 +249,6 @@ $(document).ready(function() {
 						<span class="final_addr_ck">주소를 입력해주세요.</span>
 					</div>
 						
-						
-					</div>
-					
 					<button type="button" id="signup_btn" name="signup_btn">회원가입</button>
 				</form>
 			</section>
