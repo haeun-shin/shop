@@ -148,8 +148,8 @@ public class AdminController {
 		  
 		 } else {  // 새로운 파일이 등록되지 않았다면
 		  // 기존 이미지를 그대로 사용
-		  vo.setGoodsImg(req.getParameter("gdsImg"));
-		  vo.setGoodsThumbImg(req.getParameter("gdsThumbImg"));
+		  vo.setGoodsImg(req.getParameter("goodsImg"));
+		  vo.setGoodsThumbImg(req.getParameter("goodsThumbImg"));
 		  
 		 }
 		 
