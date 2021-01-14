@@ -120,21 +120,34 @@
 						<input type="text" id="userPhone" name="userPhone" placeholder="연락처를 입력해주세요." required="required" />
 					</div>
 					
-					<div class="input_area">
+					<style>
+						.signup_box > label {
+							display: inline-block;
+							width: 100%;
+						}
+						.signup_box .addr #sample3_postcode {
+							width: 80%;
+						}
+						.signup_box .addr input[type="button"] {
+						    width: 19.2%;
+					        height: 44px;
+						}
+					</style>
+					<div class="input_area addr">
 						<label for="userMail">주소</label>
 						<p>
 							<input type="text" id="sample3_postcode" placeholder="우편번호">
-							<input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
+							<input type="button" onclick="sample3_execDaumPostcode()" value="주소 찾기"><br>
 						</p>
 						<p>
 							<input type="text" id="sample3_address" name="userAddr1" placeholder="주소"><br>
-							<input type="text" id="sample3_extraAddress" name="userAddr3" placeholder="참고항목">
 							<input type="text" id="sample3_detailAddress" name="userAddr2" placeholder="상세주소">
+							<input type="text" id="sample3_extraAddress" name="userAddr3" placeholder="참고항목">
 						</p>
 						
 						<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
 						<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
-						</div>
+					</div>
 						
 						<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 						<script>
@@ -181,17 +194,24 @@
 						                        extraAddr = ' (' + extraAddr + ')';
 						                    }
 						                    // 조합된 참고항목을 해당 필드에 넣는다.
-						                    document.getElementById("sample3_extraAddress").value = extraAddr;
+						                    //document.getElementById("sample3_extraAddress").value = extraAddr;
+						                    // 주소 변수 문자열과 참고 항목 문자열 합치기
+						                    addr += extraAddr;
 						                
 						                } else {
-						                    document.getElementById("sample3_extraAddress").value = '';
+						                    //document.getElementById("sample3_extraAddress").value = '';
+						                    addr += ' ';
 						                }
 						
 						                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-						                document.getElementById('sample3_postcode').value = data.zonecode;
-						                document.getElementById("sample3_address").value = addr;
+						                //document.getElementById('sample3_postcode').value = data.zonecode;
+						                //document.getElementById("sample3_address").value = addr;
+						                $("[name=userAddr1]").val(data.zonecode); 
+						                $("[name=userAddr2]").val(addr);
 						                // 커서를 상세주소 필드로 이동한다.
-						                document.getElementById("sample3_detailAddress").focus();
+						                //document.getElementById("sample3_detailAddress").focus();
+						                $("[name=userAddr3]").attr("readonly", false);
+						                $("[name=userAddr3]").focus();
 						
 						                // iframe을 넣은 element를 안보이게 한다.
 						                // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
