@@ -25,11 +25,20 @@
 	
 	<!-- Admin으로 접근 시 사용할 Interceptor -->
 	<beans:bean id="AdminInterceptor" class="com.shop.interceptor.AdminInterceptor" />
+	<!-- 비로그인 상태로 접근 시 사용할 Interceptor -->
+	<beans:bean id="MemberInterceptor" class="com.shop.interceptor.MemberInterceptor" />
+	
 	<interceptors>
 		<interceptor>
 			<mapping path="/admin/*" />
 			<beans:ref bean="AdminInterceptor" />
 		</interceptor>
+		<interceptor>
+			<mapping path="/shop/cartList" />
+			<mapping path="/shop/orderList" />
+			<mapping path="/shop/orderView" />
+			<beans:ref bean="MemberInterceptor"/>
+		</interceptor>			
 	</interceptors>
 	
 	<!-- 업로드 패스 설정 -->
