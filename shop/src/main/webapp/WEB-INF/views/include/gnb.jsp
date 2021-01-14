@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="gnb">
 	<h1>
-		<a href="/">SHOP</a>
+		<a href="/">Home Office</a>
 	</h1>    
 	<ul class="gnb_wrap">
 		 <li class="gnb_main">
@@ -31,11 +31,11 @@
 		 <li class="gnb_main">
 		 	<a href="/shop/list?c=500&l=1">파티션/악세서리</a>
 		 	<ul class="gnb_sub">
-		 		<li><a href="/shop/list?c=301&l=2">데스트매트/독서거치대</a></li>
-		 		<li><a href="/shop/list?c=302&l=2">모니터받침대</a></li>
-		 		<li><a href="/shop/list?c=303&l=2">발받침대</a></li>
-		 		<li><a href="/shop/list?c=304&l=2">파티션/칸막이</a></li>
-		 		<li><a href="/shop/list?c=305&l=2">보드/칠판/이젤</a></li>
+		 		<li><a href="/shop/list?c=501&l=2">데스트매트/독서거치대</a></li>
+		 		<li><a href="/shop/list?c=502&l=2">모니터받침대</a></li>
+		 		<li><a href="/shop/list?c=503&l=2">발받침대</a></li>
+		 		<li><a href="/shop/list?c=504&l=2">파티션/칸막이</a></li>
+		 		<li><a href="/shop/list?c=505&l=2">보드/칠판/이젤</a></li>
 		 	</ul>
 		 </li>
 	</ul>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <div id="footer_desc">
-	<em>(주)쇼핑몰</em>
+	<em>(주)HOME OFFICE</em>
 	<p>대표이사 : 신하은 / 서울시 종로구 개발로 13 개발대학교 개발캠퍼스 교육동 15층</p>
 	<p>사업자등록번호 : 123-45-67890 / 통신판매업 신고 : 제 01-1234호</p>
 	<p>COPYRIGHT &copy; HAEUN ALL RIGHTS RESERVED.</p>

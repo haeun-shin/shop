@@ -803,6 +803,8 @@ button {
 	text-align: center;
 	display: inherit;
     line-height: 600px;
+    width: 100%;
+    height: 100%;
 }
 
  .bx-controls-direction {
@@ -813,4 +815,65 @@ button {
     transform: translate(-50%, 0);
 }
 /* 슬라이더 처리 END */
+
+#middle {
+	padding: 64px 0 15px;
+}
+#middle .middle_banner {
+	position: relative;
+    width: 1140px;
+    margin: 0 auto;
+}
+#middle .list-card {
+	width: 1140px;
+  		margin: 0 auto;
+}
+#middle .list-card ul {
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    width: 1180px;
+    margin: 0 -15px;
+}
+#middle .list-card ul li {
+	width: 360px;
+    height: auto;
+    padding: 0 15px;
+}
+#middle .thumbnail {
+	position: relative;
+}
+#middle .thumbnail img {
+	width: 100%;
+  		vertical-align: top;
+}
+#middle .desc .headline {
+	padding-top: 14px;
+   	font-size: 17px;
+   	line-height: 23px;
+   	font-weight: 500;
+}
+#middle .desc .headline .ellipsis {
+    max-width: 84%;
+    padding-right: 4px;
+  		vertical-align: middle;
+		    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+}
+#middle .desc .headline .discount {
+    vertical-align: middle;
+    color: #ff3131 ;
+    font-weight: bold;
+}
+#middle .desc .subcopy {
+    margin-bottom: 0;
+    overflow: hidden;
+    height: 20px;
+    padding-top: 5px;
+    font-size: 14px;
+    line-height: 18px;
+}
 /* home.jsp END */
