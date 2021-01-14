@@ -703,7 +703,7 @@ button {
 /* home.jsp START */
 /* 슬라이더 처리 START */
 .main_banner {
-    width: 1920px;
+    max-width: 1920px;
     margin: 0 auto;
     /* background-color: #000; */
 }

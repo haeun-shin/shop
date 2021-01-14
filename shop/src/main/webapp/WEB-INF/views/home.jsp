@@ -27,13 +27,13 @@ $(document).ready(function () {
 </script>
 <style>
 .sliderImg1 {
-    background-image: url(resources/images/shop_main1_02.jpg);
+    background-image: url(/resources/images/shop_main1_02.jpg);
 }
 .sliderImg2 {
-	background-image: url(resources/images/shop_main2_02.jpg);
+	background-image: url(/resources/images/shop_main2_02.jpg);
 }
 .sliderImg3 {
-    background-image: url(resources/images/shop_main3_02.jpg);
+    background-image: url(/resources/images/shop_main3_02.jpg);
 }
 .sliderImg a img {
 	text-align: center;
@@ -67,7 +67,7 @@ $(document).ready(function () {
 
 <footer id="footer">
 	<div id="footer_box">
-		<%@ include file="include/footer.jsp" %>
+		<%@ include file="./include/footer.jsp" %>
 	</div>
 </footer>
 </body>
