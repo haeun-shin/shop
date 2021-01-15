@@ -52,9 +52,15 @@ public class MemberDAOImpl implements MemberDAO{
 		return sql.selectOne(namespace + ".passCheck", userId);
 	}
 	
-	// 회원 탈퇴
+	// 회원 탈퇴 : delete
+//	@Override
+//	public void outMember(MemberVO vo) throws Exception {
+//		sql.delete(namespace + ".outMember", vo);
+//	}
+	
+	// 회원 탈퇴 : update
 	@Override
 	public void outMember(MemberVO vo) throws Exception {
-		sql.delete(namespace + ".outMember", vo);
+		sql.update(namespace + ".outMember", vo);
 	}
 }

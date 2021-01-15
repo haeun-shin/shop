@@ -55,7 +55,7 @@ public class MemberServiceImpl implements MemberService{
 		return dao.passCheck(userId);
 	}
 	
-	// 회원 탈퇴
+	// 회원 탈퇴 : delete
 	@Override
 	public void outMember(MemberVO vo) throws Exception {
 		dao.outMember(vo);

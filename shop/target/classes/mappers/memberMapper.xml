@@ -65,6 +65,7 @@
 			point 
 	from	tbl_member
 	where	userId = #{userId}
+	  and	status = 'Y'
 </select>
 
 <!-- 04. 회원정보 상세조회 -->
@@ -103,10 +104,18 @@
 </select>
 
 <!-- 06. 회원 탈퇴 -->
-<delete id="outMember">
+<!-- <delete id="outMember">
 	delete from	tbl_member
 	where	userId = #{userId}
 	and		userPass = #{userPass}
-</delete>
+</delete> -->
+<!-- 06. 회원 탈퇴: status 변경 -->
+<update id="outMember">
+	update	tbl_member
+	set		status = 'N',
+			dropDate = sysdate
+	where	userId = #{userId}
+	and		userPass = #{userPass}
+</update>
 
 </mapper>
