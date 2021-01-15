@@ -5,6 +5,7 @@ import java.util.List;
 import com.shop.domain.CategoryVO;
 import com.shop.domain.GoodsVO;
 import com.shop.domain.GoodsViewVO;
+import com.shop.domain.MemberVO;
 import com.shop.domain.OrderListVO;
 import com.shop.domain.OrderVO;
 import com.shop.domain.ReplyListVO;
@@ -45,4 +46,7 @@ public interface AdminService {
 	
 	// 소감(댓글) 삭제
 	public void deleteReply(int replyNum) throws Exception;
+	
+	// 회원 목록 GET
+	public List<MemberVO> memberList() throws Exception;
 }

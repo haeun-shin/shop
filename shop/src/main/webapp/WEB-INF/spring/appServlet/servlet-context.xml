@@ -32,14 +32,14 @@
 		<interceptor>
 			<mapping path="/admin/*" />
 			<mapping path="/admin/goods/*" />
-			<mapping path="/admin/shop/*" />
+			<mapping path="/admin/market/*" />
 			<beans:ref bean="AdminInterceptor" />
 		</interceptor>
 		<interceptor>
-			<mapping path="/shop/cartList" />
-			<mapping path="/shop/orderList" />
-			<mapping path="/shop/orderView" />
-			<mapping path="/member/memberinfo" />
+			<mapping path="/market/cartList" />
+			<mapping path="/market/orderList" />
+			<mapping path="/market/orderView" />
+			<mapping path="/market/memberinfo" />
 			<beans:ref bean="MemberInterceptor"/>
 		</interceptor>			
 	</interceptors>

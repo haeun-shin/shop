@@ -26,6 +26,7 @@ import com.google.gson.JsonObject;
 import com.shop.domain.CategoryVO;
 import com.shop.domain.GoodsVO;
 import com.shop.domain.GoodsViewVO;
+import com.shop.domain.MemberVO;
 import com.shop.domain.OrderListVO;
 import com.shop.domain.OrderVO;
 import com.shop.domain.ReplyListVO;
@@ -294,6 +295,16 @@ public class AdminController {
 		adminService.deleteReply(reply.getReplyNum());
 		
 		return "redirect:/admin/market/allReply";
+	}
+	
+	// 회원목록
+	@RequestMapping(value = "/member/memberList", method = RequestMethod.GET)
+	public void memberList(Model model) throws Exception {
+		logger.info("get memberList");
+		
+		List<MemberVO> memberList = adminService.memberList();
+		
+		model.addAttribute("memberList", memberList);
 	}
 	
 }

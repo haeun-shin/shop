@@ -2,208 +2,221 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shop.mappers.adminMapper">
 	
-	<!-- 카테고리 호출 -->
-	<select id="category" resultType="com.shop.domain.CategoryVO">
-		select	level,
-				cateName,
-				cateCode,
-				cateCodeRef
-		from	goods_category
-		start with	cateCodeRef is null
-		connect by prior	cateCode = cateCodeRef
-	</select>
-	
-	<!-- 상품 등록 -->
-	<insert id="register">
-		insert into tbl_goods (
-								goodsNum, 
-								goodsName, 
-								cateCode, 
-								goodsPrice, 
-								goodsStock, 
-								goodsDesc,
-								goodsImg,
-								goodsThumbImg
-								)
-						values (
-								tbl_goods_seq.nextval, 
-								#{goodsName}, 
-								#{cateCode}, 
-								#{goodsPrice}, 
-								#{goodsStock}, 
-								#{goodsDesc},
-								#{goodsImg},
-								#{goodsThumbImg}
-								)
-	</insert>
-	
-	<!-- 상품 목록 -->
-	<!-- <select id="goodsList" resultType="com.shop.domain.GoodsVO">
-		select goodsNum,
-			   goodsName,
-			   cateCode,
-			   goodsPrice,
-			   goodsStock,
-			   goodsDesc,
-			   goodsImg,
-			   goodsDate
-		from tbl_goods
-		order by goodsNum desc
-	</select> -->
-	<select id="goodsList" resultType="com.shop.domain.GoodsViewVO">
-		select	g.goodsNum,
-				g.goodsName,
-				g.cateCode,
-				c.cateCodeRef,
-				c.cateName,
-				goodsPrice,
-				goodsStock,
-				goodsDesc,
-				goodsImg,
-				goodsDate,
-				g.goodsImg,
-				g.goodsThumbImg
-		from	tbl_goods g
-		inner join goods_category c
-		on g.cateCode = c.cateCode
-		order by g.goodsNum desc
-	</select>
-	
-	<!-- 상품 조회 -->
-	<!-- <select id="goodsView" resultType="com.shop.domain.GoodsVO">
-		select goodsNum,
-			   goodsName,
-			   cateCode,
-			   goodsPrice,
-			   goodsStock,
-			   goodsDesc,
-			   goodsImg,
-			   goodsDate
-		from tbl_goods
-		where goodsNum = #{goodsNum}
-	</select> -->
-	
-	<!-- 상품 조회 + 카테고리 조인-->
-	<select id="goodsView" resultType="com.shop.domain.GoodsViewVO">
-		select	g.goodsNum, 
-				g.goodsName, 
-				g.cateCode, 
-				c.cateCodeRef, 
-				c.cateName, 
-				goodsPrice, 
-				goodsStock, 
-				goodsDesc, 
-				goodsImg, 
-				goodsDate,
-				g.goodsImg,
-				g.goodsThumbImg
-		from	tbl_goods g
-    	inner join	goods_category c
-        on	g.cateCode = c.cateCode
-		where	g.goodsNum = #{goodsNum}
-	</select>
-	
-	<!-- 상품 수정 -->
-	<update id="goodsModify">
-		update tbl_goods
-		set	goodsName = #{goodsName},
-			cateCode = #{cateCode},
-			goodsPrice = #{goodsPrice},
-			goodsStock = #{goodsStock},
-			goodsDesc = #{goodsDesc},
-			goodsImg = #{goodsImg},
-			goodsThumbImg = #{goodsThumbImg}
-		where	goodsNum = #{goodsNum}
-	</update>
-	
-	<!-- 상품 삭제 -->
-	<delete id="goodsDelete">
-		delete	tbl_goods
-		where	goodsNum = #{goodsNum}
-	</delete>
-	
-	<!-- 모든 유저의 주문 목록 -->
-	<select id="orderAllList" resultType="com.shop.domain.OrderVO">
-		select  orderId,
-		        userId,
-		        orderRec,
-		        userAddr1,
-		        userAddr2,
-		        userAddr3,
-		        orderPhone,
-		        amount,
-		        orderDate,
-		        delivery
-		from    tbl_order
-	</select>
-	
-	<!-- 특정 주문 목록 -->
-	<select id="orderMemberView" resultType="com.shop.domain.OrderListVO">
-		select  o.orderId,
-		        o.userId,
-		        o.orderRec,
-		        o.userAddr1,
-		        o.userAddr2,
-		        o.userAddr3,
-		        o.orderPhone,
-		        o.amount,
-		        o.orderDate,
-		        o.delivery,
-		        d.orderDetailsNum,
-		        d.goodsNum,
-		        d.cartStock,
-		        g.goodsName,
-		        g.goodsThumbImg,
-		        g.goodsPrice
-		from    tbl_order o
-	            inner join tbl_order_details d
-	                    on o.orderId = d.orderId
-	            inner join tbl_goods g
-	                    on d.goodsNum = g.goodsNum
-		where   o.orderId = #{orderId}
-	</select>
-	
-	<!-- 배송 상태 -->
-	<update id="delivery">
-		update	tbl_order
-		   set	delivery = #{delivery}
-		where	orderId = #{orderId}
-	</update>
-	
-	<!-- 상품 수량 조절 -->
-	<update id="changeStock">
-		update tbl_goods
-		   set goodsStock = goodsStock - #{goodsStock}
-		where  goodsNum = #{goodsNum}
-	</update>
-	
-	<!-- 상품 수량 조절 보조 '특정 주문 목록'을 대신 사용함 -->
-	<!-- <select id="changeStock_sub" resultType="com.shop.domain.OrderDetailVO">
-		select	orderId,
-				goodsNum,
-				cartStock
-		from	tbl_order_details
-		where	orderId = #{orderId}
-	</select>  -->
-	
-	<!-- 모든 소감(댓글) -->
-	<select id="allReply" resultType="com.shop.domain.ReplyListVO">
-		select	r.goodsNum,
-				m.userName,
-				r.userId,
-				r.replyNum,
-				r.replyCon,
-				r.replyDate
-		from	tbl_reply r
-				inner join tbl_member m
-						on r.userId = m.userId
-		order by	r.replyDate desc
-	</select>
-	
-	<!-- 소감(댓글) 지우기 -->
-	<delete id="deleteReply">
-		delete	tbl_reply
-		where	replyNum = #{replyNum}
-	</delete>
-	
+<!-- 카테고리 호출 -->
+<select id="category" resultType="com.shop.domain.CategoryVO">
+	select	level,
+			cateName,
+			cateCode,
+			cateCodeRef
+	from	goods_category
+	start with	cateCodeRef is null
+	connect by prior	cateCode = cateCodeRef
+</select>
+
+<!-- 상품 등록 -->
+<insert id="register">
+	insert into tbl_goods (
+							goodsNum, 
+							goodsName, 
+							cateCode, 
+							goodsPrice, 
+							goodsStock, 
+							goodsDesc,
+							goodsImg,
+							goodsThumbImg
+							)
+					values (
+							tbl_goods_seq.nextval, 
+							#{goodsName}, 
+							#{cateCode}, 
+							#{goodsPrice}, 
+							#{goodsStock}, 
+							#{goodsDesc},
+							#{goodsImg},
+							#{goodsThumbImg}
+							)
+</insert>
+
+<!-- 상품 목록 -->
+<!-- <select id="goodsList" resultType="com.shop.domain.GoodsVO">
+	select goodsNum,
+		   goodsName,
+		   cateCode,
+		   goodsPrice,
+		   goodsStock,
+		   goodsDesc,
+		   goodsImg,
+		   goodsDate
+	from tbl_goods
+	order by goodsNum desc
+</select> -->
+<select id="goodsList" resultType="com.shop.domain.GoodsViewVO">
+	select	g.goodsNum,
+			g.goodsName,
+			g.cateCode,
+			c.cateCodeRef,
+			c.cateName,
+			goodsPrice,
+			goodsStock,
+			goodsDesc,
+			goodsImg,
+			goodsDate,
+			g.goodsImg,
+			g.goodsThumbImg
+	from	tbl_goods g
+	inner join goods_category c
+	on g.cateCode = c.cateCode
+	order by g.goodsNum desc
+</select>
+
+<!-- 상품 조회 -->
+<!-- <select id="goodsView" resultType="com.shop.domain.GoodsVO">
+	select goodsNum,
+		   goodsName,
+		   cateCode,
+		   goodsPrice,
+		   goodsStock,
+		   goodsDesc,
+		   goodsImg,
+		   goodsDate
+	from tbl_goods
+	where goodsNum = #{goodsNum}
+</select> -->
+
+<!-- 상품 조회 + 카테고리 조인-->
+<select id="goodsView" resultType="com.shop.domain.GoodsViewVO">
+	select	g.goodsNum, 
+			g.goodsName, 
+			g.cateCode, 
+			c.cateCodeRef, 
+			c.cateName, 
+			goodsPrice, 
+			goodsStock, 
+			goodsDesc, 
+			goodsImg, 
+			goodsDate,
+			g.goodsImg,
+			g.goodsThumbImg
+	from	tbl_goods g
+   	inner join	goods_category c
+       on	g.cateCode = c.cateCode
+	where	g.goodsNum = #{goodsNum}
+</select>
+
+<!-- 상품 수정 -->
+<update id="goodsModify">
+	update tbl_goods
+	set	goodsName = #{goodsName},
+		cateCode = #{cateCode},
+		goodsPrice = #{goodsPrice},
+		goodsStock = #{goodsStock},
+		goodsDesc = #{goodsDesc},
+		goodsImg = #{goodsImg},
+		goodsThumbImg = #{goodsThumbImg}
+	where	goodsNum = #{goodsNum}
+</update>
+
+<!-- 상품 삭제 -->
+<delete id="goodsDelete">
+	delete	tbl_goods
+	where	goodsNum = #{goodsNum}
+</delete>
+
+<!-- 모든 유저의 주문 목록 -->
+<select id="orderAllList" resultType="com.shop.domain.OrderVO">
+	select  orderId,
+	        userId,
+	        orderRec,
+	        userAddr1,
+	        userAddr2,
+	        userAddr3,
+	        orderPhone,
+	        amount,
+	        orderDate,
+	        delivery
+	from    tbl_order
+</select>
+
+<!-- 특정 주문 목록 -->
+<select id="orderMemberView" resultType="com.shop.domain.OrderListVO">
+	select  o.orderId,
+	        o.userId,
+	        o.orderRec,
+	        o.userAddr1,
+	        o.userAddr2,
+	        o.userAddr3,
+	        o.orderPhone,
+	        o.amount,
+	        o.orderDate,
+	        o.delivery,
+	        d.orderDetailsNum,
+	        d.goodsNum,
+	        d.cartStock,
+	        g.goodsName,
+	        g.goodsThumbImg,
+	        g.goodsPrice
+	from    tbl_order o
+            inner join tbl_order_details d
+                    on o.orderId = d.orderId
+            inner join tbl_goods g
+                    on d.goodsNum = g.goodsNum
+	where   o.orderId = #{orderId}
+</select>
+
+<!-- 배송 상태 -->
+<update id="delivery">
+	update	tbl_order
+	   set	delivery = #{delivery}
+	where	orderId = #{orderId}
+</update>
+
+<!-- 상품 수량 조절 -->
+<update id="changeStock">
+	update tbl_goods
+	   set goodsStock = goodsStock - #{goodsStock}
+	where  goodsNum = #{goodsNum}
+</update>
+
+<!-- 상품 수량 조절 보조 '특정 주문 목록'을 대신 사용함 -->
+<!-- <select id="changeStock_sub" resultType="com.shop.domain.OrderDetailVO">
+	select	orderId,
+			goodsNum,
+			cartStock
+	from	tbl_order_details
+	where	orderId = #{orderId}
+</select>  -->
+
+<!-- 모든 소감(댓글) -->
+<select id="allReply" resultType="com.shop.domain.ReplyListVO">
+	select	r.goodsNum,
+			m.userName,
+			r.userId,
+			r.replyNum,
+			r.replyCon,
+			r.replyDate
+	from	tbl_reply r
+			inner join tbl_member m
+					on r.userId = m.userId
+	order by	r.replyDate desc
+</select>
+
+<!-- 소감(댓글) 지우기 -->
+<delete id="deleteReply">
+	delete	tbl_reply
+	where	replyNum = #{replyNum}
+</delete>
+
+<!-- 회원 목록 GET -->
+<select id="memberList" resultType="com.shop.domain.MemberVO">
+	select	adminCk,
+			userId,
+			userName,
+			userPhone,
+			status,
+			regDate,
+			dropDate
+	from	tbl_member
+</select>
+
+
 </mapper>
