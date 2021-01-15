@@ -123,6 +123,7 @@ $(document).ready(function() {
 						location.href="/";
 					} else {
 						$(".outMember").css("display", "none");
+						$("#userPass").val("");
 						alert("비밀번호가 틀렸습니다.");
 					}
 				},
