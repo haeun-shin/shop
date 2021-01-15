@@ -50,23 +50,27 @@
 	from tbl_goods
 	order by goodsNum desc
 </select> -->
+<!-- 상품 목록 + 페이징 -->
 <select id="goodsList" resultType="com.shop.domain.GoodsViewVO">
-	select	g.goodsNum,
-			g.goodsName,
-			g.cateCode,
-			c.cateCodeRef,
-			c.cateName,
-			goodsPrice,
-			goodsStock,
-			goodsDesc,
-			goodsImg,
-			goodsDate,
-			g.goodsImg,
-			g.goodsThumbImg
-	from	tbl_goods g
-	inner join goods_category c
-	on g.cateCode = c.cateCode
-	order by g.goodsNum desc
+	select  gs.*
+	from	(
+			select goodsNum,
+			       goodsName,
+			       cateCode,
+			       goodsPrice,
+			       goodsStock,
+			       goodsThumbImg,
+			       goodsDate,
+				   ROW_NUMBER() OVER(ORDER BY goodsNum DESC) AS RNUM
+			from   tbl_goods
+		    ) gs
+	where	RNUM BETWEEN #{rowStart} AND #{rowEnd}
+</select>
+
+<!-- 총 상품 수 -->
+<select id="goodsCount" parameterType="com.shop.domain.Criteria" resultType="int">
+	select	count(*)
+	from	tbl_goods
 </select>
 
 <!-- 상품 조회 -->
@@ -239,6 +243,5 @@
 	select	count(*)
 	from	tbl_member
 </select>
-
 
 </mapper>

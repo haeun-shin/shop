@@ -98,13 +98,28 @@ public class AdminController {
 	}
 	
 	// 상품 목록
+//	@RequestMapping(value = "/goods/list", method = RequestMethod.GET)
+//	public void getGoodsList(Model model) throws Exception {
+//		logger.info("get goods list");
+//		
+//		List<GoodsViewVO> list = adminService.goodsList();
+//		
+//		model.addAttribute("list", list);
+//	}
+	// 상품 목록 + 페이징
 	@RequestMapping(value = "/goods/list", method = RequestMethod.GET)
-	public void getGoodsList(Model model) throws Exception {
+	public void getGoodsList(Model model, @ModelAttribute("cri") Criteria cri) throws Exception {
 		logger.info("get goods list");
 		
-		List<GoodsViewVO> list = adminService.goodsList();
+		List<GoodsViewVO> list = adminService.goodsList(cri);
 		
 		model.addAttribute("list", list);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(adminService.goodsCount());
+		
+		model.addAttribute("pageMaker", pageMaker);
 	}
 	
 	// 상품 조회

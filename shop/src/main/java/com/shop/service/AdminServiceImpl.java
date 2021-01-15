@@ -33,10 +33,20 @@ public class AdminServiceImpl implements AdminService{
 		dao.register(vo);
 	}
 	
-	// 상품 목록
+	// 상품 목록 + 페이징
+//	@Override
+//	public List<GoodsViewVO> goodsList() throws Exception {
+//		return dao.goodsList();
+//	}
 	@Override
-	public List<GoodsViewVO> goodsList() throws Exception {
-		return dao.goodsList();
+	public List<GoodsViewVO> goodsList(Criteria cri) throws Exception {
+		return dao.goodsList(cri);
+	}
+	
+	// 총 상품 수
+	@Override
+	public int goodsCount() throws Exception {
+		return dao.goodsCount();
 	}
 	
 	// 상품 조회 + 카테고리 조인
