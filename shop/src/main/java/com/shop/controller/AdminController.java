@@ -232,7 +232,7 @@ public class AdminController {
 	}
 	
 	// 주문 목록
-	@RequestMapping(value = "/shop/orderList", method = RequestMethod.GET)
+	@RequestMapping(value = "/market/orderList", method = RequestMethod.GET)
 	public void getOrderList(Model model) throws Exception {
 		logger.info("get order list");
 		
@@ -242,7 +242,7 @@ public class AdminController {
 	}
 	
 	// 주문 상세 목록
-	@RequestMapping(value = "/shop/orderView", method = RequestMethod.GET)
+	@RequestMapping(value = "/market/orderView", method = RequestMethod.GET)
 	public void getOrderView(@RequestParam("n") String orderId,
 							OrderVO order, Model model) throws Exception {
 		logger.info("get order view");
@@ -254,7 +254,7 @@ public class AdminController {
 	}
 	
 	// 주문 상세 목록 + 상태 변경 + 재고 변경
-	@RequestMapping(value = "/shop/orderView", method = RequestMethod.POST)
+	@RequestMapping(value = "/market/orderView", method = RequestMethod.POST)
 	public String delivery(OrderVO order) throws Exception {
 		logger.info("post order view");
 		
@@ -273,11 +273,11 @@ public class AdminController {
 //			adminService.changeStock(goods);
 //		}
 		
-		return "redirect:/admin/shop/orderView?n=" + order.getOrderId();
+		return "redirect:/admin/market/orderView?n=" + order.getOrderId();
 	}
 	
 	// 모든 소감(댓글)
-	@RequestMapping(value = "/shop/allReply", method = RequestMethod.GET)
+	@RequestMapping(value = "/market/allReply", method = RequestMethod.GET)
 	public void getAllReply(Model model) throws Exception {
 		logger.info("get all reply");
 		
@@ -287,13 +287,13 @@ public class AdminController {
 	}
 	
 	// 댓글(소감) 삭제
-	@RequestMapping(value = "/shop/allReply", method = RequestMethod.POST)
+	@RequestMapping(value = "/market/allReply", method = RequestMethod.POST)
 	public String deleteReply(ReplyListVO reply) throws Exception {
 		logger.info("delete reply");
 		
 		adminService.deleteReply(reply.getReplyNum());
 		
-		return "redirect:/admin/shop/allReply";
+		return "redirect:/admin/market/allReply";
 	}
 	
 }

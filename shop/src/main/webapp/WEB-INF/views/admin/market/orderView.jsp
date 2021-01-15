@@ -107,7 +107,7 @@
 						<c:forEach items="${orderView }" var="orderView">
 						<tr>
 							<td><img src="${orderView.goodsThumbImg }" /></td>
-							<td class="goodsName"><a href="/shop/view?n=${orderView.goodsNum }">${orderView.goodsName }</a></td>
+							<td class="goodsName"><a href="/market/view?n=${orderView.goodsNum }">${orderView.goodsName }</a></td>
 							<td><fmt:formatNumber pattern="###,###,###" value="${orderView.goodsPrice }" />원</td>
 							<td>${orderView.cartStock }개</td>
 							<td><fmt:formatNumber pattern="###,###,###" value="${orderView.goodsPrice * orderView.cartStock}" />원</td>

@@ -4,7 +4,7 @@
  <ul>
   <li><a href="/admin/goods/list">상품 목록</a></li>
   <li><a href="/admin/goods/register">상품 등록</a></li>
-  <li><a href="/admin/shop/orderList">주문 목록</a></li>
-  <li><a href="/admin/shop/allReply">리뷰 목록</a></li>
+  <li><a href="/admin/market/orderList">주문 목록</a></li>
+  <li><a href="/admin/market/allReply">리뷰 목록</a></li>
   <li><a href="">유저 목록</a></li>
  </ul>

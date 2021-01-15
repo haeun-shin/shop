@@ -60,12 +60,12 @@
 					<li>
 						<div class="list_info">
 							<div class="goodsThumb">
-								<a href="/shop/view?n=${list.goodsNum }">
+								<a href="/market/view?n=${list.goodsNum }">
 									<img src="${list.goodsThumbImg }" />
 								</a>
 							</div>
 							<div class="goodsName">
-								<a href="/shop/view?n=${list.goodsNum }">${list.goodsName }</a>
+								<a href="/market/view?n=${list.goodsNum }">${list.goodsName }</a>
 							</div>
 							<div class="goodsPrice">
 								<fmt:formatNumber pattern="###,###,###" value="${list.goodsPrice }" />원

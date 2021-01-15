@@ -57,9 +57,9 @@ $(document).ready(function () {
 		<div class="main_banner">
 			<div class="slider_wrap">
 			    <ul class="bxslider">
-			        <li class="sliderImg sliderImg3"><a href="/shop/view?n=17"></a></li>
-			        <li class="sliderImg sliderImg1"><a href="/shop/view?n=53"></a></li>
-			        <li class="sliderImg sliderImg2"><a href="/shop/view?n=50"></a></li>
+			        <li class="sliderImg sliderImg3"><a href="/market/view?n=17"></a></li>
+			        <li class="sliderImg sliderImg1"><a href="/market/view?n=53"></a></li>
+			        <li class="sliderImg sliderImg2"><a href="/market/view?n=50"></a></li>
 			    </ul>
 			</div>
 		</div>

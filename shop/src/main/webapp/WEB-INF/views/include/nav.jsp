@@ -19,10 +19,10 @@
 			<a href="/member/memberinfo">회원정보</a>
 		</li>
 		<li>
-			<a href="/shop/orderList">주문내역</a>
+			<a href="/market/orderList">주문내역</a>
 		</li>
 		<li>
-			<a href="/shop/cartList">장바구니</a>
+			<a href="/market/cartList">장바구니</a>
 		</li>
 		
 		<c:if test="${member.adminCk == 1 }">

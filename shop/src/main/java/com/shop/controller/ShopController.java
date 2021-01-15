@@ -30,7 +30,7 @@ import com.shop.service.AdminService;
 import com.shop.service.ShopService;
 
 @Controller
-@RequestMapping("/shop/*")
+@RequestMapping("/market/*")
 public class ShopController {
 	private static final Logger logger = LoggerFactory.getLogger(ShopController.class);
 	
@@ -80,7 +80,7 @@ public class ShopController {
 		
 		service.registReply(reply);
 		
-		return "redirect:/shop/view?n=" + reply.getGoodsNum();
+		return "redirect:/market/view?n=" + reply.getGoodsNum();
 		
 	}
 	*/
@@ -269,7 +269,7 @@ public class ShopController {
 			adminService.changeStock(goods);
 		}
 		
-		return "redirect:/shop/orderList";
+		return "redirect:/market/orderList";
 	}
 	
 	// 주문 목록

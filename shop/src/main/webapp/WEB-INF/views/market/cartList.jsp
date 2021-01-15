@@ -43,14 +43,14 @@ $(document).ready(function() {
 			});
 			
 			$.ajax({
-				url: "/shop/deleteCart",
+				url: "/market/deleteCart",
 				type: "post",
 				data: {
 					checkArr : checkArr
 				},
 				success: function(result) {
 					if(result == 1) {
-						location.href="/shop/cartList";
+						location.href="/market/cartList";
 					} else {
 						alert("삭제 실패");
 					}
@@ -69,14 +69,14 @@ $(document).ready(function() {
 			checkArr.push($(this).attr("data-cartNum"));
 			
 			$.ajax({
-				url: "/shop/deleteCart",
+				url: "/market/deleteCart",
 				type: "post",
 				data: {
 					checkArr : checkArr
 				},
 				success: function(result) {
 					if(result == 1) {
-						location.href = "/shop/cartList";
+						location.href = "/market/cartList";
 					} else {
 						alert("삭제 실패");
 					}
@@ -129,7 +129,7 @@ $(document).ready(function() {
 						<tr class="cartInfo">
 							<td><input type="checkbox" name="ckBox" class="ckBox" data-cartNum="${cartList.cartNum }"/></td>
 							<td><img src="${cartList.goodsThumbImg }" /></td>
-							<td class="cartGoodsName"><a href="/shop/view?n=${cartList.goodsNum }">${cartList.goodsName }</a></td>
+							<td class="cartGoodsName"><a href="/market/view?n=${cartList.goodsNum }">${cartList.goodsName }</a></td>
 							<td><fmt:formatNumber pattern="###,###,###" value="${cartList.goodsPrice }"/> 원</td>
 							<td>${cartList.cartStock } 개</td>
 							<td><fmt:formatNumber pattern="###,###,###,###" value="${cartList.goodsPrice * cartList.cartStock }" /> 원</td>

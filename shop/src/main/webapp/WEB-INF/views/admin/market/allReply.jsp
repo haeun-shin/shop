@@ -57,7 +57,7 @@
 							<td>${reply.userId }</td>
 							<td>${reply.replyCon }</td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${reply.replyDate }" /></td>
-							<td><a href="/shop/view?n=${reply.goodsNum }#reply">바로가기</a></td>
+							<td><a href="/market/view?n=${reply.goodsNum }#reply">바로가기</a></td>
 							<td>
 								<div class="replyControl">
 									<form role="form" method="post">

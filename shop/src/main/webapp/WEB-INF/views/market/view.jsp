@@ -56,7 +56,7 @@ $(document).ready(function() {
 		// -> 댓글 전송이 성공적으로 되면 댓글 목록을 불러오는 함수 실행
 		// -> $("#replyCon").val(""); 은 댓글 작성 후에도 그대로 남아 있어 초기화 시켜 줌
 		$.ajax({
-			url : "/shop/view/registReply",
+			url : "/market/view/registReply",
 			type : "post",
 			data : data,
 			success : function() {
@@ -77,7 +77,7 @@ $(document).ready(function() {
 			};
 			
 			$.ajax({
-				url : "/shop/view/modifyReply",
+				url : "/market/view/modifyReply",
 				type : "post",
 				data : data,
 				success : function(result) {
@@ -111,7 +111,7 @@ $(document).ready(function() {
 		};
 		
 		$.ajax({
-			url : "/shop/view/addCart",
+			url : "/market/view/addCart",
 			type : "post",
 			data : data,
 			success : function(result) {
@@ -135,7 +135,7 @@ function replyList() {
 	var goodsNum = ${view.goodsNum};
 	// $.getJSON() : 비동기식으로 JSON 데이터를 가져오는 메서드
 	// 1. 주소에 접속해 데이터를 가져오고
-	$.getJSON("/shop/view/replyList" + "?n=" + goodsNum, function(data) {
+	$.getJSON("/market/view/replyList" + "?n=" + goodsNum, function(data) {
 		var str = "";
 		
 		// 2. 그 데이터를 이용해
@@ -322,7 +322,7 @@ function replyList() {
 							// 댓글 삭제 가 성공하면 댓글목록을 다시 불러옴
 							// error : nullPoiontException이 생기면 실행
 							$.ajax({
-								url : "/shop/view/deleteReply",
+								url : "/market/view/deleteReply",
 								type : "post",
 								data : data,
 								success : function(result) {
