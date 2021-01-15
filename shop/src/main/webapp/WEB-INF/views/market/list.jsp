@@ -35,10 +35,10 @@
 						<c:when test="${list.cateCodeRef == 200 }">
 							<c:set var="cateName" value="의자"/>
 						</c:when>
-						<c:when test="${list.cateCodeRef == 300 }">
+						<c:when test="${list.cateCode == 300 }">
 							<c:set var="cateName" value="책장/북선반"/>
 						</c:when>
-						<c:when test="${list.cateCodeRef == 400 }">
+						<c:when test="${list.cateCode == 400 }">
 							<c:set var="cateName" value="서랍장/캐비넷"/>
 						</c:when>
 						<c:when test="${list.cateCodeRef == 500 }">
