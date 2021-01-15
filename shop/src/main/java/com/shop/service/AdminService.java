@@ -3,6 +3,7 @@ package com.shop.service;
 import java.util.List;
 
 import com.shop.domain.CategoryVO;
+import com.shop.domain.Criteria;
 import com.shop.domain.GoodsVO;
 import com.shop.domain.GoodsViewVO;
 import com.shop.domain.MemberVO;
@@ -48,5 +49,10 @@ public interface AdminService {
 	public void deleteReply(int replyNum) throws Exception;
 	
 	// 회원 목록 GET
-	public List<MemberVO> memberList() throws Exception;
+	// public List<MemberVO> memberList() throws Exception;
+	
+	// 회원 목록 GET + 페이징
+	public List<MemberVO> memberList(Criteria cri) throws Exception;
+	// 총 회원 수
+	public int memberCount() throws Exception;
 }

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.shop.domain.CategoryVO;
+import com.shop.domain.Criteria;
 import com.shop.domain.GoodsVO;
 import com.shop.domain.GoodsViewVO;
 import com.shop.domain.MemberVO;
@@ -96,8 +97,19 @@ public class AdminDAOImpl implements AdminDAO{
 	}
 	
 	// 회원 목록 GET
+//	@Override
+//	public List<MemberVO> memberList() throws Exception {
+//		return sql.selectList(namespace + ".memberList");
+//	}
+	
+	// 회원 목록 GET + 페이징
 	@Override
-	public List<MemberVO> memberList() throws Exception {
-		return sql.selectList(namespace + ".memberList");
+	public List<MemberVO> memberList(Criteria cri) throws Exception {
+		return sql.selectList(namespace + ".memberList", cri);
+	}
+	// 총 회원 수
+	@Override
+	public int memberCount() throws Exception {
+		return sql.selectOne(namespace + ".memberCount");
 	}
 }

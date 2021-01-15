@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,11 +25,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
 import com.shop.domain.CategoryVO;
+import com.shop.domain.Criteria;
 import com.shop.domain.GoodsVO;
 import com.shop.domain.GoodsViewVO;
-import com.shop.domain.MemberVO;
 import com.shop.domain.OrderListVO;
 import com.shop.domain.OrderVO;
+import com.shop.domain.PageMaker;
 import com.shop.domain.ReplyListVO;
 import com.shop.service.AdminService;
 import com.shop.utils.UploadFileUtils;
@@ -298,13 +300,25 @@ public class AdminController {
 	}
 	
 	// 회원목록
+//	@RequestMapping(value = "/member/memberList", method = RequestMethod.GET)
+//	public void memberList(Model model) throws Exception {
+//		logger.info("get memberList");
+//		
+//		List<MemberVO> memberList = adminService.memberList();
+//		
+//		model.addAttribute("memberList", memberList);
+//	}
+
+	// 회원 목록 + 페이징
 	@RequestMapping(value = "/member/memberList", method = RequestMethod.GET)
-	public void memberList(Model model) throws Exception {
-		logger.info("get memberList");
+	public void memberList(Model model, @ModelAttribute("cri") Criteria cri) throws Exception {
 		
-		List<MemberVO> memberList = adminService.memberList();
+		model.addAttribute("memberList", adminService.memberList(cri));
 		
-		model.addAttribute("memberList", memberList);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(adminService.memberCount());
+		
+		model.addAttribute("pageMaker", pageMaker);	
 	}
-	
 }

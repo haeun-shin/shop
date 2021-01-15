@@ -207,7 +207,7 @@
 </delete>
 
 <!-- 회원 목록 GET -->
-<select id="memberList" resultType="com.shop.domain.MemberVO">
+<!-- <select id="memberList" resultType="com.shop.domain.MemberVO">
 	select	adminCk,
 			userId,
 			userName,
@@ -215,6 +215,28 @@
 			status,
 			regDate,
 			dropDate
+	from	tbl_member
+</select>  -->
+<!-- 회원 목록 GET + 페이징 -->
+<select id="memberList" resultType="com.shop.domain.MemberVO" parameterType="com.shop.domain.Criteria">
+	select	mem.*
+	from	(
+			select	adminCk,
+					userId,
+					userName,
+					userPhone,
+					status,
+					regDate,
+					dropDate,
+					ROW_NUMBER() OVER(ORDER BY regDate DESC) AS RNUM
+			from	tbl_member
+			) mem
+	where	RNUM BETWEEN #{rowStart} AND #{rowEnd}
+</select>
+  
+<!-- 총 회원 수 -->
+<select id="memberCount" parameterType="com.shop.domain.Criteria" resultType="int">
+	select	count(*)
 	from	tbl_member
 </select>
 
