@@ -11,6 +11,9 @@
 <title>장바구니</title>
 <script src="/resources/js/jquery-3.3.1.min.js"></script>
 <script>
+
+// 연락처 유효성 검사
+var re_phone = /(01[0|1|6|9|7])[-](\d{3}|\d{4})[-](\d{4}$)/g;
 $(document).ready(function() {
 	<%-- 모두 선택 (장바구니 제품) --%>	
 	$("#allCheck").click(function() {
@@ -84,8 +87,46 @@ $(document).ready(function() {
 			});
 		}
 	});
+	
+	<%-- 주문 버튼 클릭 시 --%>
+	$(".order_btn").click(function() {
+		var phone = $("#orderPhone").val();
+		var addr = $("[name=userAddr3]").val();
+		
+		<%-- 연락처 유효성 검사 --%>
+		if(phone == ""){
+            $('.final_phone_ck').css('display','block');
+            $('.final_phone_ck2').css('display', 'none');
+        } else if(!re_phone.test(phone)) {
+        	$('.final_phone_ck2').css('display','block');
+            $('.final_phone_ck').css('display', 'none');
+        } else{
+            $('.final_phone_ck').css('display', 'none');
+            $('.final_phone_ck2').css('display', 'none');
+        } 
+		
+		<%-- 주소 유효성 검사 --%>
+		if(addr == ""){
+	         $('.final_addr_ck').css('display','block');
+	     } 
+		
+		if(addr != "" && re_phone.test(phone)){
+	    	 $("form[role='form']").submit();
+	     }
+	});
+	
 });
 </script>
+<style>
+	.final_phone_ck {
+		display: none;
+		color: red;
+	}
+	.final_addr_ck {
+		display: none;
+		color: red;
+	}
+</style>
 </head>
 <body>
 <div id="root">
@@ -165,25 +206,30 @@ $(document).ready(function() {
 									<th>수령인</th>
 									<td><input type="text" name="orderRec" id="orderRec" required="required" /></td>
 									<th>수령인 연락처</th>
-									<td><input type="text" name="orderPhone" id="orderPhone" required="required" /></td>
+									<td>
+										<input type="text" name="orderPhone" id="orderPhone" required="required" />
+										<span class="final_phone_ck">연락처를 입력해주세요.</span>
+										<span class="final_phone_ck2">올바른 형식으로 입력해주세요.</span>
+									</td>
 								</tr>
 								<tr>
 									<th>주소</th>
 									<td colspan="3">
 										<p>
 											<input type="text" id="sample6_address" name="userAddr1" placeholder="우편번호"  readonly="readonly">
-											<input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기"><br>
+											<input type="button" onclick="sample6_execDaumPostcode()" value="주소 찾기" required="required" ><br>
 										</p>
 										<p>
-											<input type="text" id="sample6_detailAddress" name="userAddr2" placeholder="참고항목" readonly="readonly">
-											<input type="text" id="sample6_extraAddress" name="userAddr3" placeholder="상세주소" readonly="readonly">
+											<input type="text" id="sample6_detailAddress" name="userAddr2" placeholder="참고항목" readonly="readonly" required="required" >
+											<input type="text" id="sample6_extraAddress" name="userAddr3" placeholder="상세주소" readonly="readonly" required="required" >
+											<span class="final_addr_ck">주소를 입력해주세요.</span>
 										</p>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 						<div class="btn_group">
-							<button type="submit" class="order_btn">주문</button>
+							<button type="button" class="order_btn">주문</button>
 							<button type="button" class="cancel_btn">취소</button>
 						</div>
 						<script>
