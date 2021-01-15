@@ -29,8 +29,8 @@
 		</aside>
 		<div id="container_box">
 		<section>
-			<div class="list_container">
 			<h2>상품 목록</h2>
+			<div class="list_container">
 			<table>
 				<thead>
 					<tr>
