@@ -593,3 +593,42 @@ button {
     background-color: #c54343;
 }
 /* allReply.jsp END */
+
+/* 페이징 START */
+.paging {
+	text-align: center;
+	margin: 0 auto;
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 1.2rem;
+	margin-top: 30px;
+				margin-bottom: 100px;
+}
+.paging ul li {
+	float: left;
+	display: inline-block;
+}
+.paging ul li > a {
+	padding: 10px;
+}
+/* 페이징 END */
+
+/* memberList.jsp START */
+#member_list > table {
+	width: 100%;
+    border-top: 2px solid #555;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+#member_list thead th {
+    padding: 14px 0;
+	color: #000;
+	background: #f7f7f7;
+	font-weight: bold;
+}
+#member_list tbody td {
+    padding: 16px 0px;
+    border-top: 1px solid #ddd;
+}
+/* memberList.jsp END */
