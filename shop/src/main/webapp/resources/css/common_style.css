@@ -950,3 +950,141 @@ button {
     line-height: 18px;
 }
 /* home.jsp END */
+
+/* memerinfo.jsp START */
+#memberinfo_content {
+
+}
+#memberinfo_content .baseTable {
+    border-top: 2px solid #555;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    border-collapse: collapse;
+    border: 0;
+    empty-cells: show;
+    font-size: 12px;
+}
+.myInfoForm tbody th {
+    padding-left: 27px;
+    font-weight: bold;
+}
+.rowTable tbody th {
+    padding: 16px 0px;
+}
+.docForm tbody th, .mySection .docForm tbody td {
+    padding: 13px 0 13px 17px;
+    text-align: left;
+}
+.baseTable tbody th {
+    border-top: 1px solid #ddd;
+}
+.baseTable th {
+    background: #f7f7f7;
+}
+.myInfoForm tbody td {
+    font-size: 12px;
+}
+.docForm tbody th, .docForm tbody td {
+    padding: 13px 0 13px 17px;
+    text-align: left;
+}
+.baseTable td {
+    border-top: 1px solid #ddd;
+}
+.txtInp {
+    height: 18px;
+    padding: 5px 10px;
+    font-size: 12px;
+    border: 1px solid #bbb;
+    color: #666;
+    vertical-align: middle;
+    font-weight: normal;
+}
+#memberinfo_content > h4 {
+    margin: 28px 0 0;
+    padding-bottom: 10px;
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: bold;
+    float: left;
+}
+#memberinfo_content > form >  p {
+	float: right;
+	margin-top: 28px;
+    margin-bottom: 11px;
+}
+#memberinfo_content p > #memberinfo_btn {
+	background-color: green;
+	font-size: 0.9rem;
+}
+#memberinfo_content p > #memberout_btn {
+	font-size: 0.9rem;
+}
+input[readonly='readonly'] {
+	background-color: #f3f3f3;
+}
+#memberout_btn {
+	background-color: #282828;
+}
+.outMember {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	top:0;
+	bottom:0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
+}
+.outMember .modal_content {
+	background-color: #fefefe;
+	margin: 15% auto;
+    padding: 7px 10px;
+	boradr: 1px solid #888;
+	width: 50%;
+	overflow: hidden;
+}
+.outMember .modal_content .text {
+	font-size: 1.2rem;
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 1em;
+	clear: both;
+}
+.outMember .modal_content > input[type='password'] {
+	width: 35%;
+    margin: 0 auto;
+    display: block;
+    padding: 8px 34px;
+    text-align: center;
+    border: #bfbfbf solid 1px;
+}
+.outMember button#close {
+	color: black;
+    float: right;
+    background: none;
+    font-size: 28px;
+    width: 38px;
+    padding: 0;
+}
+.outMember button#close:hover {
+	color: #555;
+	text-decoration: none;
+}
+.outMember #userOut_btn {
+    margin: 0 auto;
+    display: block;
+    margin-top: 2em;
+    margin-bottom: 1.5em;
+    border-radius: 8px;
+    font-size: 0.9em;
+    width: 23%;
+    background-color: #b34343;
+}
+.outMember #userOut_btn:hover {
+	background-color: #a03b3b;
+}
+
+/* memberinfo.jsp END */
