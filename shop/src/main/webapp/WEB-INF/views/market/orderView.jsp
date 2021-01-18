@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/resources/css/common_style.css">
 <meta charset="UTF-8">
 <title>주문 상세</title>
+<script src="/resources/js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <div id="root">
@@ -22,6 +23,21 @@
 			<%@ include file="../include/gnb.jsp" %>
 		</div>
 	</div>
+	<style>
+		#order_cancel {
+			background-color: #555;
+		}
+		#order_edit {
+			background-color: #2ba76b;
+		}
+		#order_cancel, #order_edit {
+		    font-size: 0.85rem;
+		    border-radius: 4px;
+		    padding: 4px 16px;
+		    margin-left: 5px;
+		    
+		}
+	</style>
 	<section id="container">
 		<div id="container_box">
 			<section id="orderView">
@@ -34,14 +50,25 @@
 							<tr>
 								<th>수령인</th>
 								<td>${orderView.orderRec }</td>
+								<th>연락처</th>
+								<td>${orderView.orderPhone }</td>
+							</tr>
+							<tr>
 								<th>주소</th>
-								<td>(${orderView.userAddr1 }) ${orderView.userAddr2 } ${orderView.userAddr3 }</td>
+								<td colspan="3">(${orderView.userAddr1 }) ${orderView.userAddr2 } ${orderView.userAddr3 }</td>
 							</tr>
 							<tr>
 								<th>총 주문 금액</th>
 								<td><fmt:formatNumber pattern="###,###,###,###" value="${orderView.amount }" />원</td>
 								<th>상태</th>
-								<td>${orderView.delivery }</td>
+								<td>
+									${orderView.delivery }
+									<%-- '주문 완료'일 경우에만 주문 취소, 수정 버튼 생성 --%>
+									<c:if test="${(orderView.delivery).equals('주문 완료') }">
+										<button type="button" id="order_edit">배송 정보 변경</button>
+										<button type="button" id="order_cancel">주문 취소</button>
+									</c:if>
+								</td>
 							</tr>
 						</c:if>
 						</c:forEach>
