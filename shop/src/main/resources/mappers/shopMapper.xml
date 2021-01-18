@@ -225,6 +225,7 @@
 			delivery
 	from	tbl_order
 	where	userId = #{userId}
+	order by orderDate desc
 </select>
 
 <!-- 특정 주문 목록 -->
