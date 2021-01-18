@@ -92,37 +92,57 @@ $(document).ready(function() {
 	$(".order_btn").click(function() {
 		var phone = $("#orderPhone").val();
 		var addr = $("[name=userAddr3]").val();
+		var orderRec = $("[name=orderRec]").val();
+		
+		var phone_check = false;
+		var addr_check = false;
+		var rec_check = false;
 		
 		<%-- 연락처 유효성 검사 --%>
 		if(phone == ""){
             $('.final_phone_ck').css('display','block');
             $('.final_phone_ck2').css('display', 'none');
+            
+            return false;
         } else if(!re_phone.test(phone)) {
         	$('.final_phone_ck2').css('display','block');
             $('.final_phone_ck').css('display', 'none');
+            
+            return false;
         } else{
             $('.final_phone_ck').css('display', 'none');
             $('.final_phone_ck2').css('display', 'none');
+            
+            phone_check = true;
         } 
 		
 		<%-- 주소 유효성 검사 --%>
-		if(addr == ""){
+		if(addr.trim() == ""){
 	         $('.final_addr_ck').css('display','block');
-	     } 
-		
-		if(addr != "" && re_phone.test(phone)){
-	    	 $("form[role='form']").submit();
+	         
+	         return false;
+	     } else {
+	    	 addr_check = true;
 	     }
+		
+		<%-- 이름 검사 --%>
+		if(orderRec.trim() == "") {
+			 $('.final_rec_ck').css('display','block');
+		} else {
+			rec_check = true;
+		}
+		
+		
+		if(phone_check && addr_check && rec_check) {
+		 $("form[role='form']").submit();
+		}
+		 
 	});
 	
 });
 </script>
 <style>
-	.final_phone_ck {
-		display: none;
-		color: red;
-	}
-	.final_addr_ck {
+	.final_phone_ck, .final_addr_ck, .final_rec_ck {
 		display: none;
 		color: red;
 	}
@@ -204,7 +224,10 @@ $(document).ready(function() {
 							<tbody>
 								<tr>
 									<th>수령인</th>
-									<td><input type="text" name="orderRec" id="orderRec" required="required" /></td>
+									<td>
+										<input type="text" name="orderRec" id="orderRec" required="required" />
+										<span class="final_rec_ck">이름을 입력해주세요.</span>
+									</td>
 									<th>수령인 연락처</th>
 									<td>
 										<input type="text" name="orderPhone" id="orderPhone" required="required" />
