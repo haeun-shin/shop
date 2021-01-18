@@ -27,6 +27,7 @@ public class OrderVO {
 	private int amount;			// 총 가격
 	private Date orderDate;		// 주문 날짜
 	private String delivery;	// 배송 상태
+	private Date cancelDate;	// 주문취소일
 	
 	public String getOrderId() {
 		return orderId;
@@ -87,6 +88,12 @@ public class OrderVO {
 	}
 	public void setDelivery(String delivery) {
 		this.delivery = delivery;
+	}
+	public Date getCancelDate() {
+		return cancelDate;
+	}
+	public void setCancelDate(Date cancelDate) {
+		this.cancelDate = cancelDate;
 	}
 	
 	

@@ -244,7 +244,8 @@ select  o.orderId,
         d.cartStock,
         g.goodsName,
         g.goodsThumbImg,
-        g.goodsPrice
+        g.goodsPrice,
+        o.cancelDate
 from    tbl_order o
         inner join tbl_order_details d
                     on o.orderId = d.orderId
@@ -253,5 +254,14 @@ from    tbl_order o
 where o.userId = #{userId}
   and o.orderId = #{orderId}
 </select>
+
+<!-- 주문 취소 -->
+<update id="orderCancel">
+update tbl_order
+   set delivery = '주문 취소', 
+       cancelDate = sysdate 
+where orderId = #{orderId}
+  and delivery = '주문 완료'
+</update>
 
 </mapper>

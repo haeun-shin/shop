@@ -57,4 +57,7 @@ public interface ShopService {
 	// 특정 주문 목록
 	public List<OrderListVO> orderView(OrderVO order)throws Exception;
 	
+	// 주문 취소
+	public void orderCancel(String orderId) throws Exception;
+	
 }

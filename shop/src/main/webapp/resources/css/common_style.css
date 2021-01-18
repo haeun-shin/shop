@@ -689,6 +689,18 @@ button {
 #orderView .orderView .goodsName > a:hover {
 	text-decoration: underline;
 }
+#order_cancel {
+	background-color: #555;
+}
+#order_edit {
+	background-color: #2ba76b;
+}
+#order_cancel, #order_edit {
+    font-size: 0.85rem;
+    border-radius: 4px;
+    padding: 4px 16px;
+    margin-left: 5px;
+}
 /* orderView.jsp END */
 
 /* cartList.jsp START */

@@ -13,6 +13,7 @@ public class OrderListVO {
 	private int amount;
 	private Date orderDate;
 	private String delivery;
+	private Date cancelDate;
 	
 	private int orderDetailsNum;
 	private int goodsNum;
@@ -117,6 +118,12 @@ public class OrderListVO {
 	}
 	public void setDelivery(String delivery) {
 		this.delivery = delivery;
+	}
+	public Date getCancelDate() {
+		return cancelDate;
+	}
+	public void setCancelDate(Date cancelDate) {
+		this.cancelDate = cancelDate;
 	}
 	
 	

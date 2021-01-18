@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -302,5 +303,21 @@ public class ShopController {
 		List<OrderListVO> orderView = service.orderView(order);
 		
 		model.addAttribute("orderView", orderView);
+	}
+	
+	// 주문 취소
+	@RequestMapping(value = "/orderCancel", method = RequestMethod.POST)
+	public String orderCancel(OrderListVO orderView) throws Exception {
+		logger.info("orderCancel");
+		
+		// 1. orderId만 변수에 저장
+		String orderId = orderView.getOrderId();
+		
+		// 2. orderId를 넣어 [주문 취소] 실행
+		// -> where orderId = orderId, delivery = '주문 완료' 일 때에만 [주문 취소] 실행
+		service.orderCancel(orderId);
+		
+		// 3. 해당 주문상세 페이지로 이동
+		return "redirect:/market/orderView?n=" + orderId;
 	}
  }

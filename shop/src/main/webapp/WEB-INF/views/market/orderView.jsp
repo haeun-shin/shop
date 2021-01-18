@@ -10,6 +10,23 @@
 <meta charset="UTF-8">
 <title>주문 상세</title>
 <script src="/resources/js/jquery-3.3.1.min.js"></script>
+<script>
+$(document).ready(function() {
+	var form = document.orderView;
+	
+	/* 주문 취소 버튼 클릭 시 */
+	$("#order_cancel").click(function() {
+		
+		if(confirm('주문을 취소하시겠습니까?')) {
+			form.method = "POST";
+			form.action = '/market/orderCancel';
+			form.submit();
+		}
+	}); // $("#order_cancel").click
+	
+	
+}); // $(documnet).ready
+</script>
 </head>
 <body>
 <div id="root">
@@ -23,39 +40,29 @@
 			<%@ include file="../include/gnb.jsp" %>
 		</div>
 	</div>
-	<style>
-		#order_cancel {
-			background-color: #555;
-		}
-		#order_edit {
-			background-color: #2ba76b;
-		}
-		#order_cancel, #order_edit {
-		    font-size: 0.85rem;
-		    border-radius: 4px;
-		    padding: 4px 16px;
-		    margin-left: 5px;
-		    
-		}
-	</style>
 	<section id="container">
 		<div id="container_box">
 			<section id="orderView">
 				<h2>주문상세조회</h2>
+				<form role="form" name="orderView">
 				<table class="orderInfo">
 					<div class="title"><h4>구매정보</h4></div>
 					<tbody>
 						<c:forEach items="${orderView }" var="orderView" varStatus="status">
+						<input type="hidden" name="orderId" value="${orderView.orderId }" />
+						
 						<c:if test="${status.first }">
 							<tr>
 								<th>수령인</th>
 								<td>${orderView.orderRec }</td>
-								<th>연락처</th>
-								<td>${orderView.orderPhone }</td>
+								<th>주문 번호</th>
+								<td>${orderView.orderId }</td>
 							</tr>
 							<tr>
 								<th>주소</th>
-								<td colspan="3">(${orderView.userAddr1 }) ${orderView.userAddr2 } ${orderView.userAddr3 }</td>
+								<td>(${orderView.userAddr1 }) ${orderView.userAddr2 } ${orderView.userAddr3 }</td>
+								<th>연락처</th>
+								<td>${orderView.orderPhone }</td>
 							</tr>
 							<tr>
 								<th>총 주문 금액</th>
@@ -68,12 +75,15 @@
 										<button type="button" id="order_edit">배송 정보 변경</button>
 										<button type="button" id="order_cancel">주문 취소</button>
 									</c:if>
+									<%-- '주문 취소일'이 있을 경우 날짜도 추가 --%>
+									<fmt:formatDate pattern="[ yyyy-MM-dd (a)hh:mm ]" value="${orderView.cancelDate }" />									
 								</td>
 							</tr>
 						</c:if>
 						</c:forEach>
 					</tbody>
 				</table>
+				</form>
 				<table class="orderView">
 					<div class="title"><h4>주문상품정보</h4></div>
 					<colgroup>

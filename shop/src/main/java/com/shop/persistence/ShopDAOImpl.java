@@ -137,4 +137,10 @@ public class ShopDAOImpl implements ShopDAO{
 	public List<OrderListVO> orderView(OrderVO order) throws Exception {
 		return sql.selectList(namespace + ".orderView", order);
 	}
+	
+	// 주문 취소
+	@Override
+	public void orderCancel(String orderId) throws Exception {
+		sql.update(namespace + ".orderCancel", orderId);
+	}
 }
