@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/resources/css/reset.css">
 <link rel="stylesheet" href="/resources/css/common_style.css">
+<style>
+	.final_id_ck2 {
+		display: none;
+	}
+</style>
 <title>회원가입</title>
 <script src="/resources/js/jquery-3.3.1.min.js"></script>
 <script>
@@ -24,7 +29,7 @@ var phoneCheck = false;
 /* 이메일 유효성 검사 */
 var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 var re_phone = /(01[0|1|6|9|7])[-](\d{3}|\d{4})[-](\d{4}$)/g;
-
+var re_id = /^[a-z0-9]{4,12}$/;
 
 $(document).ready(function() {
 	
@@ -41,7 +46,7 @@ $(document).ready(function() {
         if(id == ""){
             $('.final_id_ck').css('display','block');
             idCheck = false;
-        }else{
+        } else{
             $('.final_id_ck').css('display', 'none');
             idCheck = true;
         }
@@ -121,31 +126,43 @@ $(document).ready(function() {
         return false;
 	});
 	
-	<%-- 아이디 중복 검사 --%>
+	<%-- 아이디 중복 검사 + 아이디 유효성 검사 --%>
 	$("#userId").on("propertychange change keyup paste input", function() {
-		var userId = $('#userId').val();
-		var data = {
-				userId : userId
-		}
-		$.ajax({
-			type: "post",
-			url: "/member/memberIdChk",
-			data : data,
-			success : function(result) {
-				if(result != 'fail') {
-					$(".id_input_re_1").css("display", "inline-block");
-					$(".id_input_re_2").css("display", "none");
-					$(".final_id_ck").css("display", "none");
-					// 아이디 중복이 없는 경우
-					idckCheck = true;
-				} else {
-					$(".id_input_re_2").css("display", "inline-block");
-					$(".id_input_re_1").css("display", "none");
-					// 아이디 중복된 경우
-					idckCheck = false;
-				}
-			}
-		});
+		var userId = $(this).val();
+		var re_id = /^[a-z]+[a-z0-9]{4,12}$/;
+		
+		if(re_id.test(userId) == false) {
+			console.log('아이디 유효성 실패');
+        	$('.id_input_re_1').css('display', 'none');
+        	$('.final_id_ck2').css('display', 'block');
+        	
+        	idCheck = false;
+        } else {
+    		var data = {
+    				userId : userId
+    		}
+    		$.ajax({
+    			type: "post",
+    			url: "/member/memberIdChk",
+    			data : data,
+    			success : function(result) {
+    				if(result != 'fail') {
+    					$(".id_input_re_1").css("display", "inline-block");
+    					$(".id_input_re_2").css("display", "none");
+    					$(".final_id_ck").css("display", "none");
+    					$('.final_id_ck2').css('display', 'none');
+    					// 아이디 중복이 없는 경우
+    					idckCheck = true;
+    				} else {
+    					$(".id_input_re_2").css("display", "inline-block");
+    					$(".id_input_re_1").css("display", "none");
+    					// 아이디 중복된 경우
+    					idckCheck = false;
+    				}
+    			}
+    		});
+        }
+
 	});
 	
 	/* 비밀번호 확인 일치 유효성 검사 */
@@ -199,6 +216,7 @@ $(document).ready(function() {
 						<span class="id_input_re_1">사용 가능한 아이디입니다.</span>
 						<span class="id_input_re_2">아이디가 이미 존재합니다.</span>
 						<span class="final_id_ck">아이디를 입력해주세요.</span>
+						<span class="final_id_ck2">아이디는 영문자로 시작하고, 숫자 포함 4-12글자만 가능합니다.</span>
 					</div>
 
 					<div class="input_area">
