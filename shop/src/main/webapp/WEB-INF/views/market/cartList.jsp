@@ -23,9 +23,11 @@ $(document).ready(function() {
 		// 2. 체크된 상태라면, 나머지 체크박스인 .ckBox 체크
 		if(chk) {
 			$(".ckBox").prop("checked", true);
+			itemSum();
 		// 3. 아니라면, 체크 해제
 		} else {
 			$(".ckBox").prop("checked", false);
+			itemSum();
 		}
 	});
 	
@@ -139,7 +141,29 @@ $(document).ready(function() {
 		 
 	});
 	
+	
+	
 });
+<%-- 총 금액 합계 --%>
+<%-- 체크 될 때, 실행되도록 함. --%>
+function itemSum() {
+	var str = "";
+	var sum = 0;
+	var count = $(".ckBox").length;
+	
+	// .ckBox 갯수만큼 반복해, 해당 체크박스가 true라면 sum 변수에 가격 저장
+	for(var i=0; i<count; i++) {
+		if($(".ckBox")[i].checked == true) {
+			sum += parseInt($(".ckBox")[i].value);
+		}
+	}
+	// input hidden으로 전달할 값
+	$("#amount").val(sum);
+	
+	// 금액 콤마 정규식 표현. 화면에 금액 표시할 땐, 콤마가 있는 게 깔끔하기 때문에 설정함
+	sum = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	$(".cartOrderSum>strong>span").html(sum + "원");
+}
 </script>
 <style>
 	.final_phone_ck, .final_addr_ck, .final_rec_ck {
@@ -188,15 +212,15 @@ $(document).ready(function() {
 						<c:set var="sum" value="0" />
 						<c:forEach items="${cartList }" var="cartList">
 						<tr class="cartInfo">
-							<td><input type="checkbox" name="ckBox" class="ckBox" data-cartNum="${cartList.cartNum }"/></td>
+							<td><input type="checkbox" name="ckBox" class="ckBox" data-cartNum="${cartList.cartNum }"  value="${cartList.goodsPrice * cartList.cartStock }" onClick="itemSum()"/></td>
 							<td><img src="${cartList.goodsThumbImg }" /></td>
 							<td class="cartGoodsName"><a href="/market/view?n=${cartList.goodsNum }">${cartList.goodsName }</a></td>
 							<td><fmt:formatNumber pattern="###,###,###" value="${cartList.goodsPrice }"/> 원</td>
 							<td>${cartList.cartStock } 개</td>
-							<td><fmt:formatNumber pattern="###,###,###,###" value="${cartList.goodsPrice * cartList.cartStock }" /> 원</td>
+							<td class="price"><fmt:formatNumber pattern="###,###,###,###" value="${cartList.goodsPrice * cartList.cartStock }" /> 원</td>
 							<td><button type="button" class="delete_btn" data-cartNum="${cartList.cartNum }">삭제</button></td>
 						</tr>
-						<c:set var="sum" value="${sum + (cartList.goodsPrice * cartList.cartStock) }" />
+						<%-- <c:set var="sum" value="${sum + (cartList.goodsPrice * cartList.cartStock) }" /> --%>
 						</c:forEach>
 					</tbody>
 				</table>
@@ -218,7 +242,8 @@ $(document).ready(function() {
 				</script>
 				<div class="orderInfo">
 					<form role="form" method="post" autocomplete="off">
-						<input type="hidden" name="amount" value=${sum } />
+						<%-- <input type="hidden" name="amount" value=${sum } /> --%>
+						<input type="hidden" name="amount" id="amount" value="" />
 						
 						<table>
 							<tbody>
