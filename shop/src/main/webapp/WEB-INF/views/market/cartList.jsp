@@ -13,8 +13,9 @@
 <script>
 
 // 연락처 유효성 검사
-var re_phone = /(01[0|1|6|9|7])[-](\d{3}|\d{4})[-](\d{4}$)/g;
+var re_phone = /(01[0|1|6|9|7])[-](\d{3}|\d{4})[-](\d{4})$/g;
 $(document).ready(function() {
+	
 	<%-- 모두 선택 (장바구니 제품) --%>	
 	$("#allCheck").click(function() {
 		// 1. #allCheck가 체크된 상태를 변수에 저장
@@ -92,13 +93,20 @@ $(document).ready(function() {
 	
 	<%-- 주문 버튼 클릭 시 --%>
 	$(".order_btn").click(function() {
-		var phone = $("#orderPhone").val();
+		var phone = $("[name=orderPhone]").val();
 		var addr = $("[name=userAddr3]").val();
 		var orderRec = $("[name=orderRec]").val();
 		
 		var phone_check = false;
 		var addr_check = false;
 		var rec_check = false;
+		
+		// 주문할 금액이 없다면 반환
+		if($("#amount").val() == "0" || $("#amount").val() == "") {
+			alert('주문할 상품을 선택해주세요.');
+			
+			return false;
+		}
 		
 		<%-- 연락처 유효성 검사 --%>
 		if(phone == ""){
@@ -134,16 +142,24 @@ $(document).ready(function() {
 			rec_check = true;
 		}
 		
+		<%-- checked 되어 있는 orw에 data-cartNum 속성을 가져와 Array에 넣어줌 --%>
+		<%-- 컨트롤러에서 배열 형태로 받아주면 됨. --%>
+		var checkArr = new Array();
+		$("input[class='ckBox']:checked").each(function() {
+			checkArr.push($(this).attr("data-cartNum"));
+		});
+		$("#chk").val(checkArr);
+		
 		
 		if(phone_check && addr_check && rec_check) {
 		 $("form[role='form']").submit();
 		}
 		 
-	});
-	
-	
+	}); // $(".order_btn").click()
 	
 });
+
+
 <%-- 총 금액 합계 --%>
 <%-- 체크 될 때, 실행되도록 함. --%>
 function itemSum() {
@@ -163,7 +179,9 @@ function itemSum() {
 	// 금액 콤마 정규식 표현. 화면에 금액 표시할 땐, 콤마가 있는 게 깔끔하기 때문에 설정함
 	sum = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	$(".cartOrderSum>strong>span").html(sum + "원");
-}
+} // itemSum()
+
+
 </script>
 <style>
 	.final_phone_ck, .final_addr_ck, .final_rec_ck {
@@ -227,12 +245,11 @@ function itemSum() {
 				<p class="cartOrderSum">
 					<strong>결제 금액 <span><fmt:formatNumber pattern="###,###,###,###" value="${sum }"/>원</span></strong>
 				</p>
-				<%-- 장바구니 금액이 0이 아닐 경우에만, 주문 버튼 OPEN --%>
-				<c:if test="${sum != 0 }">
-					<div class="orderOpen">
-						<button type="button" class="orderOpen_btn">주문 정보 입력</button>
-					</div>
-				</c:if>
+				
+				<div class="orderOpen">
+					<button type="button" class="orderOpen_btn">주문 정보 입력</button>
+				</div>
+				
 				<script>
 					<%-- 주문정보입력 창 열기 --%>
 					$(".orderOpen_btn").click(function() {
@@ -244,7 +261,7 @@ function itemSum() {
 					<form role="form" method="post" autocomplete="off">
 						<%-- <input type="hidden" name="amount" value=${sum } /> --%>
 						<input type="hidden" name="amount" id="amount" value="" />
-						
+						<input type="hidden" name="chk[]" id="chk" value="" />
 						<table>
 							<tbody>
 								<tr>

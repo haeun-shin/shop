@@ -1,3 +1,5 @@
+<div style="font-size:0.85rem;">
+
 ## ___INTRO___
 ### 소개
 <br/>
@@ -22,7 +24,7 @@
 
 * CKEditor를 이용한 상품 등록
 * ajax를 이용한 비동기 데이터 처리
-* 
+
 
 
 
@@ -69,6 +71,7 @@ __3. SHOP__
        * 장바구니 상품 삭제 (전체, 체크)
        * 상품 주문
    * 주문 목록 조회 (목록, 상세)
+       * 주문 취소 
 
 <br/><br/>
 
@@ -93,13 +96,13 @@ __3. SHOP__
          update tbl_order set userAddr1 = 00000 ...
          where delivery = '주문 완료' and orderId = #{}
       ```
-- __선택한 상품만 주문__
-  - jsp : 체크된 상품만 amount 값 생성
-  - controller : null이 아닐 경우에만 반복시켜 리스트에 넣고  tbl_order_details sql 실행
+- ~~__선택한 상품만 주문__~~ (21.01.19 완료)
+  - ~~jsp : 체크된 상품만 amount 값 생성~~
+  - ~~controller : null이 아닐 경우에만 반복시켜 리스트에 넣고  tbl_order_details sql 실행~~
     ```java 
     @RequestParam("카트번호") int[] 카트번호
     ``` 
-  - SQL : for문으로 들어오는 cartNum을 조회해서 insert
+  - ~~SQL : for문으로 들어오는 cartNum을 조회해서 insert~~ 
       ```sql
       insert into tbl_order_details(  orderDetailsNum, orderId, goodsNum, cartStock, userId)
       select	tbl_order_details_seq.nextval, #{orderId}, goodsNum, cartStock, #{userId}
@@ -109,6 +112,8 @@ __3. SHOP__
       ```
 - ~~__아이디 조건 추가__~~ (2021.01.18 완료)
   - ~~4자 이상 12자 이하 영문으로 시작, 숫자포함~~
+- __답글형 문의 게시판__
+  - 관리자만 답글 달 수 있게하기.
 
 
 <br/><br/>
@@ -224,6 +229,6 @@ __3. SHOP__
 
 <br /><br />
 
-
+</div>
 
 

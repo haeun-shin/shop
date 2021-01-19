@@ -1,11 +1,11 @@
 package com.shop.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.shop.domain.CartListVO;
 import com.shop.domain.CartVO;
 import com.shop.domain.GoodsViewVO;
-import com.shop.domain.OrderDetailVO;
 import com.shop.domain.OrderListVO;
 import com.shop.domain.OrderVO;
 import com.shop.domain.ReplyListVO;
@@ -52,7 +52,8 @@ public interface ShopDAO {
 	public void orderInfo(OrderVO order) throws Exception;
 	
 	// 주문 상세 정보
-	public void orderInfoDetails(OrderDetailVO orderDetail) throws Exception;
+	//public void orderInfoDetails(OrderDetailVO orderDetail) throws Exception;
+	public void orderInfoDetails(HashMap<String, Object> map) throws Exception;
 	
 	// 주문 후, 카트 비우기
 	public void cartAllDelete(String userId) throws Exception;

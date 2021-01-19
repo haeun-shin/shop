@@ -156,7 +156,7 @@
 	where c.userId = #{userId}
 </select>
 
-<!-- 카트 삭제 -->
+<!-- 카트 삭제 + 주문하고 난 뒤에 해당 카트목록 삭제 -->
 <delete id="deleteCart">
 	delete tbl_cart
 	where  cartNum = #{cartNum}
@@ -187,8 +187,8 @@
 						 )
 </insert>
 
-<!-- 주문 상세 정보 -->
-<insert id="orderInfoDetails">
+<!-- 주문 상세 정보 + 체크된 상품만 주문 -->
+<!-- <insert id="orderInfoDetails">
 	insert into tbl_order_details(
 									orderDetailsNum,
 									orderId,
@@ -203,7 +203,26 @@
 						   			#{userId}
 						   	from	tbl_cart
 						   	where	userId = #{userId}
+</insert> -->
+<insert id="orderInfoDetails" parameterType="java.util.HashMap">
+insert into tbl_order_details(
+								orderDetailsNum,
+								orderId,
+								goodsNum,
+								cartStock,
+								userId
+							 )
+					   select	tbl_order_details_seq.nextval,
+					   			#{orderId},
+					   			goodsNum,
+					   			cartStock,
+					   			#{userId}
+					   	from	tbl_cart
+					   	where	userId = #{userId}
+					   	and		cartNum = #{cartNum}
 </insert>
+
+
 
 <!-- 주문 후, 카트 비우기 -->
 <delete id="cartAllDelete">

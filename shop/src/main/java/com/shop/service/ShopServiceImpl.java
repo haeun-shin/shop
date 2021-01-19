@@ -1,5 +1,6 @@
 package com.shop.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.shop.domain.CartListVO;
 import com.shop.domain.CartVO;
 import com.shop.domain.GoodsViewVO;
-import com.shop.domain.OrderDetailVO;
 import com.shop.domain.OrderListVO;
 import com.shop.domain.OrderVO;
 import com.shop.domain.ReplyListVO;
@@ -100,8 +100,8 @@ public class ShopServiceImpl implements ShopService{
 	
 	// 주문 상세 정보
 	@Override
-	public void orderInfoDetails(OrderDetailVO orderDetail) throws Exception {
-		dao.orderInfoDetails(orderDetail);
+	public void orderInfoDetails(HashMap<String, Object> map) throws Exception {
+		dao.orderInfoDetails(map);
 	}
 	
 	// 주문 후, 카트 비우기

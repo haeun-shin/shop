@@ -2,6 +2,7 @@ package com.shop.controller;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -226,7 +226,8 @@ public class ShopController {
 	
 	// 주문 + 재고 변경
 	@RequestMapping(value = "/cartList", method = RequestMethod.POST)
-	public String order(HttpSession session, OrderVO order, OrderDetailVO orderDetail) throws Exception {
+	public String order(HttpSession session, OrderVO order, OrderDetailVO orderDetail,
+						@RequestParam(value = "chk[]") List<String> ckArr) throws Exception {
 		logger.info("order");
 		
 		MemberVO member = (MemberVO) session.getAttribute("member");
@@ -245,21 +246,37 @@ public class ShopController {
 		}
 		
 		// 날짜_랜덤숫자 로 이루어진, 최대한 중복되지 않는 고유한 문자열 생성
-		String orderId = ymd + "_" + subNum;
+		String orderId = ymd + "_" + subNum; // ex) 20210119_542316
 		
 		// 주문 정보
 		order.setOrderId(orderId);
 		order.setUserId(userId);
 		service.orderInfo(order);
 		
-		// 주문 상세 정보
-		orderDetail.setOrderId(orderId);
-		orderDetail.setUserId(userId);
-		service.orderInfoDetails(orderDetail);
+		int cartNum = 0;
+		HashMap<String, Object> map;
+		CartVO cart;
 		
-		// 카트 비우기
-		service.cartAllDelete(userId);
+		for(String i: ckArr) {
+			// - 해당 카트 주문하기
+			cartNum = Integer.parseInt(i);
+			map = new HashMap<String, Object>();
+			
+			map.put("orderId", orderId);
+			map.put("userId", userId);
+			map.put("cartNum", cartNum);
+			
+			service.orderInfoDetails(map);
+			
+			// - 주문 하고 난 뒤 해당 카트 삭제하기
+			cart = new CartVO();
+			cart.setUserId(userId);
+			cart.setCartNum(cartNum);
+			
+			service.deleteCart(cart);
+		}
 		
+		// - 주문한 상품 재고 빼기
 		// orderId와 일치하는 정보를 저장하고
 		List<OrderListVO> orderView = adminService.orderView(order);
 		GoodsVO goods = new GoodsVO();
