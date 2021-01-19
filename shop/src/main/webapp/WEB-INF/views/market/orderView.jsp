@@ -49,9 +49,8 @@ $(document).ready(function() {
 					<div class="title"><h4>구매정보</h4></div>
 					<tbody>
 						<c:forEach items="${orderView }" var="orderView" varStatus="status">
-						<input type="hidden" name="orderId" value="${orderView.orderId }" />
-						
 						<c:if test="${status.first }">
+						<input type="hidden" name="orderId" value="${orderView.orderId }" />
 							<tr>
 								<th>수령인</th>
 								<td>${orderView.orderRec }</td>

@@ -324,17 +324,18 @@ public class ShopController {
 	
 	// 주문 취소
 	@RequestMapping(value = "/orderCancel", method = RequestMethod.POST)
-	public String orderCancel(OrderListVO orderView) throws Exception {
+	public String orderCancel(@RequestParam("orderId") String orderId) throws Exception {
 		logger.info("orderCancel");
 		
-		// 1. orderId만 변수에 저장
-		String orderId = orderView.getOrderId();
+		// orderId만 변수에 저장
+		//String orderId = orderView.getOrderId();
+		// 굳이 객체를 생성해서 할 필요가 있나 싶어서, @RequestParam으로 받음
 		
-		// 2. orderId를 넣어 [주문 취소] 실행
+		// 1. orderId를 넣어 [주문 취소] 실행
 		// -> where orderId = orderId, delivery = '주문 완료' 일 때에만 [주문 취소] 실행
 		service.orderCancel(orderId);
 		
-		// 3. 해당 주문상세 페이지로 이동
+		// 2. 해당 주문상세 페이지로 이동
 		return "redirect:/market/orderView?n=" + orderId;
 	}
  }
