@@ -13,6 +13,8 @@
 <script>
 $(document).ready(function() {
 	var form = document.orderView;
+	/* var re_phone = /(01[0|1|6|9|7])[-](\d{3}|\d{4})[-](\d{4}$)/g; */
+	var re_phone =  /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
 	
 	/* 주문 취소 버튼 클릭 시 */
 	$("#order_cancel").click(function() {
@@ -39,11 +41,39 @@ $(document).ready(function() {
 	var formObj = document.orderEdit;
 	$("#edit_submit").click(function() {
 		if(confirm('해당 정보로 수정하시겠습니까?')) {
+			var name = $("input[name='orderRec']").val().trim();
+			var phone = $("input[name='orderPhone']").val().trim();
+			var addr = $("input[name='userAddr3']").val().trim();
+			
+			/* 이름 유효성 검사 */
+			if(name == "") {
+				alert('수령인을 입력하세요.');
+				return false;
+			}
+			
+	        /* 연락처 유효성 검사 */
+	        if(phone == ""){
+	            alert('연락처를 입력하세요.');
+	            return false;
+	        } else if(!re_phone.test(phone)) {
+	        	alert('연락처를 올바른 형식으로 입력하세요. (ex.010-1234-5678)')
+	        	return false;
+	        }
+	            
+	        /* 주소 유효성 검사 */
+	        if(addr == ""){
+	            alert('상세주소까지 입력하세요.')
+	            return false;
+	        } 
+			
 			formObj.method = "POST";
 			formObj.action = '/market/orderEdit';
 			formObj.submit();	
 		}
 	});
+	
+	
+	
 	
 }); // $(documnet).ready
 </script>
@@ -137,90 +167,6 @@ $(document).ready(function() {
 		</div>
 	</section>
 </div>
-<style>
-
-div.modal_edit {
-	display: none;
-    position: relative;
-   	z-index: 1;
-}
-form#orderEdit {
-    position: fixed;
-    top: 20%;
-    left: calc(50% - 430px);
-    width: 800px;
-    height: 300px;
-    padding: 20px 60px;
-    background: #fff;
-    border: 2px solid #666;
-}
-.modal_edit #orderEdit h4{
-    margin: 28px 0 0;
-    padding-bottom: 10px;
-    color: #000;
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-.modal_edit #orderEdit table {
-	border-top: 2px solid #555;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-    width: 100%;
-    font-size: 0.9rem;
-    color: #555;
-    margin-bottom: 3em;
-} 
-.modal_edit #orderEdit th {
-	padding: 16px 0px;
-    border-top: 1px solid #ddd;
-    font-weight: bold;
-    background: #f7f7f7;
-    width: 150px;
-}
-.modal_edit #orderEdit td {
-	text-align: left;
-    padding: 16px 0px;
-    padding-left: 15px;
-    border-top: 1px solid #ddd;
-}
-div#editBg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: -1;
-}
-.modal_edit input[type="text"] {
-	height: 25px;
-    text-decoration: none;
-    border: 1px #b7b7b7 solid;
-}
-.modal_edit input[name="userAddr1"] {
-	margin-bottom: 4px;
-}
-.modal_edit input[name="userAddr2"] {
-	width: 35%;	
-	float: left;
-    
-}
-.modal_edit input[name="userAddr3"] {
-	width : 50%;
-	float: left;
-	margin-left: 4px;
-}
-.modal_edit #edit_submit {
-	background-color: green;
-}
-.modal_edit #edit_cancel {
-	background-color: #555;
-}
-.modal_edit button {
-	float: right;
-	margin-left: 10px;
-}
-</style>
 <footer id="footer">
 	<div id="footer_box">
 		<%@ include file="../include/footer.jsp" %>
