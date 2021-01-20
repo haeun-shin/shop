@@ -329,7 +329,7 @@ public class ShopController {
 		
 		// orderId만 변수에 저장
 		//String orderId = orderView.getOrderId();
-		// 굳이 객체를 생성해서 할 필요가 있나 싶어서, @RequestParam으로 받음
+		// 굳이 OrderVO로 받아서 할 필요가 있나 싶어서, @RequestParam으로 받음
 		
 		// 1. orderId를 넣어 [주문 취소] 실행
 		// -> where orderId = orderId, delivery = '주문 완료' 일 때에만 [주문 취소] 실행
@@ -337,5 +337,15 @@ public class ShopController {
 		
 		// 2. 해당 주문상세 페이지로 이동
 		return "redirect:/market/orderView?n=" + orderId;
+	}
+	
+	// 주문 수정
+	@RequestMapping(value = "/orderEdit", method = RequestMethod.POST)
+	public String orderEdit(OrderVO order) throws Exception {
+		logger.info("orderEdit");
+		
+		service.orderEdit(order);
+		
+		return "redirect:/market/orderView?n=" + order.getOrderId();
 	}
  }

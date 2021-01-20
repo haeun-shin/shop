@@ -61,4 +61,7 @@ public interface ShopService {
 	// 주문 취소
 	public void orderCancel(String orderId) throws Exception;
 	
+	// 주문 수정
+	public void orderEdit(OrderVO order) throws Exception;
+	
 }

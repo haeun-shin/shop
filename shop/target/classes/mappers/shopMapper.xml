@@ -284,4 +284,14 @@ where orderId = #{orderId}
   and delivery = '주문 완료'
 </update>
 
+<!-- 주문 수정 -->
+<update id="orderEdit">
+update	tbl_order 
+		set userAddr1 = #{userAddr1}, 
+		userAddr2 = #{userAddr2},
+		userAddr3 = #{userAddr3}, 
+		orderPhone = #{orderPhone},
+		orderRec = #{orderRec}
+where	orderId =#{orderId}
+</update>
 </mapper>

@@ -127,4 +127,10 @@ public class ShopServiceImpl implements ShopService{
 	public void orderCancel(String orderId) throws Exception {
 		dao.orderCancel(orderId);
 	}
+	
+	// 주문 수정
+	@Override
+	public void orderEdit(OrderVO order) throws Exception {
+		dao.orderEdit(order);
+	}
 }
