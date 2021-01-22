@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'YES24';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_13@1.0/YES24.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'YESGothic-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_13@1.0/YESGothic-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+	font-family: 'YESGothic-Regular';
+    color: #444;
+}
+.error_container {
+	width: 800px;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 17em;
+}
+.error_container > h3 {
+	font-family: 'YES24';
+	font-size: 10rem;
+	margin-bottom: 0.1em;
+}
+.error_container > section {
+	line-height: 1.5em;
+	letter-spacing: -0.8px;
+	font-size: 1.1rem;
+}
+.error_container > div {
+	width: 200px;
+	margin: 0 auto;
+	border: 4px solid #444;
+	height: 45px;
+	line-height: 45px;
+	font-weight: bold;
+	margin-top: 4.3em;
+
+}
+.error_container > div > a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	transition-duration: 0.4s;
+}
+.error_container > div > a:hover {
+	background-color: #444;
+	color: #f8f8f8;
+	font-size: 1.13rem;
+}
